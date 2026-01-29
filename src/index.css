@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+
+:root{
+  --color-primary:#0d2972;
+  --color-warning: #FFD500;
+  --color-warning-content:#0d2972;
+  --color-base-300:#f0f4ff;
+  --color-info:#F0F4FF;
+}
+
+@layer base {
+  html {
+    font-size: 18px;
+  }
+}
+
+@layer utilities {
+  body{
+    @apply font-normal font-['Albert_Sans',sans-serif] text-[18px] text-[#253858]
+  }
+  .app-container {
+    @apply mx-auto w-full max-w-310 px-4;
+  }
+  h1{
+    @apply text-[65px] leading-tight
+  }
+  h2{
+    @apply text-[28px] md:text-[40px]
+  }
+  h3{
+    @apply text-[24px] md:text-[34px]
+  }
+  h4{
+    @apply text-[22px] md:text-[28px]
+  }
+  p{
+    @apply text-[#505F79] text-[18px] font-normal leading-6
+  }
+  .btn{
+    @apply h-auto py-1.5 font-medium rounded-full shadow-none
+  }
+  .btn-lg{
+    @apply h-auto py-2.5 font-medium rounded-full shadow-none text-[20px]
+  }
+  .hero img{
+    @apply min-h-80 max-h-105.5
+  }
+}

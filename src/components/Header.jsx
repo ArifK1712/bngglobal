@@ -86,7 +86,7 @@ export default function Header() {
                       <button className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5">
                         <i className="icon-right-arrow text-lg"></i>
                       </button>
-                      <img src="images/vectors/vector-m5.svg" className="absolute -start-6 end-0 bottom-0 w-full" alt="" />
+                      <img src="/images/vectors/vector-m5.svg" className="absolute -start-6 end-0 bottom-0 w-full" alt="" />
                     </div>
                   </ul>
                   

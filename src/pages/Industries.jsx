@@ -13,67 +13,67 @@ export default function Industries() {
       id: 1,
       title: "Tourism",
       desc: "Tourism is a major growth vector for Saudi Arabia’s economic transformation, with giant destination projects, regulatory revisions and infrastructure upgrades forming the foundation of this push under Vision 2030.",
-      image: "images/industries/tourism.jpg?v=1",
+      image: "/images/industries/tourism.jpg?v=1",
     },
     {
       id: 2,
       title: "Consumer Products",
       desc: "The Consumer Products sector in Saudi Arabia is poised for growth, driven by demographic trends, rising disposable incomes and modern retail/e-commerce expansion under Vision 2030’s economic-diversification agenda.",
-      image: "images/industries/consumer-products.jpg?v=1",
+      image: "/images/industries/consumer-products.jpg?v=1",
     },
     {
       id: 3,
       title: "Hospitality",
       desc: "The Hospitality sector is a pivotal element of Saudi Arabia’s tourism-led diversification strategy, supported by a large hotel-development pipeline and regulatory reforms to enhance inbound leisure and business tourism under Vision 2030.",
-      image: "images/industries/hospitality.jpg?v=1",
+      image: "/images/industries/hospitality.jpg?v=1",
     },
     {
       id: 4,
       title: "Logistics & Infrastructure",
       desc: "Logistics & Infrastructure is a cornerstone for Saudi Arabia’s economic strategy, with ambitious targets to raise the sector’s contribution to GDP and position the Kingdom as a regional logistics hub. Transport, ports, airports and multimodal corridors are being expanded under Vision 2030.",
-      image: "images/industries/logistics-infrastructure.jpg?v=1",
+      image: "/images/industries/logistics-infrastructure.jpg?v=1",
     },
     {
       id: 5,
       title: "Healthcare & Life Sciences",
       desc: "The Healthcare & Life Sciences sector is undergoing transformation in Saudi Arabia through the Health Sector Transformation Program under Vision 2030, with an emphasis on preventive care, digital health, private-sector participation and local manufacturing of pharmaceuticals/devices.",
-      image: "images/industries/healthcare-lifesciences.jpg?v=1",
+      image: "/images/industries/healthcare-lifesciences.jpg?v=1",
     },
     {
       id: 6,
       title: "Agribusiness & Food",
       desc: "Agribusiness and Food is a critical non-oil sector for Saudi Arabia, anchored by Vision 2030 goals around food security, value-added agriculture and supply-chain resilience. The Kingdom has invested in modern agriculture, food processing and logistics to reduce import reliance and build domestic capability.",
-      image: "images/industries/agribusiness-food.jpg?v=1",
+      image: "/images/industries/agribusiness-food.jpg?v=1",
     },
     {
       id: 7,
       title: "Environmental",
       desc: "Environmental sustainability is increasingly enshrined in Saudi Arabia’s policy agenda, led by the Saudi Green Initiative (SGI) and embedded within Vision 2030’s sustainability pillar. Efforts span carbon-emission reduction, land & marine ecosystem restoration, afforestation and circular-economy approaches.",
-      image: "images/industries/environmental.jpg?v=1",
+      image: "/images/industries/environmental.jpg?v=1",
     },
     {
       id: 8,
       title: "Energy, Power & Products (EPP)",
       desc: "Saudi Arabia’s Energy, Power & Products sector is on a dual path: continuing its hydrocarbon-based strength while accelerating transformation toward renewables, hydrogen and value-added products. The Kingdom invests heavily in downstream integration, petrochemicals, and clean-energy platforms as part of its decarbonisation and diversification strategy.",
-      image: "images/industries/epp.jpg?v=1",
+      image: "/images/industries/epp.jpg?v=1",
     },
     {
       id: 9,
       title: "Construction, Projects & Assets",
       desc: "The Construction, Projects & Assets sector is experiencing a surge in Saudi Arabia, fuelled by large-scale public/private “giga-projects” under Vision 2030 and PIF-led investment. These projects cover residential, tourism, transport, cultural heritage and mixed-use development, forming a multi-year pipeline of construction and asset-delivery activity.",
-      image: "images/industries/construction-projects.jpg?v=1",
+      image: "/images/industries/construction-projects.jpg?v=1",
     },
     {
       id: 10,
       title: "Automotive",
       desc: "The Automotive sector in Saudi Arabia is shifting from a predominantly import/distribution model toward localization, EV adoption and advanced mobility solutions. Driven by Vision 2030’s industrial development arm and Public Investment Fund (PIF)-backed investments, localization of vehicle assembly and value-chains is accelerating.",
-      image: "images/industries/automotive.jpg?v=1",
+      image: "/images/industries/automotive.jpg?v=1",
     },
     {
       id: 11,
       title: "Technology & Innovation",
       desc: "Saudi Arabia’s Technology & Innovation sector is a strategic pillar of Vision 2030, aimed at diversifying the economy via digital transformation, R&D and startup ecosystems. Government initiatives such as the National Transformation Program and dedicated data/AI authorities drive investments in cloud infrastructure, cybersecurity, digital payments and smart-city platforms. Key growth trajectories include public-service digitalisation, sovereign tech capital deployment, and global technology partnerships.",
-      image: "images/industries/technology-innovation.jpg?v=1",
+      image: "/images/industries/technology-innovation.jpg?v=1",
     },
   ];
 
@@ -186,7 +186,7 @@ export default function Industries() {
     <>
       <div className="hero relative">
         <img
-          src="images/hero/industries-hero.png"
+          src="/images/hero/industries-hero.png"
           className="object-cover w-full h-full"
           alt="Industries"
         />

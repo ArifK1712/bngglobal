@@ -7,6 +7,7 @@
   --color-warning-content:#0d2972;
   --color-base-300:#f0f4ff;
   --color-info:#F0F4FF;
+  --color-neutral:#253858;
 }
 
 @layer base {

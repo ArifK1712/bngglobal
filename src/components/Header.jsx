@@ -126,34 +126,12 @@ export default function Header() {
           {/* Drawer Menu Items */}
           <div className="overflow-y-auto flex-1 p-4">
             <ul className="menu w-full text-base">
-              <li><Link to="/" onClick={closeDrawer}>Home</Link></li>
-              
-              {/* Mobile Accordion 1 */}
-              <li>
-                <details>
-                  <summary>About Us</summary>
-                  <ul>
-                    <li><Link to="/about" onClick={closeDrawer}>Overview</Link></li>
-                    <li><Link to="/about/history" onClick={closeDrawer}>History</Link></li>
-                    <li><Link to="/about/team" onClick={closeDrawer}>Team</Link></li>
-                  </ul>
-                </details>
-              </li>
-
-              {/* Mobile Accordion 2 */}
-              <li>
-                <details>
-                  <summary>Our Expertise</summary>
-                  <ul>
-                    <li><Link to="/expertise/tech" onClick={closeDrawer}>Technology</Link></li>
-                    <li><Link to="/expertise/consulting" onClick={closeDrawer}>Consulting</Link></li>
-                  </ul>
-                </details>
-              </li>
-
+              <li><Link to="/" onClick={closeDrawer}>Home</Link></li>              
+              <li><Link to="/about" onClick={closeDrawer}>About Us</Link></li>
+              <li><Link to="/our-expertise" onClick={closeDrawer}>Our Expertise</Link></li>
               <li><Link to="/industries" onClick={closeDrawer}>Industries</Link></li>
-              <li><Link to="/blogs" onClick={closeDrawer}>Insights / Blogs</Link></li>
-              <li className="mt-4"><Link to="/contact" onClick={closeDrawer} className="active:bg-warning active:text-black hover:bg-warning hover:text-black bg-warning text-black justify-center font-bold">Contact Us</Link></li>
+              <li><Link to="/blog" onClick={closeDrawer}>Insights / Blogs</Link></li>
+              <li className="mt-4"><Link to="/contact" onClick={closeDrawer} className="active:bg-warning active:text-black hover:bg-warning hover:text-black bg-warning text-black justify-center font-bold">Contact</Link></li>
             </ul>
           </div>
         </div>

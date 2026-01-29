@@ -83,9 +83,9 @@ export default function Header() {
                     </div>
                     <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative">
                       <p className="text-wrap text-white text-lg font-light mb-6">Partner with us to make your next mission impactful.</p>
-                      <button className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5">
+                      <Link to="/contact" className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5">
                         <i className="icon-right-arrow text-lg"></i>
-                      </button>
+                      </Link>
                       <img src="/images/vectors/vector-m5.svg" className="absolute -start-6 end-0 bottom-0 w-full" alt="" />
                     </div>
                   </ul>

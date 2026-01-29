@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -75,7 +76,7 @@ export default function Home() {
             </div>
             <div className="flex justify-end items-center gap-4">
               <button className="btn btn-lg">Discover Our Services</button>
-              <button className="btn btn-link no-underline text-white underline-none btn-lg">Contact Us</button>
+              <Link to="/contact" className="btn btn-link no-underline text-white underline-none btn-lg">Contact Us</Link>
             </div>
           </div>
           

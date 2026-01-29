@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import Services from "../components/Services";
 import Footer from "../components/Footer";
 
@@ -215,9 +216,9 @@ export default function Expertise() {
           <div className="bg-white border border-[#5E6C84] rounded-2xl p-8 pb-7 relative group overflow-hidden h-67.5">
             <div className="relative z-10">
               <h4 className="mb-1.5">Let’s Build Your Global Success Story Together</h4>
-              <button className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5 mt-10">
+              <Link to="/contact" className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5 mt-10">
                 <i className="icon-right-arrow text-lg"></i>
-              </button>
+              </Link>
             </div>
             {/* Same image path fix applies here */}
             <img

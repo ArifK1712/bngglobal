@@ -25,8 +25,8 @@ export default function Footer() {
               </nav>
               <nav className="flex flex-col gap-2.5">
                 <h6 className="text-white font-medium mb-4">Others</h6>
-                <a className="link link-hover text-sm">Industries</a>
-                <a className="link link-hover text-sm">Insights / Blogs</a>
+                <Link to="/industries" className="link link-hover text-sm">Industries</Link>
+                <Link to="/blog" className="link link-hover text-sm">Insights / Blogs</Link>
                 <a className="link link-hover text-sm">Terms & Conditions</a>
                 <a className="link link-hover text-sm">Privacy Policy</a>
               </nav>

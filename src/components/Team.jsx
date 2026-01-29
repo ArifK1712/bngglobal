@@ -9,7 +9,7 @@ const TEAM_MEMBERS = [
     department: "Global Projects",
     description: "Aryan leads BNG Consulting's international business development with a strategic focus on markets across the Middle East.",
     email: "aryan.sarang@bngglobal.net",
-    image: "./src/assets/images/team/aryan-sarang.png",
+    image: "images/team/aryan-sarang.png",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const TEAM_MEMBERS = [
     department: "Market Strategy",
     description: "Sejal specializes in market entry strategies and competitive analysis, helping clients navigate complex regulatory landscapes.",
     email: "sejal.hule@bngglobal.net",
-    image: "./src/assets/images/team/sejal-hule.png",
+    image: "images/team/sejal-hule.png",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const TEAM_MEMBERS = [
     department: "Middle East Ops",
     description: "Omar brings over 15 years of experience in energy and infrastructure, facilitating rapid deployment of capital in the GCC.",
     email: "omar.fayed@bngglobal.net",
-    image: "./src/assets/images/team/ahmed-khan.png",
+    image: "images/team/ahmed-khan.png",
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const TEAM_MEMBERS = [
     department: "Tech & Sustainability",
     description: "Sarah drives the innovation agenda at BNG, ensuring global projects align with modern ESG standards and technology.",
     email: "sarah.j@bngglobal.net",
-    image: "./src/assets/images/team/sarah-jenkins.png",
+    image: "images/team/sarah-jenkins.png",
   },
 ];
 

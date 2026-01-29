@@ -75,7 +75,7 @@ export default function Expertise() {
            Ensure this image is in your 'public' folder, or import it at the top. 
            Assuming 'public/assets/...': */}
         <img 
-            src="./src/assets/images/hero/expertise-hero.png" 
+            src="images/hero/expertise-hero.png" 
             className='object-cover w-full h-full' 
             alt="Our Expertise" 
         />
@@ -221,7 +221,7 @@ export default function Expertise() {
             </div>
             {/* Same image path fix applies here */}
             <img
-              src="./src/assets/images/vectors/vector-m4.svg"
+              src="images/vectors/vector-m4.svg"
               className="absolute bottom-0 start-0"
               alt=""
             />

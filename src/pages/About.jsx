@@ -72,14 +72,14 @@ export default function About() {
   return (
     <>
     <div className="hero relative">
-      <img src="./src/assets/images/hero/about-hero.png" className='object-cover w-full h-full' alt="About Us" />
+      <img src="images/hero/about-hero.png" className='object-cover w-full h-full' alt="About Us" />
       <h2 className="text-white z-1">About Us</h2>      
       <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
     </div>
     <div id="who-we-are" className="app-container py-22 scroll-mt-24">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-18 items-center">
         <div className="overflow-hidden md:max-w-123 rounded-2xl text-end">      
-          <img src="./src/assets/images/who-we-are.jpg" className='object-cover object-right origin-right h-90 scale-170 ' alt="About Us" />
+          <img src="images/who-we-are.jpg" className='object-cover object-right origin-right h-90 scale-170 ' alt="About Us" />
         </div>
         <div className="md:px-8">
           <h2 className="mb-3">Who we are</h2>
@@ -100,10 +100,10 @@ export default function About() {
                 </div>
                 <div className="w-130 bg-[#253E80] relative h-full ms-auto -me-20">
                     <div className="before:content-[''] before:absolute before:top-0 before:-right-lvh before:h-full before:w-lvw before:bg-[#253E80] "></div>
-                    <img ref={m3Ref} src='./src/assets/images/vectors/vector-m3.svg' className='absolute top-10' alt="" />
+                    <img ref={m3Ref} src='images/vectors/vector-m3.svg' className='absolute top-10' alt="" />
                     <div className="flex justify-center gap-20 absolute bottom-0 end-0 -start-4">
-                      <img ref={m1Ref} src='./src/assets/images/vectors/vector-m1.svg' alt="" />
-                      <img ref={m2Ref} src='./src/assets/images/vectors/vector-m2.svg' alt="" />
+                      <img ref={m1Ref} src='images/vectors/vector-m1.svg' alt="" />
+                      <img ref={m2Ref} src='images/vectors/vector-m2.svg' alt="" />
                     </div>
                 </div>
             </div>

@@ -79,7 +79,7 @@ export default function Header() {
                       <li><Link to="/expertise/consulting">B2B Consulting</Link></li>
                       <li><Link to="/expertise/consulting">Foreign Direct Investment (FDI)</Link></li>
                       <li><Link to="/expertise/consulting">Events &amp; Delegations</Link></li>
-                      <li><Link to="/expertise/consulting">Event Production Services</Link></li>
+                      <li><Link to="/services">Event Production Services</Link></li>
                     </div>
                     <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative">
                       <p className="text-wrap text-white text-lg font-light mb-6">Partner with us to make your next mission impactful.</p>

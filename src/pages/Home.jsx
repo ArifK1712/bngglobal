@@ -75,7 +75,7 @@ export default function Home() {
               <p className="text-white">BNG Business Network Global is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.</p>
             </div>
             <div className="flex justify-end items-center gap-4">
-              <button className="btn btn-lg">Discover Our Services</button>
+              <Link to="/services" className="btn btn-lg">Discover Our Services</Link>
               <Link to="/contact" className="btn btn-link no-underline text-white underline-none btn-lg">Contact Us</Link>
             </div>
           </div>

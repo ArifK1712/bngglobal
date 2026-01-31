@@ -29,51 +29,68 @@ export default function Services() {
   ];
 
   useEffect(() => {
-    // 1. Clear any existing triggers before starting
     ScrollTrigger.getAll().forEach(t => t.kill());
 
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          id: "servicePin", // Unique ID for targetted killing
+          id: "servicePin",
           trigger: containerRef.current,
           start: "top top",
-          end: `+=${services.length * 150}%`,
-          scrub: 1,
+          end: `+=${services.length * 50}%`, 
+          scrub: 2, 
           pin: true,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
-      // Zoom Animation
+      // 1. Zoom Animation
       tl.to(standRef.current, { scale: 4 })
         .to(".initial-ui-text", { opacity: 0, duration: 0.5 }, "<")
         .to(stageRef.current, { opacity: 1, zIndex: 50, duration: 0.5 }, "-=0.3");
 
-      // Content Swapping
+      // 2. Content Transitions
       services.forEach((_, i) => {
         if (i !== 0) {
-          tl.to(`.content-layer-${i - 1}`, { display: "none", opacity: 0, duration: 0.1 });
-          tl.to(`.content-layer-${i}`, { display: "flex", opacity: 1, duration: 0.1 });
+          tl.to(`.text-content-${i - 1}`, {
+            y: "-100%",
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.inOut"
+          });
+
+          tl.fromTo(`.text-content-${i}`,
+            { y: "100%", opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              ease: "power2.out"
+            },
+            "<"
+          );
+
+          tl.to(`.img-layer-${i - 1}`, { display: "none", opacity: 0, duration: 0.01 }, "<");
+          tl.to(`.img-layer-${i}`, { display: "block", opacity: 1, duration: 0.01 }, "<");
         }
+
         tl.to({}, { duration: 1.5 }); 
       });
+
+      // 3. RETURN TO DEFAULT (The "Exit" animation)
+      // This slides the stage out and fades the original labels back in if desired,
+      // or simply clears the screen for the next section.
+      tl.to(stageRef.current, { opacity: 0, duration: 0.5 })
+        .to(standRef.current, { scale: 1, duration: 0.8 }, "<")
+        .to(".initial-ui-text", { opacity: 1, duration: 0.5 }, "-=0.2");
+
     }, containerRef);
 
-    // 2. THE ABSOLUTE CLEANUP
     return () => {
-      ctx.revert(); // Removes inline styles like opacity/transform
-      
-      // Specifically kill the main pin and force the removal of the pin-spacer
+      ctx.revert();
       const trigger = ScrollTrigger.getById("servicePin");
-      if (trigger) {
-        trigger.kill(true); // 'true' restores the DOM to its original state
-      }
-      
-      // Kill all other scroll listeners
-      ScrollTrigger.getAll().forEach(t => t.kill());
-      
-      // Reset scroll memory and height calculations for the new page
+      if (trigger) trigger.kill(true);
       ScrollTrigger.refresh();
     };
   }, []);
@@ -109,11 +126,14 @@ export default function Services() {
           </div>
         </div>
 
-        {/* STATIC STAGE (Appear Section) */}
+        {/* STATIC STAGE */}
         <div ref={stageRef} className="absolute inset-0 z-10 flex opacity-0">
-          <div className="w-1/2 bg-[#0a2361] relative">
+          <div className="w-1/2 bg-[#0a2361] relative overflow-hidden">
             {services.map((service, index) => (
-              <div key={index} className={`content-layer-${index} absolute inset-0 items-center justify-center p-16 text-white ${index === 0 ? "flex opacity-100" : "hidden opacity-0"}`}>
+              <div 
+                key={index} 
+                className={`text-content-${index} absolute inset-0 flex items-center justify-center p-16 text-white ${index === 0 ? "opacity-100" : "opacity-0"}`}
+              >
                 <div className="max-w-md">
                   <h2 className="text-4xl font-bold mb-6">{service.title}</h2>
                   <p className="text-lg opacity-80 leading-relaxed font-light">{service.desc}</p>
@@ -121,10 +141,16 @@ export default function Services() {
               </div>
             ))}
           </div>
+
           <div className="w-1/2 bg-[#d9d9d9] flex items-center justify-center p-12">
             <div className="w-full max-w-xl aspect-video bg-black p-3 rounded-md shadow-2xl relative overflow-hidden">
                {services.map((service, index) => (
-                 <img key={index} src={service.img} className={`content-layer-${index} absolute inset-3 w-[calc(100%-24px)] h-[calc(100%-24px)] object-cover ${index === 0 ? "block opacity-100" : "hidden opacity-0"}`} alt="" />
+                 <img 
+                   key={index} 
+                   src={service.img} 
+                   className={`img-layer-${index} absolute inset-3 w-[calc(100%-24px)] h-[calc(100%-24px)] object-cover ${index === 0 ? "block opacity-100" : "hidden opacity-0"}`} 
+                   alt="" 
+                 />
                ))}
             </div>
           </div>

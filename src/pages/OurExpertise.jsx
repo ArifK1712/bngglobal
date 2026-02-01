@@ -99,7 +99,7 @@ export default function Expertise() {
 
       {/* Animation Loop Section */}
       <div className="bg-primary">
-        <div className="app-container text-center text-white py-10">
+        <div className="app-container text-center text-white py-10 pb-25">
           <h2 className="mb-2.5">Our Approach</h2>
           <p className="text-center text-white mb-18">A Proven 3-Step Methodology That Transforms Insights Into Impact</p>
           

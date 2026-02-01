@@ -1,47 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const services = [
   {
     id: 1,
     title: "Strategy Development",
-    image: "https://bngglobal.net/assets/images/strategy-development.jpg",
+    image: "/images/expertise/strategy-development.jpg",
     description: "We support governments and organizations in developing forward-looking strategies that transform ambition into impact. Our approach combines global best practices with localized insights to identify opportunities, evaluate options, and define clear solutions that deliver results.",
     points: ["Competitive Benchmarking", "Market Potential Assessmen", "Competitive Benchmarking", "FDI & Trade Flow Analysis", "Sector Prioritization"]
   },
   {
     id: 2,
     title: "Go-to-Market Strategy",
-    image: "https://bngglobal.net/assets/images/go-to-market-strategy.jpg",
+    image: "/images/expertise/go-to-market-strategy.jpg",
     description: "We help you design and execute effective go-to-market strategies that accelerate entry into new markets and unlock growth opportunities.",
     points: ["Market & Segment Prioritisation", "Value Proposition & Positioning", "Channel & Partnership Strategy", "Launch & Activation Planning", "Performance & KPI Framework"]
   },
   {
     id: 3,
     title: "B2B Consulting",
-    image: "https://bngglobal.net/assets/images/b2b-consulting.jpg",
+    image: "/images/expertise/b2b-consulting.jpg",
     description: "We work with B2B organizations to strengthen their commercial strategy, improve sales performance, and deepen client relationships.",
     points: ["Account Segmentation & Targeting", "Sales Process Optimisation", "Partnership & Ecosystem Development", "Pricing & Commercial Models", "Customer Success Playbooks"]
   },
   {
     id: 4,
     title: "Events & Delegations",
-    image: "https://bngglobal.net/assets/images/events-delegations.jpg",
+    image: "/images/expertise/events-delegations.jpg",
     description: "We design and manage high-impact events and delegations that connect decision-makers, investors, and stakeholders across borders.",
     points: ["Trade Missions & Delegations", "Investment Forums & Roadshows", "Matchmaking & B2B Meetings", "Program & Agenda Design", "On-ground Coordination & Support"]
   },
   {
     id: 5,
     title: "Foreign Direct Investment (FDI)",
-    image: "https://bngglobal.net/assets/images/foreign-direct-iInvestment.jpg",
+    image: "/images/expertise/foreign-direct-investment.jpg",
     description: "We support governments, agencies, and organizations in attracting and retaining high-quality foreign direct investment.",
     points: ["FDI Strategy & Policy Advisory", "Investor Targeting & Lead Generation", "Value Proposition Development", "Pipeline Management & Aftercare", "Sector & Location Marketing"]
   },
   {
     id: 6,
     title: "Event Production Services",
-    image: "https://bngglobal.net/assets/images/services/custom-made-stands.jpg",
-    description: "Our Go-to-Market services help businesses navigate complex regulatory landscapes and establish a strong presence in the Middle East...",
-    points: ["Entry Mode Selection", "Regulatory Compliance", "Partner Matching", "Local Content Strategy"]
+    image: "/images/expertise/custom-made-stands.jpg"
   },
 ];
 
@@ -50,9 +49,38 @@ const ServicesSection = () => {
   // 1. Add state for the modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tabIndex = params.get('tab');
+
+    if (tabIndex !== null) {
+      const index = parseInt(tabIndex);
+      
+      // 1. Set the data
+      setActiveTab(index);
+      
+      // 2. Scroll to the section first
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+
+      // 3. Open the modal (with a slight delay so the scroll finishes)
+      setTimeout(() => {
+        setIsModalOpen(true);
+      }, 150);
+    }
+  }, [location]);
+
   return (
     <>
-    <section className="pb-40 pt-12 bg-white overflow-hidden">
+    <section ref={sectionRef} className="pb-40 pt-12 bg-white overflow-hidden">
       <div className="app-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div className="relative h-100 w-full flex items-center justify-center lg:justify-end">
@@ -110,9 +138,9 @@ const ServicesSection = () => {
                         // Check if the current tab is "Event Production Services"
                         if (service.title === "Event Production Services") {
                           // Option A: Standard Redirect
-                          window.location.href = "/services"; 
+                          //window.location.href = "/services"; 
                           
-                          // Option B: If using React Router, use: navigate("/services");
+                          navigate("/services");
                         } else {
                           setIsModalOpen(true);
                         }
@@ -167,7 +195,7 @@ const ServicesSection = () => {
                 Contact us to explore how to map your strategic roadmap.
               </p>
               <div className="card-actions justify-end">
-                <button className="btn btn-warning">Contact <i class="icon-rotated-arrow-right"></i></button>
+                <button className="btn btn-warning w-29.5 flex justify-center group overflow-hidden"><span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">Contact</span><i class="icon-rotated-arrow-right w-0 opacity-0 translate-y-7 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i></button>
               </div>
             </div>
           </div>

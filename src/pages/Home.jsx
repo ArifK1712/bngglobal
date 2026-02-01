@@ -53,7 +53,7 @@ export default function Home() {
         </video>
 
         <div className="app-container">
-          <h1 className="absolute text-white z-50 top-45 w-full max-w-lg text-5xl leading-tight">
+          <h1 className="absolute text-white z-50 top-45 w-full max-w-xl text-6xl leading-snug">
             Empowering Global Trade{" "}
             <span className="inline-block h-[1.2em] align-bottom overflow-hidden relative">
               <div ref={sliderRef} className="flex flex-col">
@@ -69,13 +69,13 @@ export default function Home() {
               </div>
             </span>
           </h1>
-          <div className="grid grid-cols-2 justify-between gap-4 absolute bottom-10 z-50 text-white max-w-302">
-            <div>
-              <h3>Navigating Global Markets with Expertise</h3>
+          <div className="grid grid-cols-2 justify-between gap-4 absolute bottom-15 z-50 text-white max-w-302">
+            <div className="w-170">
+              <h3 className="mb-2">Navigating Global Markets with Expertise</h3>
               <p className="text-white">BNG Business Network Global is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.</p>
             </div>
             <div className="flex justify-end items-center gap-4">
-              <Link to="/services" className="btn btn-lg">Discover Our Services</Link>
+              <Link to="/services" className="btn btn-lg px-7">Discover Our Services</Link>
               <Link to="/contact" className="btn btn-link no-underline text-white underline-none btn-lg">Contact Us</Link>
             </div>
           </div>

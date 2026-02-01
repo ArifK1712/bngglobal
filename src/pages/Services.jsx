@@ -159,7 +159,7 @@ export default function Services() {
               >
                 <div className="w-2xl ps-17 pe-8 ms-auto">
                   <h2 className="mb-6">{service.title}</h2>
-                  <div className="[&_p]:mb-3 [&_p]:text-white [&_ul]:list-disc [&_ul]:ml-8" dangerouslySetInnerHTML={{ __html: service.desc }}></div>
+                  <div className="[&_p]:mb-3 [&_p]:text-white [&_ul]:list-disc [&_ul]:space-y-3 [&_ul]:ml-8" dangerouslySetInnerHTML={{ __html: service.desc }}></div>
                 </div>
               </div>
             ))}

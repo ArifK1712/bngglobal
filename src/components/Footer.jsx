@@ -2,6 +2,13 @@ import { Link } from "react-router-dom";
 import logo from '/logo-light.svg'
 
 export default function Footer() {
+  const handleLinkClick = (e) => {
+    // Finds the closest <details> parent and removes the 'open' attribute
+    const detailsElement = e.target.closest('details');
+    if (detailsElement) {
+      detailsElement.removeAttribute('open');
+    }
+  };
   return (
     <footer className="bg-primary text-white pt-20 pb-10">
       <div className="app-container">
@@ -19,9 +26,9 @@ export default function Footer() {
               </nav>
               <nav className="flex flex-col gap-2.5 items-start">
                 <h6 className="text-white font-medium mb-4">About Us</h6>
-                <a className="link link-hover text-sm">Who we are</a>
-                <a className="link link-hover text-sm">Our Mission</a>
-                <a className="link link-hover text-sm">Our Team</a>
+                <Link className="link link-hover text-sm" to="/about#who-we-are" onClick={handleLinkClick}>Who We Are</Link>
+                <Link className="link link-hover text-sm" to="/about#mission" onClick={handleLinkClick}>Our Mission</Link>
+                <Link className="link link-hover text-sm" to="/about#team" onClick={handleLinkClick}>Our Team</Link>
               </nav>
               <nav className="flex flex-col gap-2.5">
                 <h6 className="text-white font-medium mb-4">Others</h6>

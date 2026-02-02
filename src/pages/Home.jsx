@@ -53,7 +53,7 @@ export default function Home() {
         </video>
 
         <div className="app-container">
-          <h1 className="absolute text-white z-50 top-30 sm:top-45 w-full max-w-xl text-3xl leading-tight md:leading-snug sm:text-6xl">
+          <h1 className="absolute text-white z-50 top-30 sm:top-45 w-full max-w-xl text-4xl leading-tight md:leading-snug sm:text-6xl">
             Empowering Global Trade{" "}
             <span className="inline-block h-[1.2em] align-bottom overflow-hidden relative">
               <div ref={sliderRef} className="flex flex-col">

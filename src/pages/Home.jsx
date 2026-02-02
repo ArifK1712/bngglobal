@@ -53,7 +53,7 @@ export default function Home() {
         </video>
 
         <div className="app-container">
-          <h1 className="absolute text-white z-50 top-45 w-full max-w-xl text-6xl leading-snug">
+          <h1 className="absolute text-white z-50 top-45 w-full max-w-xl text-5xl leading-tight md:leading-snug md:text-6xl">
             Empowering Global Trade{" "}
             <span className="inline-block h-[1.2em] align-bottom overflow-hidden relative">
               <div ref={sliderRef} className="flex flex-col">
@@ -69,19 +69,29 @@ export default function Home() {
               </div>
             </span>
           </h1>
-          <div className="grid grid-cols-2 justify-between gap-4 absolute bottom-15 z-50 text-white max-w-302">
-            <div className="w-170">
-              <h3 className="mb-2">Navigating Global Markets with Expertise</h3>
-              <p className="text-white">BNG Business Network Global is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.</p>
+          <div className="absolute inset-x-0 bottom-4 md:bottom-15 z-50 mx-auto w-full px-6 lg:px-10 text-white lg:max-w-5xl xl:max-w-7xl">
+            <div className="grid gap-6 md:grid-cols-2 md:items-center md:justify-between">
+              <div className="max-w-2xl">
+                <h3 className="mb-2">
+                  Navigating Global Markets with Expertise
+                </h3>
+                <p className="text-white">
+                  BNG Business Network Global is your strategic partner. We strengthen industries 
+                  and create lasting impact, empowering enterprises to unlock international 
+                  opportunities through expert FDI advisory and trade consulting.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:flex md:flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-end">
+                <Link to="/services" className="btn btn-lg px-7">
+                  Discover Our Services
+                </Link>
+                <Link to="/contact" className="btn btn-link text-white no-underline">
+                  Contact Us
+                </Link>
+              </div>
             </div>
-            <div className="flex justify-end items-center gap-4">
-              <Link to="/services" className="btn btn-lg px-7">Discover Our Services</Link>
-              <Link to="/contact" className="btn btn-link no-underline text-white underline-none btn-lg">Contact Us</Link>
-            </div>
-          </div>
-          
+          </div>         
         </div>
-
         <div className="bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_59.63%,rgba(0,0,0,0.67)_100%)] fixed right-0 left-0 bottom-0 top-0"></div>
       </div>
     </>

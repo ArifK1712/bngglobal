@@ -62,7 +62,7 @@ const TEAM_MEMBERS = [
 ];
 
 // --- CONSTANTS ---
-const RADIUS_DEFAULT = 220; // For screens > 1500px
+const RADIUS_DEFAULT = 207; // For screens > 1500px
 const RADIUS_TABLET = 170;  // For screens 1024px - 1500px
 const ACTIVE_TRANSLATE_OFFSET = 60; 
 const AUTOPLAY_DELAY = 5000;
@@ -247,9 +247,9 @@ export default function TeamCarousel() {
   const currentRenderRadius = typeof window !== "undefined" ? getRadius() : RADIUS_DEFAULT;
 
   return (
-    <div className="w-full pt-10 lg:pt-32 pb-20 lg:pb-52 overflow-hidden lg:overflow-visible" ref={containerRef}>
+    <div className="w-full pt-10 lg:pt-20 pb-20 lg:pb-52 overflow-hidden lg:overflow-visible" ref={containerRef}>
       <div className="app-container">
-        <h2 className="lg:ms-auto w-full mb-20 text-center"><span className="xl:ms-98">Our Team</span></h2>
+        <h2 className="lg:ms-auto w-full mb-5 text-center"><span className="xl:ms-98">Our Team</span></h2>
         
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-40 xl:gap-58 items-center">
           

@@ -249,7 +249,7 @@ export default function TeamCarousel() {
   return (
     <div className="w-full pt-10 lg:pt-20 pb-20 lg:pb-52 overflow-hidden lg:overflow-visible" ref={containerRef}>
       <div className="app-container">
-        <h2 className="lg:ms-auto w-full mb-5 text-center"><span className="xl:ms-98">Our Team</span></h2>
+        <h2 className="lg:ms-auto w-full mb-20 lg:mb-5 text-center"><span className="xl:ms-98">Our Team</span></h2>
         
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-40 xl:gap-58 items-center">
           

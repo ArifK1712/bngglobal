@@ -37,7 +37,7 @@ export default function Header() {
 
   return (
     <>
-      <div className={`navbar fixed top-0 z-50 text-white transition-all duration-300 ease-in-out ${
+      <div className={`navbar fixed top-0 z-50 text-white transition-all duration-300 ease-in-out px-0 ${
           isScrolled ? "bg-primary py-4" : "bg-transparent py-8"
         }`}
       >
@@ -125,7 +125,7 @@ export default function Header() {
 
           {/* Drawer Menu Items */}
           <div className="overflow-y-auto flex-1 p-4">
-            <ul className="menu w-full text-base">
+            <ul className="menu w-full text-base p-0">
               <li><Link to="/" onClick={closeDrawer}>Home</Link></li>              
               <li><Link to="/about" onClick={closeDrawer}>About Us</Link></li>
               <li><Link to="/our-expertise" onClick={closeDrawer}>Our Expertise</Link></li>

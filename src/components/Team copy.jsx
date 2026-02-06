@@ -151,69 +151,77 @@ export default function TeamCarousel() {
   // --- MATH & POSITIONING LOGIC ---
   const updatePositions = (progress) => {
     const mobile = isMobile();
-    const currentRadius = getRadius();
-    const total = TEAM_MEMBERS.length;
-    
-    // 90 degrees ensures the "Top, Right, Bottom, Left" layout
-    const desktopStep = 90; 
+    const currentRadius = getRadius(); // Fetch dynamic radius
+    const total = TEAM_MEMBERS.length; 
+    const step = 360 / total; 
     const colorInterpolator = gsap.utils.interpolate("#e5e7eb", "#FFD500");
     
+    // Get actual container width
     const containerWidth = orbitContainerRef.current ? orbitContainerRef.current.offsetWidth : window.innerWidth;
+    
+    // DYNAMIC MOBILE SPACING
+    // (Width / 2) - 38px (half avatar) -> Pushes to exact edge
     const mobileSpacing = (containerWidth / 2) - 38;
 
     TEAM_MEMBERS.forEach((_, i) => {
-      // Shortest path calculation
-      let offset = (i - progress) % total;
-      if (offset > total / 2) offset -= total;
-      if (offset < -total / 2) offset += total;
-
-      const isActive = Math.round(offset) === 0;
+      const currentModIndex = ((Math.round(progress) % total) + total) % total;
+      const isActive = currentModIndex === i;
 
       if (mobile) {
-        // --- MOBILE LOGIC ---
-        const absDiff = Math.abs(offset);
+        // --- MOBILE LOGIC (Linear) ---
+        let diff = (i - progress) % total;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+
+        const absDiff = Math.abs(diff);
         const isVisible = absDiff < 1.8; 
-        const x = offset * mobileSpacing; 
+
+        // x calculation pushes avatars to the calculated edges
+        const x = diff * mobileSpacing; 
         
+        const scale = isActive ? 1.15 : 0.85; 
+        const opacity = isVisible ? (isActive ? 1 : 1) : 0; 
+        const zIndex = 10 - Math.round(absDiff); 
+
         gsap.set(`.team-avatar-${i}`, {
-          display: isVisible ? "flex" : "none",
           x: x,
           y: 0, 
-          scale: isActive ? 1.15 : 0.85,
-          zIndex: 10 - Math.round(absDiff),
+          scale: scale,
+          opacity: opacity,
+          zIndex: zIndex,
           backgroundColor: isActive ? "#FFD500" : "#e5e7eb",
           overwrite: "auto",
         });
 
       } else {
-        // --- DESKTOP LOGIC ---
-        // Visible window: -1 (Top), 0 (Right/Active), 1 (Bottom), 2 (Left)
-        // This covers all 4 cardinal points.
-        const isVisible = offset >= -1.2 && offset <= 2.2;
-
-        const angleDeg = offset * desktopStep; 
+        // --- DESKTOP LOGIC (Orbit) ---
+        // Uses 'currentRadius' which switches between 170 and 220 based on width
+        const offset = i - progress;
+        const angleDeg = offset * step; 
         const angleRad = (angleDeg * Math.PI) / 180;
 
-        // Scaling effect based on proximity to the active (0 degree) position
-        const distToZero = Math.abs(angleDeg);
-        const scaleRange = 90; 
+        const normalizedAngle = (angleDeg % 360 + 360) % 360;
+        const distToZero = Math.min(normalizedAngle, 360 - normalizedAngle);
+        const scaleRange = 60; 
         const scaleRatio = Math.max(0, (scaleRange - distToZero) / scaleRange);
         const easeFactor = scaleRatio * scaleRatio; 
 
-        // Add the translate offset only to the active member to push it "forward"
+        // Add Active Offset to the dynamic radius
         const finalRadius = currentRadius + (ACTIVE_TRANSLATE_OFFSET * easeFactor);
 
         const x = Math.cos(angleRad) * finalRadius;
         const y = Math.sin(angleRad) * finalRadius;
+        const finalScale = 1 + (1.25 * easeFactor);
+        const finalColor = colorInterpolator(easeFactor); 
 
         gsap.set(`.team-avatar-${i}`, {
-          display: isVisible ? "flex" : "none",
           x: x,
           y: y,
-          scale: 1 + (1.2 * easeFactor),
+          scale: finalScale,
           opacity: 1,
-          zIndex: isActive ? 20 : 10,
-          backgroundColor: colorInterpolator(easeFactor),
+          zIndex: 1, 
+          rotation: 0, 
+          backgroundColor: finalColor,
           overwrite: "auto"
         });
       }
@@ -280,7 +288,7 @@ export default function TeamCarousel() {
                   w-20 h-20 lg:w-25 lg:h-25 xl:w-32 xl:h-32 
                   rounded-full overflow-hidden flex items-center justify-center cursor-pointer bg-gray-200`}
               >
-                <img src={member.image} alt={member.name} className=" object-cover object-[center_8px] pointer-events-none" />
+                <img src={member.image} alt={member.name} className="w-full h-full object-cover object-[center_8px] pointer-events-none" />
               </div>
             ))}
           </div>
@@ -289,7 +297,7 @@ export default function TeamCarousel() {
           <div className="relative w-full text-start pt-10 lg:pt-0" ref={textRef}>
             <div className="flex flex-col items-start space-y-4">
               <div>
-                <h3 className="mb-2">{activeMember.name}</h3>
+                <h3 className="mb-2 text-2xl font-bold">{activeMember.name}</h3>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-2 text-gray-600">
                   <p>{activeMember.role}</p><span></span><p>{activeMember.department}</p>
                 </div>
@@ -301,7 +309,7 @@ export default function TeamCarousel() {
                   </p>
                 ))}
               </div>
-              <a href={`mailto:${activeMember.email}`} className="underline">
+              <a href={`mailto:${activeMember.email}`} className="underline text-blue-600">
                 {activeMember.email}
               </a>
               <button 

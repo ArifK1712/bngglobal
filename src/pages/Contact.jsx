@@ -8,8 +8,8 @@ export default function Contact() {
         <h2 className="text-white z-1">Contact</h2>      
         <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
       </div>
-      <div className="app-container pt-32">
-          <div className="grid grid-cols-2">
+      <div className="app-container pt-10 lg:pt-32">
+          <div className="grid md:grid-cols-2 gap-y-10">
               <div>
                 <h2 className="mb-5 leading-tight">Ready to Explore <br />New Opportunities?</h2>
                 <p>Let’s start a conversation about your global ambitions.</p>
@@ -39,8 +39,8 @@ export default function Contact() {
                   </div>
                 </div>
               </div> 
-              <div>
-                <div className="card bg-primary w-full max-w-123 rounded-4xl ms-auto">
+              <div className="w-full">
+                <div className="card bg-primary w-full md:max-w-123 rounded-4xl lg:ms-auto">
                   <div className="card-body px-9.5 pt-15 pb-9.5">
                     <fieldset className="fieldset p-0">
                       <label className="label text-[18px] text-white ps-3">Name</label>

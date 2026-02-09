@@ -71,10 +71,6 @@ export default function Expertise() {
     <>
       {/* Hero Section */}
       <div className="hero relative">
-        {/* FIX 1: Image Path. 
-           In React/Vite, './src/...' usually breaks in the browser. 
-           Ensure this image is in your 'public' folder, or import it at the top. 
-           Assuming 'public/assets/...': */}
         <img 
             src="/images/hero/expertise-hero.png" 
             className='object-cover w-full h-full' 
@@ -85,8 +81,8 @@ export default function Expertise() {
       </div>
 
       {/* Intro Text */}
-      <div className="app-container py-32">
-        <div className="grid grid-cols-4 gap-10">
+      <div className="app-container py-10 lg:py-32">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap:5 lg:gap-10">
           <h2 className="mb-3">Our Expertise</h2>
           <div className="col-span-3">
             <p className="mb-3">In an era of rapid global transformation, economic development demands agility, innovation, and strategic foresight. BNG Arabia partners with governments, trade bodies, and private enterprises to unlock the full potential of economies — by attracting investment, driving export growth, and building global competitiveness.</p>
@@ -99,11 +95,11 @@ export default function Expertise() {
 
       {/* Animation Loop Section */}
       <div className="bg-primary">
-        <div className="app-container text-center text-white py-10 pb-25">
+        <div className="app-container text-center text-white py-10 lg:pb-25">
           <h2 className="mb-2.5">Our Approach</h2>
           <p className="text-center text-white mb-18">A Proven 3-Step Methodology That Transforms Insights Into Impact</p>
           
-          <div className="grid grid-cols-3 gap-30 justify-between">
+          <div className="flex flex-col md:grid grid-cols-3 gap-5 gap-y-10 xl:gap-30 justify-between">
             {steps.map((step, index) => {
               const isActive = index === activeIndex;
 
@@ -153,11 +149,11 @@ export default function Expertise() {
       </div>
       
       {/* Cards Grid Section */}
-      <div className="app-container py-24">
+      <div className="app-container py-10 lg:py-24">
         <h3 className="mb-2">Why Choose BNG</h3>
         <p className="mb-10">We bring together expertise, experience, and a global perspective to help your business thrive internationally.</p>
         
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {cards.map((card, index) => {
             const isDark = card.theme === "dark";
 
@@ -166,7 +162,7 @@ export default function Expertise() {
                 key={index}
                 className={`${
                   isDark ? "bg-primary" : "bg-info"
-                } rounded-2xl p-8 pb-7 relative group overflow-hidden h-67.5`}
+                } rounded-2xl p-8 pb-7 relative group overflow-hidden h-auto xl:h-67.5`}
               >
                 {/* Expanding Circle */}
                 <div className="bg-warning w-6 h-6 rounded-full absolute top-6 start-15 

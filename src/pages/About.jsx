@@ -98,12 +98,12 @@ export default function About() {
                     <p className="mb-3 text-white">At Business Network Global, our mission is to empower businesses with strategic insights and practical solutions that unlock international opportunities. We are committed to delivering exceptional consulting services that bridge markets, facilitate foreign direct investment, and drive sustainable economic growth across borders. </p>
                     <p className='text-white'>We believe that every business, regardless of size, deserves access to global markets. Our dedicated team works tirelessly to provide the expertise, connections, and support needed to navigate complex international landscapes with confidence. </p>
                 </div>
-                <div className="w-full lg:w-130 bg-[#253E80] relative h-[470px] lg:h-full lg:ms-auto lg:-me-20">
+                <div className="w-full lg:w-130 bg-[#253E80] relative h-100 lg:h-full lg:ms-auto lg:-me-20">
                     <div className="before:content-[''] before:absolute before:top-0 before:h-full before:w-lvw before:start-0 before:end-0 before:-ms-4 lg:before:ms-0 before:bg-[#253E80] "></div>
-                    <img ref={m3Ref} src='/images/vectors/vector-m3.svg' className='absolute top-10 end-15 start-0 mx-auto' alt="" />
-                    <div className="flex justify-center gap-20 absolute bottom-0 end-0 -start-4">
-                      <img ref={m1Ref} src='/images/vectors/vector-m1.svg' alt="" />
-                      <img ref={m2Ref} src='/images/vectors/vector-m2.svg' alt="" />
+                    <img ref={m3Ref} src='/images/vectors/vector-m3.svg' className='absolute bottom-45 end-15 start-0 mx-auto w-100 lg:w-auto' alt="" />
+                    <div className="flex justify-center gap-10 lg:gap-20 absolute bottom-0 end-0 -start-4">
+                      <img ref={m1Ref} src='/images/vectors/vector-m1.svg' className="h-50 md:h-auto" alt="" />
+                      <img ref={m2Ref} src='/images/vectors/vector-m2.svg' className="h-50 md:h-auto" alt="" />
                     </div>
                 </div>
             </div>

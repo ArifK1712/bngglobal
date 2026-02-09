@@ -80,25 +80,23 @@ const ServicesSection = () => {
 
   return (
     <>
-    <section ref={sectionRef} className="pb-40 pt-12 bg-white overflow-hidden">
+    <section ref={sectionRef} className="pb-15 lg:pb-40 lg:pt-12 bg-white">
       <div className="app-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          <div className="relative h-100 w-full flex items-center justify-center lg:justify-end">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-20 items-start">
+          <div className="relative h-100 w-full hidden lg:flex items-center justify-center">
             {services.map((service, index) => {
-              let positionClass = 'opacity-0 z-0 scale-90 -translate-x-20 pointer-events-none';              
+              let positionClass = 'opacity-0 z-0 scale-90 -translate-y-20 xl:-translate-y-0 xl:-translate-x-20 pointer-events-none';              
               if (index === activeTab) {
-                positionClass = 'opacity-100 z-30 scale-100 translate-x-0'; 
+                positionClass = 'opacity-100 z-30 scale-100 translate-y-0 xl:translate-y-0 xl:translate-x-0'; 
               } else if (index === activeTab + 1) {
-                positionClass = 'opacity-100 z-20 scale-90 -translate-x-12 lg:-translate-x-20';
+                positionClass = 'opacity-100 z-20 scale-90 -translate-y-10 xl:-translate-y-0 xl:-translate-x-20';
               } else if (index === activeTab + 2) {
-                positionClass = 'opacity-100 z-10 scale-80 -translate-x-24 lg:-translate-x-40';
+                positionClass = 'opacity-100 z-10 scale-80 -translate-y-20 xl:-translate-y-0 xl:-translate-x-40';
               }
               return (
                 <div
                   key={service.id}
-                  className={`absolute top-0 -right-8 w-123 h-87.5 lg:h-108 rounded-3xl overflow-hidden transition-all duration-500 ease-out origin-center border border-white/10 ${positionClass}`}
-                  style={{ left: 'auto' }}
-                >
+                  className={`absolute right-0 xl:-right-8 w-full xl:w-123 h-100 xl:h-108 rounded-3xl overflow-hidden transition-all duration-500 ease-out origin-center border border-white/10 ${positionClass}`} >
                   <img src={service.image} alt={service.title} className="w-full h-full object-cover"/>
                 </div>
               );
@@ -127,7 +125,7 @@ const ServicesSection = () => {
                   }
                 `}
               >
-                <span className="font-normal text-[28px]">
+                <span className="font-normal text-[28px] truncate pe-4">
                   {service.title}
                 </span>
                 {activeTab === index && (

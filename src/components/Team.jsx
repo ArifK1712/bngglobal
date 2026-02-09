@@ -24,7 +24,7 @@ const TEAM_MEMBERS = [
     id: 3,
     name: "Atharva Harde",
     role: "Business Development Executive - Investment Promotion",
-    department: "Middle East Ops",
+    department: "",
     description: "Atharva Harde is a Business Development Executive at BNG Consulting, where he facilitates cross-border investments across the Middle East, Africa, and Europe. Drawing on his previous experience at the World Trade Center, he specializes in building international partnerships and driving Foreign Direct Investment (FDI). Atharva is recognized for his results-oriented approach to fostering global expansion and managing strategic corridors for BNG's clients.",
     email: "atharva.harde@bngglobal.net",
     image: "/images/team/atharva-harde.png",

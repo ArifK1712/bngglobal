@@ -38,13 +38,13 @@ export default function Header() {
   return (
     <>
       <div className={`navbar fixed top-0 z-50 text-white transition-all duration-300 ease-in-out px-0 ${
-          isScrolled ? "bg-primary py-4" : "bg-transparent py-8"
+          isScrolled ? "bg-primary py-4" : "bg-transparent py-3 md:py-8"
         }`}
       >
         <div className="app-container flex justify-between items-center">
           <div className="flex items-center w-full lg:w-auto justify-between">
             <Link to="/"><img src={logo} alt="Logo" className="h-12 md:h-17.5" /></Link>
-            <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden"><i className="icon-menu text-4xl"></i></button>
+            <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden"><i className="icon-menu text-3xl"></i></button>
           </div>
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-medium">

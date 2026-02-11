@@ -116,25 +116,22 @@ export default function Header() {
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Drawer Header */}
-          <div className="p-4 flex justify-between items-center border-b border-base-200">
-            <button onClick={closeDrawer} className="btn btn-sm btn-circle btn-ghost">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-          </div>
-
           {/* Drawer Menu Items */}
-          <div className="overflow-y-auto flex-1 p-4">
-            <ul className="menu w-full text-base p-0">
+          <div className="overflow-y-auto flex-1 p-8 pt-19">
+            <button onClick={closeDrawer} className="btn btn-sm btn-circle btn-ghost absolute end-6 top-9">
+              <i className="icon-close-flat text-lg"></i>
+            </button>
+            <ul className="menu w-full text-base p-0 space-y-6">
               <li><Link to="/" onClick={closeDrawer}>Home</Link></li>              
               <li><Link to="/about" onClick={closeDrawer}>About Us</Link></li>
               <li><Link to="/our-expertise" onClick={closeDrawer}>Our Expertise</Link></li>
               <li><Link to="/industries" onClick={closeDrawer}>Industries</Link></li>
               <li><Link to="/blog" onClick={closeDrawer}>Insights / Blogs</Link></li>
-              <li className="mt-4"><Link to="/contact" onClick={closeDrawer} className="active:bg-warning active:text-black hover:bg-warning hover:text-black bg-warning text-black justify-center font-bold">Contact</Link></li>
+              <li className="mt-4 inline"><Link to="/contact" onClick={closeDrawer} className="bg-warning text-black rounded-4xl justify-center inline px-5.5 py-2 ms-2">Contact</Link></li>
             </ul>
           </div>
         </div>
+        <img src="/images/vectors/logowatermark.svg" className="w-full absolute end-0 start-0 bottom-0" alt="" />
       </div>
     </>
   );

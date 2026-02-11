@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ServiceLabel = ({ title, className = "", isHeader = false }) => {
   const Tag = isHeader ? "h4" : "p";
   return (
-    <Tag className={`relative ps-6 ${isHeader ? "font-medium mb-5" : ""} ${className}`}>
+    <Tag className={`relative ps-6 ${isHeader ? "font-medium mb-5 relative z-2" : ""} ${className}`}>
       <span className="bg-warning size-14.5 rounded-full absolute start-0 top-1/2 -translate-y-1/2 -z-1" />
       {title}
     </Tag>

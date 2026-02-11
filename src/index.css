@@ -45,7 +45,7 @@
     @apply h-auto py-2.5 font-medium rounded-full shadow-none text-[20px]
   }
   .hero img{
-    @apply min-h-80 max-h-105.5
+    @apply min-h-75 max-h-105.5
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;

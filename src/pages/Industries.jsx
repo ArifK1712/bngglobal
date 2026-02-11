@@ -167,7 +167,7 @@ export default function Industries() {
       ) : (
         /* MOBILE VIEW: Adjusted to match your image */
         <div className="w-full bg-white">
-          <div className="py-8 text-center">
+          <div className="py-8 px-2 text-center">
             <h2>Specialized Expertise Across Diverse Sectors to Power Your Global Growth</h2>
           </div>
 
@@ -179,10 +179,10 @@ export default function Industries() {
               >
                 {/* CONTENT SECTION: 100% width on mobile, 50% on medium+ */}
                 <div className="bg-primary p-4 flex flex-col justify-center w-full md:w-1/2">
-                  <h3 className="text-white text-3xl font-semibold mb-4">
+                  <h3 className="text-white mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-white text-lg leading-relaxed opacity-90">
+                  <p className="text-white">
                     {item.desc}
                   </p>
                 </div>

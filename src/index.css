@@ -47,4 +47,11 @@
   .hero img{
     @apply min-h-80 max-h-105.5
   }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

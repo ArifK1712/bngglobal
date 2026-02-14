@@ -98,7 +98,7 @@ export default function Industries() {
   return (
     <>
       <div className="hero relative">
-        <img src="/images/hero/industries-hero.png" className="object-cover w-full h-full" alt="Industries" />
+        <img src="/images/hero/industries-hero.jpg" className="object-cover w-full h-full" alt="Industries" />
         <h2 className="text-white z-10 relative px-6">Industries</h2>
         <div className="bg-black opacity-20 absolute inset-0"></div>
       </div>

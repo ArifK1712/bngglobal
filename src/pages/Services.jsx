@@ -117,7 +117,7 @@ export default function Services() {
       {/* MOBILE & TABLET VIEW */}
       <div className="app-container xl:hidden block">
         <div className="relative flex justify-center py-8 overflow-hidden">
-          <img src="/images/exhibition-stand.svg" className="w-full md:max-w-2/3 absolute z-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Stand" />
+          <img src="/images/exhibition-stand.png" className="w-full md:max-w-2/3 absolute z-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Stand" />
           <img src="/images/circle.png" className="w-full md:max-w-2/3" alt="" />
         </div>
         {services.map((service, index) => (
@@ -148,7 +148,7 @@ export default function Services() {
               
               {/* Center Stand */}
               <div className="flex flex-col justify-center">
-                <img ref={standRef} src="/images/exhibition-stand.svg" className="absolute max-w-180 start-0 end-0 mx-auto z-10" alt="" />
+                <img ref={standRef} src="/images/exhibition-stand.png" className="absolute max-w-180 start-0 end-0 mx-auto z-10" alt="" />
                 <img src="/images/circle.png" className="initial-ui-text" alt="" />
               </div>
               

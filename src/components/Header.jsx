@@ -74,12 +74,11 @@ export default function Header() {
                   </summary>
                   <ul className="p-4.5 bg-base-100 text-base-content font-normal w-156 z-10 rounded-2xl flex justify-between -start-32">
                     <div className="grid gap-y-4.5">
-                      <li><Link to="/our-expertise?tab=0">Strategy Development</Link></li>
-                      <li><Link to="/our-expertise?tab=1">Go-to-Market Strategy</Link></li>
-                      <li><Link to="/our-expertise?tab=2">B2B Consulting</Link></li>
+                      <li><Link to="/our-expertise?tab=0">Business Consulting</Link></li>
+                      <li><Link to="/our-expertise?tab=1">Delegations & Roadshows</Link></li>
+                      <li><Link to="/our-expertise?tab=2">Marketing & Promotion</Link></li>
                       <li><Link to="/our-expertise?tab=4">Foreign Direct Investment (FDI)</Link></li>
-                      <li><Link to="/our-expertise?tab=3">Events &amp; Delegations</Link></li>
-                      <li><Link to="/services">Event Production Services</Link></li>
+                      <li><Link to="/services">Event Production</Link></li>
                     </div>
                     <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative">
                       <p className="text-wrap text-white text-lg font-light mb-6">Partner with us to make your next mission impactful.</p>

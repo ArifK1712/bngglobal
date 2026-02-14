@@ -4,43 +4,36 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const services = [
   {
     id: 1,
-    title: "Strategy Development",
-    image: "/images/expertise/strategy-development.jpg",
+    title: "Business Consulting",
+    image: "/images/expertise/business-consulting.jpg",
     description: "We support governments and organizations in developing forward-looking strategies that transform ambition into impact. Our approach combines global best practices with localized insights to identify opportunities, evaluate options, and define clear solutions that deliver results.",
     points: ["Competitive Benchmarking", "Market Potential Assessmen", "Competitive Benchmarking", "FDI & Trade Flow Analysis", "Sector Prioritization"]
   },
   {
     id: 2,
-    title: "Go-to-Market Strategy",
-    image: "/images/expertise/go-to-market-strategy.jpg",
+    title: "Delegations & Roadshows",
+    image: "/images/expertise/delegations-roadshows.jpg",
     description: "We help you design and execute effective go-to-market strategies that accelerate entry into new markets and unlock growth opportunities.",
     points: ["Market & Segment Prioritisation", "Value Proposition & Positioning", "Channel & Partnership Strategy", "Launch & Activation Planning", "Performance & KPI Framework"]
   },
   {
     id: 3,
-    title: "B2B Consulting",
-    image: "/images/expertise/b2b-consulting.jpg",
+    title: "Marketing & Promotion",
+    image: "/images/expertise/marketing-promotion.jpg",
     description: "We work with B2B organizations to strengthen their commercial strategy, improve sales performance, and deepen client relationships.",
     points: ["Account Segmentation & Targeting", "Sales Process Optimisation", "Partnership & Ecosystem Development", "Pricing & Commercial Models", "Customer Success Playbooks"]
   },
   {
     id: 4,
-    title: "Events & Delegations",
-    image: "/images/expertise/events-delegations.jpg",
+    title: "Foreign Direct Investment (FDI)",
+    image: "/images/expertise/foreign-direct-investment.jpg",
     description: "We design and manage high-impact events and delegations that connect decision-makers, investors, and stakeholders across borders.",
     points: ["Trade Missions & Delegations", "Investment Forums & Roadshows", "Matchmaking & B2B Meetings", "Program & Agenda Design", "On-ground Coordination & Support"]
   },
   {
     id: 5,
-    title: "Foreign Direct Investment (FDI)",
-    image: "/images/expertise/foreign-direct-investment.jpg",
-    description: "We support governments, agencies, and organizations in attracting and retaining high-quality foreign direct investment.",
-    points: ["FDI Strategy & Policy Advisory", "Investor Targeting & Lead Generation", "Value Proposition Development", "Pipeline Management & Aftercare", "Sector & Location Marketing"]
-  },
-  {
-    id: 6,
-    title: "Event Production Services",
-    image: "/images/expertise/custom-made-stands.jpg"
+    title: "Event Production",
+    image: "/images/expertise/event-production.jpg"
   },
 ];
 
@@ -134,7 +127,7 @@ const ServicesSection = () => {
                         e.stopPropagation(); 
                         
                         // Check if the current tab is "Event Production Services"
-                        if (service.title === "Event Production Services") {
+                        if (service.title === "Event Production") {
                           // Option A: Standard Redirect
                           //window.location.href = "/services"; 
                           
@@ -164,7 +157,7 @@ const ServicesSection = () => {
             alt={services[activeTab].title} 
           />
           {/* DYNAMIC TITLE */}
-          <h4 className="bg-white p-3 min-w-82 justify-center inline-flex rounded-full absolute -bottom-8 start-10 text-black"> 
+          <h4 className="bg-white p-3 px-8 justify-center inline-flex rounded-full absolute -bottom-8 start-10 text-black"> 
             {services[activeTab].title} 
           </h4>
         </div>

@@ -72,7 +72,7 @@ export default function Expertise() {
       {/* Hero Section */}
       <div className="hero relative">
         <img 
-            src="/images/hero/expertise-hero.png" 
+            src="/images/hero/expertise-hero.jpg" 
             className='object-cover w-full h-full' 
             alt="Our Expertise" 
         />

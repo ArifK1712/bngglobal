@@ -15,11 +15,11 @@ export default function Footer() {
           <div className="flex flex-col gap-y-8 sm:grid grid-cols-3 lg:grid-cols-4 gap-0">
               <nav className="flex flex-col gap-2.5">
                 <p className="text-white font-medium mb-0 sm:mb-4">Our Expertise</p>
-                <a className="link link-hover text-sm">Strategy Development</a>
-                <a className="link link-hover text-sm">Go To Market</a>
-                <a className="link link-hover text-sm">B2B Consulting</a>
-                <a className="link link-hover text-sm">Event & Delegations</a>
-                <a className="link link-hover text-sm">FDI</a>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=0">Business Consulting</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=1">Delegations & Roadshows</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=2">Marketing & Promotion</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=4">Foreign Direct Investment (FDI)</Link>
+                <Link className="link link-hover text-sm" to="/services">Event Production</Link>
               </nav>
               <nav className="flex flex-col gap-2.5 items-start">
                 <h6 className="text-white font-medium mb-0 sm:mb-4">About Us</h6>
@@ -32,7 +32,7 @@ export default function Footer() {
                 <Link to="/industries" className="link link-hover text-sm">Industries</Link>
                 <Link to="/blog" className="link link-hover text-sm">Insights / Blogs</Link>
                 <a className="link link-hover text-sm">Terms & Conditions</a>
-                <a className="link link-hover text-sm">Privacy Policy</a>
+                <Link to="/privacy-policy" className="link link-hover text-sm">Privacy Policy</Link>
               </nav>
               <nav className="grid gap-2.5 col-span-3 lg:col-span-1">
                 <p className="text-white text-sm">BNG is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.</p>

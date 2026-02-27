@@ -35,6 +35,9 @@
   h4{
     @apply text-[22px] md:text-[28px]
   }
+  h5{
+    @apply text-[16px] md:text-[20px] font-medium
+  }
   p{
     @apply text-[#505F79] text-[18px] font-normal leading-6
   }

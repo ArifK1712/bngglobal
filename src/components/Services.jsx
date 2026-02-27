@@ -75,7 +75,7 @@ const ServicesSection = () => {
     <>
     <section ref={sectionRef} className="pb-15 lg:pb-40 lg:pt-12 bg-white">
       <div className="app-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-20 items-center">
           <div className="relative h-100 w-full hidden lg:flex items-center justify-center">
             {services.map((service, index) => {
               let positionClass = 'opacity-0 z-0 scale-90 -translate-y-20 xl:-translate-y-0 xl:-translate-x-20 pointer-events-none';              

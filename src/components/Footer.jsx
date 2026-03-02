@@ -31,7 +31,7 @@ export default function Footer() {
                 <h6 className="text-white font-medium mb-0 sm:mb-4">Others</h6>
                 <Link to="/industries" className="link link-hover text-sm">Industries</Link>
                 <Link to="/blog" className="link link-hover text-sm">Insights / Blogs</Link>
-                <a className="link link-hover text-sm">Terms & Conditions</a>
+                <Link to="/terms-and-conditions" className="link link-hover text-sm">Terms & Conditions</Link>
                 <Link to="/privacy-policy" className="link link-hover text-sm">Privacy Policy</Link>
               </nav>
               <nav className="grid gap-2.5 col-span-3 lg:col-span-1">

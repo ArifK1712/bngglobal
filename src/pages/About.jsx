@@ -12,6 +12,30 @@ export default function About() {
   const m1Ref = useRef(null);
   const m2Ref = useRef(null);
   const m3Ref = useRef(null);
+  const containerRef = useRef(null);
+  const clientIds = Array.from({ length: 21 }, (_, i) => i + 1);
+
+  useEffect(() => {
+  const images = containerRef.current.querySelectorAll('img');
+
+  const tl = gsap.timeline({ repeat: -1 });
+
+  tl.to(images, {
+    scale: 1.30,
+    filter: "grayscale(0%)",
+    zIndex: 10,
+    duration: 0.8,
+    force3D: true, // Forces GPU rendering for smoothness
+    stagger: {
+      each: 1,
+      yoyo: true, 
+      repeat: 1 
+    },
+    ease: "power2.inOut" // Smoother than back.out(0) for simple zooms
+  });
+
+  return () => tl.kill();
+}, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -112,6 +136,23 @@ export default function About() {
     <div id="team" className="scroll-mt-24">
       <Team />
     </div>
+
+    <div id="clients" className="scroll-mt-24">
+      <div className="app-container pb-15" ref={containerRef}>
+        <h2 className="text-center mb-10">Our Clients</h2>      
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center">
+          {clientIds.map((id) => (
+            <img 
+              key={id} 
+              src={`/images/clients/${id}.jpg`} 
+              alt={`Client ${id}`} 
+              // Keep the manual hover as well so it still works if user touches it
+              className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300"
+            />
+          ))}
+        </div>    
+      </div>
+    </div>    
     <Footer />
     </>
   );

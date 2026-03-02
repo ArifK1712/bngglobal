@@ -247,7 +247,7 @@ export default function TeamCarousel() {
   const currentRenderRadius = typeof window !== "undefined" ? getRadius() : RADIUS_DEFAULT;
 
   return (
-    <div className="w-full pt-10 lg:pt-20 pb-20 lg:pb-52 overflow-hidden lg:overflow-visible" ref={containerRef}>
+    <div className="w-full pt-10 lg:pt-20 pb-20 lg:pb-40 overflow-hidden lg:overflow-visible" ref={containerRef}>
       <div className="app-container">
         <h2 className="lg:ms-auto w-full mb-20 lg:mb-5 text-center"><span className="xl:ms-98">Our Team</span></h2>
         

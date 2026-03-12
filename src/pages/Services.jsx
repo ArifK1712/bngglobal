@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,10 +18,52 @@ const ServiceLabel = ({ title, className = "", isHeader = false }) => {
   );
 };
 
+const media = [
+  { type: "image", src: "/images/gallery/1.jpg" },
+  // { type: "video", src: "https://bngglobal.net/assets/images/gallery/philips.mp4" },  
+  { type: "image", src: "/images/gallery/2.jpg" },
+  // { type: "video", src: "https://bngglobal.net/assets/images/gallery/jana-marine.mp4" },
+  { type: "image", src: "/images/gallery/3.jpg" },
+  { type: "image", src: "/images/gallery/4.jpg" },
+  { type: "image", src: "/images/gallery/5.jpg" },
+  { type: "image", src: "/images/gallery/6.jpg" },
+  { type: "image", src: "/images/gallery/7.jpg" },
+];
+
 export default function Services() {
   const containerRef = useRef(null);
   const standRef = useRef(null);
   const stageRef = useRef(null);
+
+  const [startIndex, setStartIndex] = useState(0);
+      const [currentMedia, setCurrentMedia] = useState(null);
+
+      const nextSlide = () => {
+      if (startIndex + 5 < media.length) {
+        setStartIndex(startIndex + 1);
+      }
+    };
+
+      const prevSlide = () => {
+      if (startIndex > 0) {
+        setStartIndex(startIndex - 1);
+      }
+    };
+
+      const visibleMedia = media.slice(startIndex, startIndex + 5);
+
+      // Modal navigation
+      const nextImage = () => {
+      setCurrentMedia((prev) =>
+        prev < media.length - 1 ? prev + 1 : prev
+      );
+    };
+
+    const prevImage = () => {
+      setCurrentMedia((prev) =>
+        prev > 0 ? prev - 1 : prev
+      );
+    };
 
   const services = [
     {
@@ -140,10 +182,10 @@ export default function Services() {
           <div className="app-container">
             <div className="relative w-full flex items-center justify-between mx-auto">
               {/* Left Column Labels */}
-              <div className="initial-ui-text space-y-32 ps-20 w-60 flex flex-col items-start">
-                  <ServiceLabel title="Event Solution" />
-                  <ServiceLabel title={<>Logistics & <br />Installation</>} className="-ms-20" />
-                  <ServiceLabel title={<>Custom Made <br /> Stands</>} />
+              <div className="initial-ui-text space-y-32 ps-20 w-70 flex flex-col items-start">
+                  <ServiceLabel title="Luxury events & Fashion Shows" />
+                  <ServiceLabel title={<>Corporate & <br />Conference setups</>} className="-ms-15" />
+                  <ServiceLabel title={<>Retail Experiences & <br />  Pop-up venues</>} />
               </div>
               
               {/* Center Stand */}
@@ -153,9 +195,10 @@ export default function Services() {
               </div>
               
               {/* Right Column Labels */}
-              <div className="initial-ui-text space-y-32 w-60 flex flex-col items-end -mt-30">
-                  <ServiceLabel title={<>Concept Development <br />& 3D Design</>} />
-                  <ServiceLabel title={<>On-Site Support<br />& Dismantling</>} />
+              <div className="initial-ui-text space-y-32 w-70 flex flex-col items-start ps-10">
+                  <ServiceLabel title="Brand activations" />
+                  <ServiceLabel title={<>Sport & Automotive<br />setups</>} className="ms-15" />
+                  <ServiceLabel title="Exhibitions" />
               </div>
             </div>
           </div>
@@ -163,6 +206,7 @@ export default function Services() {
 
         {/* STATIC STAGE Content */}
         <div ref={stageRef} className="absolute inset-0 z-10 flex opacity-0">
+          {/* <img src="/images/vectors/logowatermarkblue.svg" className="absolute top-3 left-1/2 -translate-x-1/2 z-10" alt="" /> */}
           <div className="w-1/2 bg-[#0a2361] relative overflow-hidden">
             {services.map((service, index) => (
               <div key={index} className={`text-content-${index} absolute inset-0 flex items-center text-white ${index === 0 ? "opacity-100" : "opacity-0"}`}>
@@ -183,6 +227,115 @@ export default function Services() {
           </div>
         </div>
       </div>
+      
+      <div className="app-container pt-10 pb-20">
+
+      <h2 className="mb-3">Our work gallery</h2>
+
+      <p className="max-w-3xl">
+        As Vision 2030 accelerates economic diversification, sustainability
+        has become central to investment strategy.
+      </p>
+
+      <div className="gallery grid grid-cols-3 gap-4 pt-15">
+
+        {visibleMedia.map((item, index) => {
+
+  const actualIndex = startIndex + index;
+
+  return (
+    <div
+      key={index}
+      className={`gallery-item h-65 relative group ${
+        index === 1 ? "col-span-2" : ""
+      }`}
+    >
+
+      {item.type === "image" ? (
+        <img
+          src={item.src}
+          className="h-full object-cover w-full rounded-3xl"
+          alt=""
+        />
+      ) : (
+        <video
+          src={item.src}
+          className="h-full object-cover w-full rounded-3xl"
+          muted
+          autoPlay
+          loop
+        />
+      )}
+
+      {/* Overlay */}
+
+      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center rounded-3xl">
+
+        <i
+          onClick={() => setCurrentMedia(actualIndex)}
+          className="icon-zoom-in text-4xl cursor-pointer text-white"
+        ></i>
+
+      </div>
+
+    </div>
+  );
+})}
+
+      </div>
+
+      <div className="flex gap-3 justify-end pt-5">
+        <button onClick={prevSlide} className="btn btn-warning">
+          Prev
+        </button>
+
+        <button onClick={nextSlide} className="btn btn-warning">
+          Next
+        </button>
+      </div>
+
+      {/* Modal */}
+
+      {currentMedia !== null && (
+
+  <div className="fixed inset-0 bg-white/80 backdrop-blur-lg flex items-center justify-center z-50">
+
+    <i
+      onClick={() => setCurrentMedia(null)}
+      className="icon-close-flat text-xl absolute top-10 right-10 cursor-pointer"
+    ></i>
+
+    <i
+      onClick={prevImage}
+      className="icon-right-arrow text-3xl absolute start-10 rotate-180 cursor-pointer"
+    ></i>
+
+    <i
+      onClick={nextImage}
+      className="icon-right-arrow text-3xl absolute end-10 cursor-pointer"
+    ></i>
+
+    {media[currentMedia].type === "image" ? (
+      <img
+        src={media[currentMedia].src}
+        className="max-h-[90vh] max-w-[90vw]"
+        alt=""
+      />
+    ) : (
+      <video
+        src={media[currentMedia].src}
+        controls
+        autoPlay
+        className="max-h-[90vh] max-w-[90vw]"
+      />
+    )}
+
+  </div>
+
+)}
+
+    </div>
+      
       <Footer />
     </div>
   );

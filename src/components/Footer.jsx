@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import logo from '/logo-light.svg'
 
 export default function Footer() {
   const handleLinkClick = (e) => {
-    // Finds the closest <details> parent and removes the 'open' attribute
     const detailsElement = e.target.closest('details');
     if (detailsElement) {
       detailsElement.removeAttribute('open');
@@ -40,11 +38,11 @@ export default function Footer() {
           </div>
           <hr class="h-px mt-8 md:mt-20 bg-base-200 opacity-40 border-0 w-full"></hr>
           <div className="flex flex-col gap-y-5 text-center md:flex-row justify-between pt-4 md:pt-10">
-            <p className="text-white">Copyright ©2026 BNG Arabia Company, All rights reserved</p>
+            <p className="text-white text-sm">Copyright ©2026 BNG Arabia Company, All rights reserved</p>
             <div className="flex gap-12 justify-center md:justify-start">
-              <a className="link link-hover text-sm"><i className="icon-linkedin"></i></a>
-              <a className="link link-hover text-sm"><i className="icon-x"></i></a>
-              <a className="link link-hover text-sm"><i className="icon-email"></i></a>
+              <Link className="link link-hover text-sm"><i className="icon-linkedin"></i></Link>
+              <Link className="link link-hover text-sm"><i className="icon-x"></i></Link>
+              <Link to="mailto:info@bngglobal.net" className="link link-hover text-sm"><i className="icon-email"></i></Link>
             </div>
           </div>
       </div>

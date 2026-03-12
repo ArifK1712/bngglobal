@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -7,28 +8,28 @@ const services = [
     title: "Business Consulting",
     image: "/images/expertise/business-consulting.jpg",
     description: "We support governments and organizations in developing forward-looking strategies that transform ambition into impact. Our approach combines global best practices with localized insights to identify opportunities, evaluate options, and define clear solutions that deliver results.",
-    points: ["Competitive Benchmarking", "Market Potential Assessmen", "Competitive Benchmarking", "FDI & Trade Flow Analysis", "Sector Prioritization"]
+    points: ["Customized Strategy", "Market Potential Assessment", "Global Expansion Planning & Partnerships", "FDI & Trade Flow Analysis", "Sector Prioritization"]
   },
   {
     id: 2,
     title: "Delegations & Roadshows",
     image: "/images/expertise/delegations-roadshows.jpg",
-    description: "We help you design and execute effective go-to-market strategies that accelerate entry into new markets and unlock growth opportunities.",
-    points: ["Market & Segment Prioritisation", "Value Proposition & Positioning", "Channel & Partnership Strategy", "Launch & Activation Planning", "Performance & KPI Framework"]
+    description: "We design and manage high-impact events and delegations that connect decision-makers, investors, and stakeholders across borders.",
+    points: ["Trade Missions & Delegations", "Investment Forums & Roadshows", "Matchmaking & B2B Meetings", "Program & Agenda Design", "On-ground Coordination & Support "]
   },
   {
     id: 3,
     title: "Marketing & Promotion",
     image: "/images/expertise/marketing-promotion.jpg",
-    description: "We work with B2B organizations to strengthen their commercial strategy, improve sales performance, and deepen client relationships.",
-    points: ["Account Segmentation & Targeting", "Sales Process Optimisation", "Partnership & Ecosystem Development", "Pricing & Commercial Models", "Customer Success Playbooks"]
+    description: "We help you design and execute effective go-to-market strategies that accelerate entry into new markets and unlock growth opportunities.",
+    points: ["Market & Segment Prioritisation", "Value Proposition & Positioning", "Channel & Partnership Strategy", "Digital Marketing Integration", "Performance & KPI Framework"]
   },
   {
     id: 4,
     title: "Foreign Direct Investment (FDI)",
     image: "/images/expertise/foreign-direct-investment.jpg",
-    description: "We design and manage high-impact events and delegations that connect decision-makers, investors, and stakeholders across borders.",
-    points: ["Trade Missions & Delegations", "Investment Forums & Roadshows", "Matchmaking & B2B Meetings", "Program & Agenda Design", "On-ground Coordination & Support"]
+    description: "We support governments, agencies, and organizations in attracting and retaining high-quality foreign direct investment.",
+    points: ["FDI Strategy & Policy Advisory", "Investor Targeting & Lead Generation", "Value Proposition Development", "Pipeline Management & Aftercare", "Sector & Location Marketing"]
   },
   {
     id: 5,
@@ -173,7 +174,7 @@ const ServicesSection = () => {
           {/* DYNAMIC LIST */}
           <ul className="text-white grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
             {services[activeTab].points?.map((point, idx) => (
-              <li key={idx} className="flex items-center gap-3">
+              <li key={idx} className="flex items-start gap-3">
                 <i className="icon-bg-sign text-warning text-[30px]"></i> {point}
               </li>
             ))}
@@ -181,12 +182,12 @@ const ServicesSection = () => {
 
           {/* FOOTER CARD */}
           <div className="card bg-white/15 rounded-3xl mt-15">
-            <div className="card-body flex flex-row items-center p-8">
-              <p className="text-white pe-8 text-xl font-light">
+            <div className="card-body flex flex-row items-center justify-between p-8">
+              <p className="text-white pe-8 text-xl font-light max-w-100">
                 Contact us to explore how to map your strategic roadmap.
               </p>
               <div className="card-actions justify-end">
-                <button className="btn btn-warning w-29.5 flex justify-center group overflow-hidden"><span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">Contact</span><i class="icon-rotated-arrow-right w-0 opacity-0 translate-y-7 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i></button>
+                <Link to="/contact" className="btn btn-warning w-29.5 flex justify-center group overflow-hidden"><span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">Contact</span><i class=" text-xs icon-rotated-arrow-right w-0 opacity-0 translate-y-6 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i></Link>
               </div>
             </div>
           </div>

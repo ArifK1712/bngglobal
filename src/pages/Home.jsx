@@ -53,7 +53,7 @@ export default function Home() {
         </video>
 
         <div className="app-container">
-          <h1 className="absolute text-white z-50 top-30 sm:top-45 w-full max-w-xl text-4xl leading-tight md:leading-snug sm:text-6xl">
+          <h1 className="absolute text-white z-50 top-30 sm:top-45 w-full max-w-xl text-4xl leading-tight md:leading-tight sm:text-6xl">
             Empowering Global Trade{" "}
             <span className="inline-block h-[1.2em] align-bottom overflow-hidden relative">
               <div ref={sliderRef} className="flex flex-col">
@@ -69,23 +69,21 @@ export default function Home() {
               </div>
             </span>
           </h1>
-          <div className="absolute inset-x-0 bottom-4 md:bottom-15 z-50 mx-auto w-full px-5 lg:px-10 text-white lg:max-w-5xl xl:max-w-7xl">
+          <div className="absolute inset-x-0 bottom-4 md:bottom-17 z-50 mx-auto w-full px-5 lg:px-10 text-white lg:max-w-5xl xl:max-w-7xl">
             <div className="grid gap-6 md:grid-cols-2 md:items-center md:justify-between">
-              <div className="max-w-2xl">
+              <div className="xl:w-2xl">
                 <h3 className="mb-2">
                   Navigating Global Markets with Expertise
                 </h3>
                 <p className="text-white text-sm sm:text-[18px] leading-tight sm:leading-6">
-                  BNG Business Network Global is your strategic partner. We strengthen industries 
-                  and create lasting impact, empowering enterprises to unlock international 
-                  opportunities through expert FDI advisory and trade consulting.
+                  BNG Business Network Global is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:flex md:flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-end">
                 <Link to="/services" className="btn btn-lg px-7">
                   Discover Our Services
                 </Link>
-                <Link to="/contact" className="btn btn-link text-white no-underline">
+                <Link to="/contact" className="btn btn-lg btn-link text-white no-underline">
                   Contact Us
                 </Link>
               </div>

@@ -100,14 +100,14 @@ export default function About() {
       <h2 className="text-white z-1">About Us</h2>      
       <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
     </div>
-    <div id="who-we-are" className="app-container py-22 scroll-mt-24">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-18 items-center">
+    <div id="who-we-are" className="app-container py-25 scroll-mt-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
         <div className="overflow-hidden md:max-w-123 rounded-2xl text-end">      
-          <img src="/images/who-we-are.jpg" className='object-cover object-right origin-right h-90 scale-170 ' alt="About Us" />
+          <img src="/images/who-we-are.jpg" className='object-cover object-right origin-right h-90 scale-150 ' alt="About Us" />
         </div>
-        <div className="md:px-8">
+        <div className="md:px-10">
           <h2 className="mb-3">Who we are</h2>
-          <p className="mb-3">Business Network Global (BNG) is a Saudi Arabia–based consulting firm dedicated to helping corporates and government bodies navigate to global markets and empowering businesses to grow.</p>
+          <p className="mb-3">BNG Arabia is a strategic advisory firm partnering with governments, institutions, national programs, and private sector stakeholders across Saudi Arabia and the wider region. Through tailored, insight-driven solutions, we support business development, enhance cross-border competitiveness, and enable sustainable economic growth by delivering measurable, high-impact outcomes. </p>
           <p>We specialize in Foreign Direct Investment (FDI) advisory and trade consulting, combining deep local knowledge with global perspectives to navigate the complexities of international markets.</p>
         </div>
       </div>
@@ -117,7 +117,7 @@ export default function About() {
         <div className="app-container">
             <div className="grid grid-col-1 lg:grid-cols-2 justify-between"> 
                 <div className='py-20 w-full lg:w-200 lg:pe-22'>    
-                    <div class="badge badge-primary rounded-full bg-[#253E80] text-white py-4 mb-2">Our Mission</div>       
+                    <div class="badge badge-primary rounded-full bg-[#253E80] text-white py-4 mb-2 border-1/white">Our Mission</div>       
                     <h2 className="mb-3 text-white">Empowering Global Business Growth</h2>
                     <p className="mb-3 text-white">At Business Network Global, our mission is to empower businesses with strategic insights and practical solutions that unlock international opportunities. We are committed to delivering exceptional consulting services that bridge markets, facilitate foreign direct investment, and drive sustainable economic growth across borders. </p>
                     <p className='text-white'>We believe that every business, regardless of size, deserves access to global markets. Our dedicated team works tirelessly to provide the expertise, connections, and support needed to navigate complex international landscapes with confidence. </p>

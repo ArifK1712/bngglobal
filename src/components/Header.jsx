@@ -38,7 +38,7 @@ export default function Header() {
   return (
     <>
       <div className={`navbar fixed top-0 z-50 text-white transition-all duration-300 ease-in-out px-0 ${
-          isScrolled ? "bg-primary py-4" : "bg-transparent py-3 md:py-8"
+          isScrolled ? "bg-primary py-4" : "bg-transparent py-3 md:py-10"
         }`}
       >
         <div className="app-container flex justify-between items-center">
@@ -47,13 +47,16 @@ export default function Header() {
             <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden"><i className="icon-menu text-3xl"></i></button>
           </div>
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-medium">
-              <li><Link className="hover:bg-white/10" to="/">Home</Link></li>
+            <ul className="menu menu-horizontal p-0 flex gap-4 text-base font-normal">
+              <li><Link className="hover:bg-transparent hover:underline" to="/">Home</Link></li>
               <li>
-                <details onMouseEnter={(e) => (e.currentTarget.open = true)} onMouseLeave={(e) => (e.currentTarget.open = false)}>
-                  <summary className="hover:bg-white/10">
-                    <Link  to="/about" onClick={(e) => e.currentTarget.closest('details').open = false} >About Us</Link>
+                <details onMouseEnter={(e) => (e.currentTarget.open = true)} onMouseLeave={(e) => (e.currentTarget.open = false)}> 
+                  <summary className="hover:bg-transparent hover:underline list-none [&::-webkit-details-marker]:hidden after:hidden">
+                    <Link to="/about" onClick={(e) => e.currentTarget.closest('details').open = false}>
+                      About Us
+                    </Link>
                   </summary>                  
+                  
                   <ul className="p-4.5 bg-base-100 text-base-content font-normal w-46.5 z-10 gap-y-1 grid rounded-2xl">
                     <li>
                       <Link to="/about#who-we-are" onClick={handleLinkClick}>Who We Are</Link>
@@ -72,7 +75,7 @@ export default function Header() {
               </li>
               <li>
                 <details onMouseEnter={(e) => (e.currentTarget.open = true)} onMouseLeave={(e) => (e.currentTarget.open = false)}>
-                  <summary className="hover:bg-white/10">
+                  <summary className="hover:bg-transparent hover:underline [&::-webkit-details-marker]:hidden after:hidden">
                     <Link  to="/our-expertise" onClick={(e) => e.currentTarget.closest('details').open = false} >Our Expertise</Link>
                   </summary>
                   <ul className="p-4.5 bg-base-100 text-base-content font-normal w-156 z-10 rounded-2xl flex justify-between -start-32">
@@ -90,35 +93,27 @@ export default function Header() {
                       </Link>
                       <img src="/images/vectors/vector-m5.svg" className="absolute -start-6 end-0 bottom-0 w-full" alt="" />
                     </div>
-                  </ul>
-                  
+                  </ul>                  
                 </details>
               </li>
-              <li><Link className="hover:bg-white/10" to="/industries">Industries</Link></li>
-              <li><Link className="hover:bg-white/10" to="/blog">Insights / Blogs</Link></li>
+              <li><Link className="hover:bg-transparent hover:underline" to="/industries">Industries</Link></li>
+              <li><Link className="hover:bg-transparent hover:underline" to="/blog">Insights / Blogs</Link></li>
               <li><Link to="/contact" className='btn-warning bg-warning items-center flex text-dark rounded-3xl min-h-10 h-10 text-[#253858] px-6'>Contact</Link></li>
             </ul>
           </div>
         </div>
       </div>
-
-      {/* --- Mobile Drawer (Sidebar) --- */}
-      {/* 1. Overlay (Dark background) */}
-      <div 
-        className={`fixed inset-0 z-90 bg-black/50 transition-opacity duration-300 ease-in-out ${
+      <div className={`fixed inset-0 z-90 bg-black/50 transition-opacity duration-300 ease-in-out ${
           isDrawerOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={closeDrawer}
       ></div>
-
-      {/* 2. Drawer Content (Sliding Menu) */}
       <div 
         className={`fixed top-0 right-0 z-100 h-full w-full bg-base-100 text-base-content shadow-xl transform transition-transform duration-300 ease-in-out ${
           isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Drawer Menu Items */}
           <div className="overflow-y-auto flex-1 p-8 pt-19">
             <button onClick={closeDrawer} className="btn btn-sm btn-circle btn-ghost absolute end-6 top-9">
               <i className="icon-close-flat text-lg"></i>

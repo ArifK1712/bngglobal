@@ -20,9 +20,9 @@ const ServiceLabel = ({ title, className = "", isHeader = false }) => {
 
 const media = [
   { type: "image", src: "/images/gallery/1.jpg" },
-  // { type: "video", src: "https://bngglobal.net/assets/images/gallery/philips.mp4" },
+  { type: "video", src: "https://bngglobal.net/assets/images/gallery/philips.mp4" },
   { type: "image", src: "/images/gallery/2.jpg" },
-  // { type: "video", src: "https://bngglobal.net/assets/images/gallery/jana-marine.mp4" },
+  { type: "video", src: "https://bngglobal.net/assets/images/gallery/jana-marine.mp4" },
   { type: "image", src: "/images/gallery/3.jpg" },
   { type: "image", src: "/images/gallery/4.jpg" },
   { type: "image", src: "/images/gallery/5.jpg" },

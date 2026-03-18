@@ -20,7 +20,7 @@ const contactDetails = [
     content: (
       <>
         Sunday – Thursday: 9:00 AM – 6:00 PM <br />
-        +966 XX XXX XXXX, +966 XX XXX XXXX
+        <a href="tel:966509877960">+966 50 987 7960</a>
       </>
     ),
   },
@@ -66,7 +66,6 @@ export default function Contact() {
         <h2 className="text-white z-10 relative">Contact</h2>
         <div className="bg-black opacity-20 absolute inset-0 pointer-events-none"></div>
       </div>
-
       <div className="app-container pt-10 lg:pt-32">
         <div className="grid md:grid-cols-2 gap-y-10">
           <div>
@@ -139,8 +138,7 @@ export default function Contact() {
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      
+      ></iframe>      
       <Footer />
     </>
   );

@@ -9,17 +9,17 @@ const steps = [
   {
     title: "Analyse Markets",
     iconClass: "icon-analyse-markets",
-    desc: "Deep dive into market dynamics, competitive landscapes, and regulatory environments to identify opportunities."
+    desc: " Deep dive into market dynamics, competitive landscapes, and regulatory environments to identify opportunities. "
   },
   {
     title: "Develop Strategy",
     iconClass: "icon-develop-strategy",
-    desc: "Deep dive into market dynamics, competitive landscapes, and regulatory environments to identify opportunities."
+    desc: "Create tailored, actionable strategies aligned with your business objectives and market realities."
   },
   {
     title: "Drive Sustainable Growth",
     iconClass: "icon-drive-sustainable-growth",
-    desc: "Deep dive into market dynamics, competitive landscapes, and regulatory environments to identify opportunities."
+    desc: "Implement solutions that deliver measurable results and long-term value for your organization."
   }
 ];
 
@@ -97,25 +97,21 @@ export default function Expertise() {
       <div className="bg-primary">
         <div className="app-container text-center text-white py-10 lg:pb-25">
           <h2 className="mb-2.5">Our Approach</h2>
-          <p className="text-center text-white mb-18">A Proven 3-Step Methodology That Transforms Insights Into Impact</p>
+          <p className="text-center text-white mb-12 md:mb-18">A Proven 3-Step Methodology That Transforms Insights Into Impact</p>
           
-          <div className="flex flex-col md:grid grid-cols-3 gap-5 gap-y-10 xl:gap-30 justify-between">
+          <div className="flex flex-col md:grid grid-cols-3 gap-5 gap-y-8 xl:gap-30 justify-between">
             {steps.map((step, index) => {
               const isActive = index === activeIndex;
 
               return (
-                <div key={index} className="grid gap-y-5">
+                <div key={index} className="grid md:gap-y-5 max-w-xs mx-auto">
                   <div
-                    // FIX 2: 'scale-120' is not a default Tailwind class. 
-                    // Changed to 'scale-125' (or use scale-[1.2] for exact value)
-                    className={`icon w-30 h-30 mx-auto rounded-full flex justify-center items-center relative mb-3 transition-transform duration-500 ease-in-out ${
-                      isActive ? "scale-125" : "scale-100"
+                    className={`icon w-30 h-30 mx-auto rounded-full flex justify-center items-center relative md:mb-3 transition-transform duration-500 ease-in-out ${
+                      isActive ? "scale-93 md:scale-125" : "scale-76 md:scale-100"
                     }`}
                   >
                     <svg
                       className="icon-circle-svg absolute end-0 start-0"
-                      width="136"
-                      height="136"
                       viewBox="0 0 136 136"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -130,11 +126,11 @@ export default function Expertise() {
                         className="transition-colors duration-500 ease-in-out"
                       ></circle>
                     </svg>
-                    <i className={`${step.iconClass} text-6xl text-warning`}></i>
+                    <i className={`${step.iconClass} text-5xl md:text-6xl text-warning`}></i>
                   </div>
 
                   <h4
-                    className={`transition-colors duration-500 ease-in-out ${
+                    className={`transition-colors duration-500 ease-in-out mb-2.5 ${
                       isActive ? "text-warning" : "text-white"
                     }`}
                   >
@@ -150,8 +146,8 @@ export default function Expertise() {
       
       {/* Cards Grid Section */}
       <div className="app-container py-10 lg:py-24">
-        <h3 className="mb-2">Why Choose BNG</h3>
-        <p className="mb-10">We bring together expertise, experience, and a global perspective to help your business thrive internationally.</p>
+        <h2 className="mb-2">Why Choose BNG</h2>
+        <p className="mb-6 md:mb-10">We bring together expertise, experience, and a global perspective to help your business thrive internationally.</p>
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {cards.map((card, index) => {

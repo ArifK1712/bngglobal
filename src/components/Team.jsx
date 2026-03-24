@@ -140,12 +140,12 @@ export default function TeamCarousel() {
   }, [virtualIndex]);
 
   // --- 4. AUTOPLAY ---
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      handleNext();
-    }, AUTOPLAY_DELAY);
-    return () => clearTimeout(timer);
-  }, [virtualIndex]);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     handleNext();
+  //   }, AUTOPLAY_DELAY);
+  //   return () => clearTimeout(timer);
+  // }, [virtualIndex]);
 
 
   // --- MATH & POSITIONING LOGIC ---
@@ -249,14 +249,14 @@ export default function TeamCarousel() {
   return (
     <div className="w-full pt-10 lg:pt-20 pb-20 lg:pb-40 overflow-hidden lg:overflow-visible" ref={containerRef}>
       <div className="app-container">
-        <h2 className="lg:ms-auto w-full mb-20 lg:mb-5 text-center"><span className="xl:ms-98">Our Team</span></h2>
+        <h2 className="lg:ms-auto w-full mb-20 lg:mb-5 text-center"><span className="xl:ms-90">Our Team</span></h2>
         
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-40 xl:gap-58 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-40 xl:gap-50 items-center">
           
           {/* VISUAL AREA (Orbit/Slider) */}
           <div 
             ref={orbitContainerRef}
-            className="relative w-full flex items-center justify-center 2xl:-ms-8"
+            className="relative w-full flex items-center justify-center 2xl:-ms-8 lg:h-120"
           >
             
             {/* DESKTOP ORBIT CIRCLE */}

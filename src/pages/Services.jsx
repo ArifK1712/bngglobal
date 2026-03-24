@@ -171,7 +171,7 @@ export default function Services() {
           className="object-cover w-full h-full"
           alt=""
         />
-        <h2 className="text-white z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+        <h2 className="text-white z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full">
           Event Production Services
         </h2>
         <div className="bg-black opacity-20 absolute inset-0"></div>
@@ -279,7 +279,7 @@ export default function Services() {
 
         {/* STATIC STAGE Content */}
         <div ref={stageRef} className="absolute inset-0 z-10 flex opacity-0">
-          {/* <img src="/images/vectors/logowatermarkblue.svg" className="absolute top-3 left-1/2 -translate-x-1/2 z-10" alt="" /> */}
+          <img src="/images/vectors/logowatermarkblue.svg" className="absolute top-3 left-2/3 -ms-3 -translate-x-2/2 z-10" alt="" />
           <div className="w-1/2 bg-[#0a2361] relative overflow-hidden">
             {services.map((service, index) => (
               <div
@@ -287,7 +287,7 @@ export default function Services() {
                 className={`text-content-${index} absolute inset-0 flex items-center text-white ${index === 0 ? "opacity-100" : "opacity-0"}`}
               >
                 <div className="w-2xl ps-17 pe-8 ms-auto">
-                  <h2 className="mb-6">{service.title}</h2>
+                  <h2 className="mb-3">{service.title}</h2>
                   <div
                     className="[&_p]:mb-3 [&_p]:text-white [&_ul]:list-disc [&_ul]:space-y-3 [&_ul]:ml-8"
                     dangerouslySetInnerHTML={{ __html: service.desc }}
@@ -319,15 +319,15 @@ export default function Services() {
           has become central to investment strategy.
         </p>
 
-        <div className="gallery grid grid-cols-3 gap-4 pt-15">
+        <div className="gallery grid sm:grid-cols-2 md:grid-cols-3 gap-4 pt-15">
           {visibleMedia.map((item, index) => {
             const actualIndex = startIndex + index;
 
             return (
               <div
                 key={index}
-                className={`gallery-item h-65 relative group ${
-                  index === 1 ? "col-span-2" : ""
+                className={`gallery-item h-40 sm:h-65 relative group ${
+                  index === 1 ? "md:col-span-2" : ""
                 }`}
               >
                 {item.type === "image" ? (

@@ -38,12 +38,12 @@ export default function Header() {
   return (
     <>
       <div className={`navbar fixed top-0 z-50 text-white transition-all duration-300 ease-in-out px-0 ${
-          isScrolled ? "bg-primary py-4" : "bg-transparent py-3 md:py-10"
+          isScrolled ? "bg-primary py-4" : "bg-transparent py-3 lg:py-10"
         }`}
       >
         <div className="app-container flex justify-between items-center">
           <div className="flex items-center w-full lg:w-auto justify-between">
-            <Link to="/"><img src={logo} alt="Logo" className="h-12 md:h-17.5" /></Link>
+            <Link to="/"><img src={logo} alt="Logo" className="h-12 lg:h-17.5" /></Link>
             <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden"><i className="icon-menu text-3xl"></i></button>
           </div>
           <div className="hidden lg:flex">
@@ -83,7 +83,7 @@ export default function Header() {
                       <li><Link to="/our-expertise?tab=0">Business Consulting</Link></li>
                       <li><Link to="/our-expertise?tab=1">Delegations & Roadshows</Link></li>
                       <li><Link to="/our-expertise?tab=2">Marketing & Promotion</Link></li>
-                      <li><Link to="/our-expertise?tab=4">Foreign Direct Investment (FDI)</Link></li>
+                      <li><Link to="/our-expertise?tab=3">Foreign Direct Investment (FDI)</Link></li>
                       <li><Link to="/services">Event Production</Link></li>
                     </div>
                     <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative">
@@ -98,7 +98,7 @@ export default function Header() {
               </li>
               <li><Link className="hover:bg-transparent hover:underline" to="/industries">Industries</Link></li>
               <li><Link className="hover:bg-transparent hover:underline" to="/blog">Insights / Blogs</Link></li>
-              <li><Link to="/contact" className='btn-warning bg-warning items-center flex text-dark rounded-3xl min-h-10 h-10 text-[#253858] px-6'>Contact</Link></li>
+              <li><Link to="/contact" className='btn-warning bg-warning items-center flex text-dark rounded-3xl min-h-10 h-10 text-[#253858] px-6 font-medium'>Contact</Link></li>
             </ul>
           </div>
         </div>

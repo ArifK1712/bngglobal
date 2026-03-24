@@ -16,14 +16,16 @@ export default function Footer() {
                 <Link className="link link-hover text-sm" to="/our-expertise?tab=0">Business Consulting</Link>
                 <Link className="link link-hover text-sm" to="/our-expertise?tab=1">Delegations & Roadshows</Link>
                 <Link className="link link-hover text-sm" to="/our-expertise?tab=2">Marketing & Promotion</Link>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=4">Foreign Direct Investment (FDI)</Link>
                 <Link className="link link-hover text-sm" to="/services">Event Production</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=3">FDI</Link>
+                
               </nav>
               <nav className="flex flex-col gap-2.5 items-start">
                 <h6 className="text-white font-medium mb-0 sm:mb-4">About Us</h6>
                 <Link className="link link-hover text-sm" to="/about#who-we-are" onClick={handleLinkClick}>Who We Are</Link>
                 <Link className="link link-hover text-sm" to="/about#mission" onClick={handleLinkClick}>Our Mission</Link>
                 <Link className="link link-hover text-sm" to="/about#team" onClick={handleLinkClick}>Our Team</Link>
+                <Link className="link link-hover text-sm" to="/about#clients" onClick={handleLinkClick}>Our Clients</Link>
               </nav>
               <nav className="flex flex-col gap-2.5">
                 <h6 className="text-white font-medium mb-0 sm:mb-4">Others</h6>

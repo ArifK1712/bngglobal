@@ -74,7 +74,7 @@ const ServicesSection = () => {
 
   return (
     <>
-    <section ref={sectionRef} className="pb-15 lg:pb-40 lg:pt-12 bg-white">
+    <section ref={sectionRef} className="pb-12 lg:pb-40 lg:pt-12">
       <div className="app-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-20 items-center">
           <div className="relative h-100 w-full hidden lg:flex items-center justify-center">
@@ -100,9 +100,8 @@ const ServicesSection = () => {
           {/* RIGHT: Navigation List */}
           <div className="relative flex flex-col">
             <div 
-              className="absolute left-0 top-0 w-full bg-[#FFD600] rounded-full z-0 flex items-center justify-end px-6 lg:px-8 transition-transform duration-500 cubic-bezier(0.25, 0.8, 0.25, 1)"
+              className="absolute left-0 top-0 w-full bg-[#FFD600] rounded-full z-0 flex items-center justify-end px-6 lg:px-8 transition-transform duration-500 cubic-bezier(0.25, 0.8, 0.25, 1) h-13.5 md:h-17"
               style={{
-                height: '4.25rem', 
                 transform: `translateY(calc(${activeTab} * 100% + ${activeTab} * 0rem))`
               }}
             >
@@ -112,14 +111,14 @@ const ServicesSection = () => {
                 key={service.id}
                 onClick={() => setActiveTab(index)}
                 className={`
-                  group relative z-10 flex items-center px-6 lg:px-10 h-17 rounded-full cursor-pointer transition-colors duration-300
+                  group relative z-10 flex items-center px-6 lg:px-10 h-13.5 md:h-17 rounded-full cursor-pointer transition-colors duration-300
                   ${activeTab === index 
                     ? 'text-black' 
                     : 'hover:bg-slate-100'
                   }
                 `}
               >
-                <span className="font-normal text-[28px] truncate pe-4">
+                <span className="font-normal text-[20px] md:text-[28px] truncate pe-4">
                   {service.title}
                 </span>
                 {activeTab === index && (
@@ -148,12 +147,15 @@ const ServicesSection = () => {
         </div>
       </div>
     </section>
-    <dialog className={`modal ${isModalOpen ? 'modal-open' : ''}`}>
-      <div className="modal-box w-11/12 max-w-3xl p-0 rounded-4xl bg-primary">
+    <dialog className={`modal ${isModalOpen ? 'modal-open overflow-auto' : ''}`}>
+      <div className="modal-box w-11/12 max-w-3xl p-0 rounded-4xl bg-primary overflow-visible max-h-max my-4">
+        <button className="btn btn-sm btn-circle absolute z-10 top-0 -end-2" onClick={() => setIsModalOpen(false)}>
+            <i className="icon-close-flat"></i>
+        </button>
         <div className="relative">
           {/* DYNAMIC IMAGE */}
           <img 
-            className="w-full h-40 object-cover" 
+            className="w-full h-40 object-cover rounded-4xl rounded-b-none" 
             src={services[activeTab].image} 
             alt={services[activeTab].title} 
           />
@@ -161,8 +163,9 @@ const ServicesSection = () => {
           <h4 className="bg-white p-3 px-8 justify-center inline-flex rounded-full absolute -bottom-8 start-10 text-black"> 
             {services[activeTab].title} 
           </h4>
+          
         </div>
-
+        
         <div className="pt-13 p-9">
           {/* DYNAMIC DESCRIPTION */}
           <p className="text-white mb-5">
@@ -182,11 +185,11 @@ const ServicesSection = () => {
 
           {/* FOOTER CARD */}
           <div className="card bg-white/15 rounded-3xl mt-15">
-            <div className="card-body flex flex-row items-center justify-between p-8">
+            <div className="card-body flex md:flex-row md:items-center justify-between p-8">
               <p className="text-white pe-8 text-xl font-light max-w-100">
                 Contact us to explore how to map your strategic roadmap.
               </p>
-              <div className="card-actions justify-end">
+              <div className="card-actions md:justify-end">
                 <Link to="/contact" className="btn btn-warning w-29.5 flex justify-center group overflow-hidden"><span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">Contact</span><i class=" text-xs icon-rotated-arrow-right w-0 opacity-0 translate-y-6 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i></Link>
               </div>
             </div>

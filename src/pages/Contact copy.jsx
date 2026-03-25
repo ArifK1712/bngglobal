@@ -50,55 +50,13 @@ export default function Contact() {
     company: "",
     message: "",
   });
-  
-  const [status, setStatus] = useState("");
-  const [isSuccess, setIsSuccess] = useState(false); // The validation shield
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
-    // Drop the shield and clear messages the moment they start a new message
-    if (isSuccess) setIsSuccess(false);
-    if (status) setStatus("");
   };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("Sending...");
-    setIsSuccess(false); // Reset shield on new attempt
-
-    try {
-      const payload = {
-        ...formData,
-        access_key: "8bda1892-a2eb-45e4-9aaa-ac9132b04c24", 
-      };
-
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setIsSuccess(true); // Raise the validation shield!
-        setStatus("Message sent successfully.");
-        setFormData({ name: "", email: "", company: "", message: "" });
-        
-        // Hide the success message after 3 seconds, but KEEP the shield up
-        //setTimeout(() => setStatus(""), 3000); 
-      } else {
-        setStatus("Failed to send message. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setStatus("An error occurred. Please try again later.");
-    }
+    console.log("Form ready to send:", formData);
   };
 
   return (
@@ -141,10 +99,9 @@ export default function Contact() {
                         type={field.type}
                         value={formData[field.id]}
                         onChange={handleChange}
-                        className={`input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12 ${isSuccess ? "" : "validator"}`} 
-                        required={!isSuccess}
+                        className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12" 
+                        required
                       />
-                      <span className="validator-hint hidden">This field is required</span>
                     </div>
                   ))}
 
@@ -158,40 +115,19 @@ export default function Contact() {
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
-                      className={`textarea bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-37.5 resize-none ${isSuccess ? "" : "validator"}`} 
+                      className="textarea bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-37.5 resize-none" 
                       placeholder="Tell us about your project or inquiry"
-                      required={!isSuccess}
+                      required
                     ></textarea>
                   </div>
 
-                  {status && (
-                    <div className="mt-2">
-                      {status === "Message sent successfully." ? (
-                        <div className="alert alert-success alert-outline justify-between flex">
-                          <span>{status}</span>
-                          <a  href="javascript:void(0)"  onClick={(e) => { e.preventDefault(); setStatus("");}}>
-                            <i className="icon-close-flat"></i>
-                          </a>
-                        </div>
-                      ) : status === "Sending..." ? (
-                        <div className="alert alert-info alert-outline">
-                          <span>{status}</span>
-                        </div>
-                      ) : (
-                        <div className="alert alert-error alert-outline">
-                          <span>{status}</span>                          
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  <button type="submit" className="btn btn-lg btn-light py-2 text-[18px] mt-4 w-33 ms-auto" disabled={status === "Sending..."}>
-                    {status === "Sending..." ? "Sending..." : "Submit"}
+                  <button type="submit" className="btn btn-lg btn-light py-2 text-[18px] mt-4 w-33 ms-auto">
+                    Submit
                   </button>
                 </form>
               </div>
             </div>
-          </div>            
+          </div>             
         </div>
       </div>
       <iframe
@@ -199,9 +135,9 @@ export default function Contact() {
         src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d115904.06026576413!2d46.71875263029706!3d24.79538903827833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sBNG%20Arabia%20Company%2C%20Shara%20Al%20Asar%2C%20Ishbilyah%20Dist.%20Riyadh%2013226%2C%20Saudi%20Arabia!5e0!3m2!1sen!2sin!4v1765455398467!5m2!1sen!2sin"
         width="100%"
         height="507"
-        allowFullScreen=""
+        allowfullscreen=""
         loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
+        referrerpolicy="no-referrer-when-downgrade"
       ></iframe>      
       <Footer />
     </>

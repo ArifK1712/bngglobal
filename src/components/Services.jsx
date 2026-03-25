@@ -149,25 +149,17 @@ const ServicesSection = () => {
     </section>
     <dialog className={`modal ${isModalOpen ? 'modal-open overflow-auto' : ''}`}>
       <div className="modal-box w-11/12 max-w-3xl p-0 rounded-4xl bg-primary overflow-visible max-h-max my-4">
-        <button className="btn btn-sm btn-circle absolute z-10 top-0 -end-2" onClick={() => setIsModalOpen(false)}>
+        <button className="btn btn-sm btn-circle absolute z-10 top-0 -end-2 cursor-pointer" onClick={() => setIsModalOpen(false)}>
             <i className="icon-close-flat"></i>
         </button>
         <div className="relative">
-          {/* DYNAMIC IMAGE */}
-          <img 
-            className="w-full h-40 object-cover rounded-4xl rounded-b-none" 
-            src={services[activeTab].image} 
-            alt={services[activeTab].title} 
-          />
-          {/* DYNAMIC TITLE */}
-          <h4 className="bg-white p-3 px-8 justify-center inline-flex rounded-full absolute -bottom-8 start-10 text-black"> 
+          <img  className="w-full h-20 md:h-40 object-cover rounded-4xl rounded-b-none" src={services[activeTab].image} alt={services[activeTab].title}  />
+          <h4 className="bg-white p-2 px-5 md:p-3 md:px-8 justify-center inline-flex rounded-full absolute -bottom-6 md:-bottom-8 start-4 md:start-10 end-10 max-w-max text-black"> 
             {services[activeTab].title} 
-          </h4>
-          
+          </h4>          
         </div>
         
-        <div className="pt-13 p-9">
-          {/* DYNAMIC DESCRIPTION */}
+        <div className="pt-8 p-4 md:pt-13 md:p-9">
           <p className="text-white mb-5">
             {services[activeTab].description || "Description coming soon for " + services[activeTab].title}
           </p>
@@ -184,9 +176,9 @@ const ServicesSection = () => {
           </ul>
 
           {/* FOOTER CARD */}
-          <div className="card bg-white/15 rounded-3xl mt-15">
-            <div className="card-body flex md:flex-row md:items-center justify-between p-8">
-              <p className="text-white pe-8 text-xl font-light max-w-100">
+          <div className="card bg-white/15 rounded-3xl mt-4 md:mt-15">
+            <div className="card-body flex md:flex-row md:items-center justify-between p-5 md:p-8">
+              <p className="text-white md:pe-8 text-xl font-light max-w-max">
                 Contact us to explore how to map your strategic roadmap.
               </p>
               <div className="card-actions md:justify-end">

@@ -140,12 +140,12 @@ export default function TeamCarousel() {
   }, [virtualIndex]);
 
   // --- 4. AUTOPLAY ---
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     handleNext();
-  //   }, AUTOPLAY_DELAY);
-  //   return () => clearTimeout(timer);
-  // }, [virtualIndex]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleNext();
+    }, AUTOPLAY_DELAY);
+    return () => clearTimeout(timer);
+  }, [virtualIndex]);
 
 
   // --- MATH & POSITIONING LOGIC ---

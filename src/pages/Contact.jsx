@@ -50,13 +50,47 @@ export default function Contact() {
     company: "",
     message: "",
   });
+  const [status, setStatus] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form ready to send:", formData);
+    setStatus("Sending..."); // Show user that something is happening
+
+    try {
+      // Add your Web3Forms Access Key to the data payload
+      const payload = {
+        ...formData,
+        access_key: "8bda1892-a2eb-45e4-9aaa-ac9132b04c24", // <-- REPLACE THIS WITH YOUR KEY
+      };
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("Message sent successfully!");
+        // Reset the form fields
+        setFormData({ name: "", email: "", company: "", message: "" });
+        
+        // Optional: clear the success message after 5 seconds
+        setTimeout(() => setStatus(""), 2000); 
+      } else {
+        setStatus("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -99,9 +133,10 @@ export default function Contact() {
                         type={field.type}
                         value={formData[field.id]}
                         onChange={handleChange}
-                        className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12" 
+                        className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12 validator" 
                         required
                       />
+                      <span className="validator-hint hidden">This field is required</span>
                     </div>
                   ))}
 
@@ -115,12 +150,28 @@ export default function Contact() {
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
-                      className="textarea bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-37.5 resize-none" 
+                      className="validator textarea bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-37.5 resize-none" 
                       placeholder="Tell us about your project or inquiry"
                       required
                     ></textarea>
                   </div>
-
+                  {status && (
+                    <div className="mt-2">
+                      {status.includes("success") ? (
+                        <div className="alert alert-success alert-outline">
+                          <span>Message sent successfully.</span>
+                        </div>
+                      ) : status === "Sending..." ? (
+                        <div className="alert alert-info alert-outline">
+                          <span>Sending...</span>
+                        </div>
+                      ) : (
+                        <div className="alert alert-error alert-outline">
+                          <span>{status}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
                   <button type="submit" className="btn btn-lg btn-light py-2 text-[18px] mt-4 w-33 ms-auto">
                     Submit
                   </button>

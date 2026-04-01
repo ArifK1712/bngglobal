@@ -13,7 +13,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Replace these with your desired dark mode colors */
-    --color-primary: red;       /* Lighter blue for better visibility */
+    --color-primary: #0d2972;       /* Lighter blue for better visibility */
     --color-warning: #FFE033;       /* Slightly softer yellow */
     --color-warning-content: #121212; /* Darker text for contrast against yellow */
     --color-base-300: #1a202c;      /* Deep dark background instead of light blue */
@@ -30,7 +30,7 @@
 
 @layer utilities {
   body{
-    @apply font-normal font-['Albert_Sans',sans-serif] text-[18px] text-[#253858]
+    @apply font-normal font-['Albert_Sans',sans-serif] text-[18px] text-[#253858] dark:text-[#cbd5e1]
   }
   .app-container {
     @apply mx-auto w-full max-w-310 px-4;
@@ -51,7 +51,7 @@
     @apply text-[16px] md:text-[20px] font-medium
   }
   p{
-    @apply text-[#505F79] text-[18px] font-normal leading-6
+    @apply text-[#505F79] dark:text-[red] text-[18px] font-normal leading-6
   }
   .btn{
     @apply py-1.5 font-medium rounded-full shadow-none

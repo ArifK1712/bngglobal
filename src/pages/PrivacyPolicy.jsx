@@ -289,7 +289,7 @@ export default function Privacy() {
       <div className="app-container py-12">
         <div className="flex flex-wrap justify-between items-center mb-16">
           <h2>Privacy Policy</h2>
-          <div class="badge badge-primary rounded-full bg-info border-info text-neutral-900 p-2.5 font-bold">Effective Date: 1st January 2026 | Last Updated: 1st January 2026</div>
+          <div className="badge badge-primary rounded-full bg-info border-info text-neutral-900 p-2.5 font-bold">Effective Date: 1st January 2026 | Last Updated: 1st January 2026</div>
         </div>
         <div className="flex flex-row gap-10">
           <aside className="sticky top-30 h-fit hidden md:block">

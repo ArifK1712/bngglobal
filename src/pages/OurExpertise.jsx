@@ -75,6 +75,7 @@ export default function Expertise() {
             src="/images/hero/expertise-hero.jpg" 
             className='object-cover w-full h-full' 
             alt="Our Expertise" 
+            loading="lazy"
         />
         <h2 className="text-white relative z-10">Our Expertise</h2>
         <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
@@ -217,6 +218,7 @@ export default function Expertise() {
               src="/images/vectors/vector-m4.svg"
               className="absolute bottom-0 start-0"
               alt=""
+              loading="lazy"
             />
           </div>
         </div>

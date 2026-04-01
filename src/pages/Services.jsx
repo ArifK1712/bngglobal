@@ -170,6 +170,7 @@ export default function Services() {
           src="/images/hero/services-hero.png"
           className="object-cover w-full h-full"
           alt=""
+          loading="lazy"
         />
         <h2 className="text-white z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full">
           Event Production Services
@@ -188,11 +189,13 @@ export default function Services() {
             src="/images/exhibition-stand.png"
             className="w-full md:max-w-2/3 absolute z-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             alt="Stand"
+            loading="lazy"
           />
           <img
             src="/images/circle.png"
             className="w-full md:max-w-2/3"
             alt=""
+            loading="lazy"
           />
         </div>
         {services.map((service, index) => (
@@ -207,6 +210,7 @@ export default function Services() {
                 src={service.img}
                 className="w-full h-45 object-cover"
                 alt={service.title}
+                loading="lazy"
               />
             </div>
           </div>
@@ -250,11 +254,13 @@ export default function Services() {
                   src="/images/exhibition-stand.png"
                   className="absolute max-w-180 start-0 end-0 mx-auto z-10"
                   alt=""
+                  loading="lazy"
                 />
                 <img
                   src="/images/circle.png"
                   className="initial-ui-text"
                   alt=""
+                  loading="lazy"
                 />
               </div>
 
@@ -279,7 +285,7 @@ export default function Services() {
 
         {/* STATIC STAGE Content */}
         <div ref={stageRef} className="absolute inset-0 z-10 flex opacity-0">
-          <img src="/images/vectors/logowatermarkblue.svg" className="absolute top-3 left-2/3 -ms-3 -translate-x-2/2 z-10" alt="" />
+          <img src="/images/vectors/logowatermarkblue.svg" className="absolute top-3 left-2/3 -ms-3 -translate-x-2/2 z-10" loading="lazy" alt="" />
           <div className="w-1/2 bg-[#0a2361] relative overflow-hidden">
             {services.map((service, index) => (
               <div
@@ -305,6 +311,7 @@ export default function Services() {
                   src={service.img}
                   className={`img-layer-${index} absolute h-full w-full object-cover ${index === 0 ? "block opacity-100" : "hidden opacity-0"}`}
                   alt=""
+                  loading="lazy"
                 />
               ))}
             </div>
@@ -335,6 +342,7 @@ export default function Services() {
                     src={item.src}
                     className="h-full object-cover w-full rounded-3xl"
                     alt=""
+                    loading="lazy"
                   />
                 ) : (
                   <video
@@ -380,7 +388,7 @@ export default function Services() {
         {/* Modal */}
 
         {currentMedia !== null && (
-          <div className="fixed inset-0 bg-white/80 backdrop-blur-lg flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-white/80 backdrop-blur-lg flex items-center justify-center z-70">
             <i
               onClick={() => setCurrentMedia(null)}
               className="icon-close-flat text-xl absolute top-10 right-10 cursor-pointer"
@@ -401,6 +409,7 @@ export default function Services() {
                 src={media[currentMedia].src}
                 className="max-h-[90vh] max-w-[90vw]"
                 alt=""
+                loading="lazy"
               />
             ) : (
               <video

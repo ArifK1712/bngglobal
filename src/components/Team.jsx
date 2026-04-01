@@ -280,7 +280,7 @@ export default function TeamCarousel() {
                   w-20 h-20 lg:w-25 lg:h-25 xl:w-32 xl:h-32 
                   rounded-full overflow-hidden flex items-center justify-center cursor-pointer bg-gray-200`}
               >
-                <img src={member.image} alt={member.name} className=" object-cover object-[center_8px] pointer-events-none" />
+                <img src={member.image} alt={member.name} className=" object-cover object-[center_8px] pointer-events-none" loading="lazy" />
               </div>
             ))}
           </div>

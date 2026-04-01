@@ -38,7 +38,7 @@ export default function Footer() {
                 <p className="text-white text-sm">BNG is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.</p>
               </nav>          
           </div>
-          <hr class="h-px mt-8 md:mt-20 bg-base-200 opacity-40 border-0 w-full"></hr>
+          <hr className="h-px mt-8 md:mt-20 bg-base-200 opacity-40 border-0 w-full"></hr>
           <div className="flex flex-col gap-y-5 text-center md:flex-row justify-between pt-4 md:pt-10">
             <p className="text-white text-sm">Copyright ©2026 BNG Arabia Company, All rights reserved</p>
             <div className="flex gap-12 justify-center md:justify-start">

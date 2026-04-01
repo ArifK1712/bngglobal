@@ -96,7 +96,7 @@ export default function About() {
   return (
     <>
     <div className="hero relative">
-      <img src="/images/hero/about-hero.png" className='object-cover w-full h-full' alt="About Us" />
+      <img src="/images/hero/about-hero.png" className='object-cover w-full h-full' alt="About Us" loading="lazy" />
       <h2 className="text-white z-1">About Us</h2>      
       <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
     </div>
@@ -108,7 +108,7 @@ export default function About() {
           <p>We specialize in Foreign Direct Investment (FDI) advisory and trade consulting, combining deep local knowledge with global perspectives to navigate the complexities of international markets.</p>
         </div>
         <div className="overflow-hidden lg:max-w-123 rounded-2xl text-end">      
-          <img src="/images/who-we-are.jpg" className='object-cover object-right origin-right w-full lg:h-90 scale-150 ' alt="About Us" />
+          <img src="/images/who-we-are.jpg" className='object-cover object-right origin-right w-full lg:h-90 scale-150' loading="lazy" alt="About Us" />
         </div>
       </div>
     </div>
@@ -117,17 +117,17 @@ export default function About() {
         <div className="app-container">
             <div className="grid grid-col-1 lg:grid-cols-2 justify-between"> 
                 <div className='py-12 lg:py-20 w-full lg:w-200 lg:pe-22'>    
-                    <div class="badge badge-primary rounded-full bg-[#253E80] text-white py-4 mb-2 border-1/white">Our Mission</div>       
+                    <div className="badge badge-primary rounded-full bg-[#253E80] text-white py-4 mb-2 border-1/white">Our Mission</div>       
                     <h2 className="mb-3 text-white">Empowering Global Business Growth</h2>
                     <p className="mb-3 text-white">At Business Network Global, our mission is to empower businesses with strategic insights and practical solutions that unlock international opportunities. We are committed to delivering exceptional consulting services that bridge markets, facilitate foreign direct investment, and drive sustainable economic growth across borders. </p>
                     <p className='text-white'>We believe that every business, regardless of size, deserves access to global markets. Our dedicated team works tirelessly to provide the expertise, connections, and support needed to navigate complex international landscapes with confidence. </p>
                 </div>
                 <div className="w-full lg:w-130 bg-[#253E80] relative h-100 lg:h-full lg:ms-auto lg:-me-20">
                     <div className="before:content-[''] before:absolute before:top-0 before:h-full before:w-lvw before:start-0 before:end-0 before:-ms-4 lg:before:ms-0 before:bg-[#253E80] "></div>
-                    <img ref={m3Ref} src='/images/vectors/vector-m3.svg' className='absolute bottom-45 end-15 start-0 mx-auto w-100 lg:w-auto' alt="" />
+                    <img ref={m3Ref} src='/images/vectors/vector-m3.svg' className='absolute bottom-45 end-15 start-0 mx-auto w-100 lg:w-auto' alt="" loading="lazy" />
                     <div className="flex justify-center gap-10 lg:gap-20 absolute bottom-0 end-0 -start-4">
-                      <img ref={m1Ref} src='/images/vectors/vector-m1.svg' className="h-50 md:h-auto" alt="" />
-                      <img ref={m2Ref} src='/images/vectors/vector-m2.svg' className="h-50 md:h-auto" alt="" />
+                      <img ref={m1Ref} src='/images/vectors/vector-m1.svg' className="h-50 md:h-auto" alt="" loading="lazy" />
+                      <img ref={m2Ref} src='/images/vectors/vector-m2.svg' className="h-50 md:h-auto" alt="" loading="lazy" />
                     </div>
                 </div>
             </div>
@@ -148,6 +148,7 @@ export default function About() {
               alt={`Client ${id}`} 
               // Keep the manual hover as well so it still works if user touches it
               className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300"
+              loading="lazy"
             />
           ))}
         </div>    

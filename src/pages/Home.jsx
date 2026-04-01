@@ -34,13 +34,13 @@ export default function Home() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 h-full w-full -z-10 overflow-hidden">
+      <div className="">
         <video
           playsInline
           autoPlay
           muted
           loop
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover fixed top-0 left-0 -z-10 overflow-hidden"
         >
           <source
             src="https://d1o4s320mkx6gb.cloudfront.net/bng-global/Sequence.mp4"
@@ -52,8 +52,8 @@ export default function Home() {
           />
         </video>
 
-        <div className="app-container">
-          <h1 className="absolute text-white z-50 top-30 sm:top-45 w-full max-w-xl text-4xl leading-tight md:leading-tight sm:text-6xl">
+        <div className="app-container pt-22 landscape:max-lg:pt-25 md:pt-46 ">
+          <h1 className="text-white relative z-50 w-full max-w-xl text-4xl leading-tight md:leading-tight sm:text-6xl">
             Empowering Global Trade{" "}
             <span className="inline-block h-[1.2em] align-bottom overflow-hidden relative">
               <div ref={sliderRef} className="flex flex-col">
@@ -69,7 +69,7 @@ export default function Home() {
               </div>
             </span>
           </h1>
-          <div className="absolute inset-x-0 bottom-4 md:bottom-17 z-50 mx-auto w-full px-5 lg:px-10 text-white lg:max-w-5xl xl:max-w-7xl">
+          <div className="absolute landscape:max-lg:relative bottom-0 inset-x-0 z-50 mx-auto w-full landscape:max-lg:px-0 px-5 lg:px-10 pb-3 md:pb-17 text-white lg:max-w-5xl xl:max-w-7xl">
             <div className="grid gap-6 md:grid-cols-2 md:items-center md:justify-between">
               <div className="xl:w-2xl">
                 <h3 className="mb-2">

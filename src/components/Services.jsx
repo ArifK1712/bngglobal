@@ -182,7 +182,7 @@ const ServicesSection = () => {
                 Contact us to explore how to map your strategic roadmap.
               </p>
               <div className="card-actions md:justify-end">
-                <Link to="/contact" className="btn btn-warning w-29.5 flex justify-center group overflow-hidden"><span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">Contact</span><i class=" text-xs icon-rotated-arrow-right w-0 opacity-0 translate-y-6 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i></Link>
+                <Link to="/contact" className="btn btn-warning w-29.5 flex justify-center group overflow-hidden"><span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">Contact</span><i className=" text-xs icon-rotated-arrow-right w-0 opacity-0 translate-y-6 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i></Link>
               </div>
             </div>
           </div>

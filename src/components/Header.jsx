@@ -37,7 +37,7 @@ export default function Header() {
 
   return (
     <>
-      <div className={`navbar fixed top-0 z-50 text-white transition-all duration-300 ease-in-out px-0 ${
+      <div className={`navbar fixed top-0 z-60 text-white transition-all duration-300 ease-in-out px-0 ${
           isScrolled ? "bg-primary py-4" : "bg-transparent py-3 lg:py-10"
         }`}
       >

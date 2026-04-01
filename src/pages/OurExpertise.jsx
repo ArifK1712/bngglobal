@@ -98,8 +98,7 @@ export default function Expertise() {
       <div className="bg-primary">
         <div className="app-container text-center text-white py-10 lg:pb-25">
           <h2 className="mb-2.5">Our Approach</h2>
-          <p className="text-center text-white mb-12 md:mb-18">A Proven 3-Step Methodology That Transforms Insights Into Impact</p>
-          
+          <p className="text-center text-white mb-12 md:mb-18">A Proven 3-Step Methodology That Transforms Insights Into Impact</p>          
           <div className="flex flex-col md:grid grid-cols-3 gap-5 gap-y-8 xl:gap-30 justify-between">
             {steps.map((step, index) => {
               const isActive = index === activeIndex;
@@ -158,7 +157,7 @@ export default function Expertise() {
               <div
                 key={index}
                 className={`${
-                  isDark ? "bg-primary" : "bg-info"
+                  isDark ? "bg-primary" : "bg-info  dark:bg-primary"
                 } rounded-2xl p-8 pb-7 relative group overflow-hidden h-auto xl:h-67.5`}
               >
                 {/* Expanding Circle */}
@@ -175,7 +174,7 @@ export default function Expertise() {
                     ${
                       isDark
                         ? "text-white transition-colors duration-300 delay-300 group-hover:delay-0 group-hover:text-primary"
-                        : "text-primary"
+                        : "text-primary dark:text-white"
                     }`}
                   ></i>
                   
@@ -184,7 +183,7 @@ export default function Expertise() {
                     ${
                       isDark
                         ? "text-white transition-colors duration-300 delay-300 group-hover:delay-0 group-hover:text-primary"
-                        : "text-primary"
+                        : "text-primary dark:text-white"
                     }`}
                   >
                     {card.title}
@@ -195,7 +194,7 @@ export default function Expertise() {
                     ${
                       isDark
                         ? "text-white transition-colors duration-300 delay-300 group-hover:delay-0 group-hover:text-primary"
-                        : "text-primary"
+                        : "text-primary dark:text-white"
                     }`}
                   >
                     {card.desc}
@@ -206,7 +205,7 @@ export default function Expertise() {
           })}
 
           {/* CTA Card */}
-          <div className="bg-white border border-[#5E6C84] rounded-2xl p-8 pb-7 relative group overflow-hidden h-67.5">
+          <div className="border border-[#5E6C84] rounded-2xl p-8 pb-7 relative group overflow-hidden h-67.5">
             <div className="relative z-10">
               <h4 className="mb-1.5">Let’s Build Your Global Success Story Together</h4>
               <Link to="/contact" className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5 mt-10">

@@ -114,7 +114,7 @@ const ServicesSection = () => {
                   group relative z-10 flex items-center px-6 lg:px-10 h-13.5 md:h-17 rounded-full cursor-pointer transition-colors duration-300
                   ${activeTab === index 
                     ? 'text-black' 
-                    : 'hover:bg-slate-100'
+                    : 'hover:bg-slate-100 hover:dark:text-black'
                   }
                 `}
               >

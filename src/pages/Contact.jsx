@@ -120,7 +120,7 @@ export default function Contact() {
                   <i className={`${detail.icon} text-5xl shrink-0`}></i>
                   <div>
                     <p className="text-neutral font-medium mb-1.5">{detail.title}</p>
-                    <p className="text-gray-600">{detail.content}</p>
+                    <p>{detail.content}</p>
                   </div>
                 </div>
               ))}
@@ -185,7 +185,7 @@ export default function Contact() {
                     </div>
                   )}
 
-                  <button type="submit" className="btn btn-lg btn-light py-2 text-[18px] mt-4 w-33 ms-auto" disabled={status === "Sending..."}>
+                  <button type="submit" className="btn btn-lg btn-light dark:btn-warning py-2 text-[18px] mt-4 w-33 ms-auto" disabled={status === "Sending..."}>
                     {status === "Sending..." ? "Sending..." : "Submit"}
                   </button>
                 </form>

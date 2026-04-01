@@ -80,7 +80,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:flex md:flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-end">
-                <Link to="/services" className="btn btn-lg px-7">
+                <Link to="/services" className="btn btn-lg dark:btn-warning px-7">
                   Discover Our Services
                 </Link>
                 <Link to="/contact" className="btn btn-lg btn-link text-white no-underline">

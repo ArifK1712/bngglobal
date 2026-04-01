@@ -107,7 +107,7 @@ export default function Industries() {
         /* DESKTOP VIEW (Unchanged) */
         <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-white mb-35">
           <div className="absolute pt-30 left-0 w-full flex flex-col items-center z-10">
-            <h2 className="text-center">
+            <h2 className="text-center dark:text-[#253858]">
               Specialized Expertise Across Diverse <br /> Sectors to Power Your
               <span className="inline-block relative w-23 h-11.5 mx-3 align-middle">
                 <div ref={pillRef} className="absolute left-1/2 -translate-x-1/2 w-23 h-11.5 bg-[#0033A0] rounded-4xl z-20 flex items-center justify-center overflow-hidden bg-[url(https://bngglobal.net/assets/images/vectors/globe.svg)] bg-no-repeat bg-bottom">

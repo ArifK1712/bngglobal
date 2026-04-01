@@ -77,10 +77,10 @@ export default function Blog() {
                 alt={featuredPost.title} 
               />
               <div className="bg-white rounded-3xl px-8 pt-12 pb-10 md:absolute start-0 md:start-5 end-5 lg:end-0 bottom-5 max-w-full mx-4 md:mx-0 md:max-w-169.5 -mt-10 relative z-10">
-                <h4 className="mb-3 leading-tight group-hover:underline max-w-md dark:text-neutral">
+                <h4 className="mb-3 leading-tight group-hover:underline max-w-md dark:text-info">
                     {featuredPost.title}
                 </h4>
-                <p className="mb-10">
+                <p className="mb-10 dark:text-info">
                     {featuredPost.excerpt}
                 </p>
                 <button 

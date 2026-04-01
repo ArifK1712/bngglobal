@@ -18,7 +18,7 @@
     --color-warning-content: #121212; /* Darker text for contrast against yellow */
     --color-base-300: #1a202c;      /* Deep dark background instead of light blue */
     --color-info: #1e293b;          /* Darker info background */
-    --color-neutral: #cbd5e1;       /* Lighter neutral text/elements for dark backgrounds */
+    --color-neutral: #ffffff;       /* Lighter neutral text/elements for dark backgrounds */
   }
 }
 
@@ -51,7 +51,7 @@
     @apply text-[16px] md:text-[20px] font-medium
   }
   p{
-    @apply text-[#505F79] dark:text-[#cbd5e1] text-[18px] font-normal leading-6
+    @apply text-[#505F79] dark:text-[#ffffff] text-[18px] font-normal leading-6
   }
   .btn{
     @apply py-1.5 font-medium rounded-full shadow-none

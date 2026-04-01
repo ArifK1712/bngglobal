@@ -164,7 +164,7 @@ export default function Services() {
   }, [services.length]);
 
   return (
-    <div className="bg-white">
+    <div className="">
       <div className="hero relative">
         <img
           src="/images/hero/services-hero.png"

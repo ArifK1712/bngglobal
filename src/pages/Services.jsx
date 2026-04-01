@@ -202,7 +202,7 @@ export default function Services() {
           <div key={index} className="flex flex-col mb-10">
             <ServiceLabel title={service.title} isHeader={true} />
             <div
-              className="text-gray-700 leading-relaxed [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-3"
+              className="leading-relaxed [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-3"
               dangerouslySetInnerHTML={{ __html: service.desc }}
             />
             <div className="rounded-3xl overflow-hidden shadow-lg">

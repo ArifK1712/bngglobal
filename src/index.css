@@ -10,6 +10,18 @@
   --color-neutral:#253858;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Replace these with your desired dark mode colors */
+    --color-primary: #6084e6;       /* Lighter blue for better visibility */
+    --color-warning: #FFE033;       /* Slightly softer yellow */
+    --color-warning-content: #121212; /* Darker text for contrast against yellow */
+    --color-base-300: #1a202c;      /* Deep dark background instead of light blue */
+    --color-info: #1e293b;          /* Darker info background */
+    --color-neutral: #cbd5e1;       /* Lighter neutral text/elements for dark backgrounds */
+  }
+}
+
 @layer base {
   html {
     font-size: 18px;

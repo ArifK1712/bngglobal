@@ -30,6 +30,31 @@ const media = [
   { type: "image", src: "/images/gallery/7.jpg" },
 ];
 
+const statsData = [
+  {
+    number: "500+",
+    label: "Events Delivered",
+    icon: "icon-sustainable-growth"
+  },
+  {
+    number: "150+",
+    label: "Happy Clients",
+    icon: "icon-sustainable-growth"
+  },
+  {
+    number: "25+",
+    label: "Cities Covered",
+    icon: "icon-sustainable-growth"
+  },
+  {
+    number: "10+",
+    label: "Years Experience",
+    icon: "icon-sustainable-growth"
+  }
+];
+
+const layers = Array.from({ length: 8 });
+
 export default function Services() {
   const containerRef = useRef(null);
   const standRef = useRef(null);
@@ -163,6 +188,34 @@ export default function Services() {
     return () => ctx.revert();
   }, [services.length]);
 
+  const marqueeItems = [
+    "Creativity",
+    "Production",
+    "Technology",
+    "Experience",
+    "Logistics",
+    "Excellence",
+    "Reliability",
+    "Expertise"
+  ];
+
+const trackRef = useRef(null);
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const totalWidth = track.scrollWidth / 2;
+    const duration = totalWidth / 200; 
+    const tween = gsap.to(track, {
+      x: -totalWidth,
+      duration: duration,
+      ease: "none",
+      repeat: -1
+    });
+
+    return () => tween.kill();
+
+  }, []);
+
   return (
     <div className="">
       <div className="hero relative">
@@ -226,7 +279,6 @@ export default function Services() {
         <div className="inset-0 flex flex-col items-center z-20">
           <div className="app-container">
             <div className="relative w-full flex items-center justify-between mx-auto">
-              {/* Left Column Labels */}
               <div className="initial-ui-text space-y-32 ps-20 w-70 flex flex-col items-start">
                 <ServiceLabel title="Luxury events & Fashion Shows" />
                 <ServiceLabel
@@ -246,8 +298,6 @@ export default function Services() {
                   }
                 />
               </div>
-
-              {/* Center Stand */}
               <div className="flex flex-col justify-center">
                 <img
                   ref={standRef}
@@ -263,8 +313,6 @@ export default function Services() {
                   loading="lazy"
                 />
               </div>
-
-              {/* Right Column Labels */}
               <div className="initial-ui-text space-y-32 w-70 flex flex-col items-start ps-10">
                 <ServiceLabel title="Brand activations" />
                 <ServiceLabel
@@ -282,8 +330,6 @@ export default function Services() {
             </div>
           </div>
         </div>
-
-        {/* STATIC STAGE Content */}
         <div ref={stageRef} className="absolute inset-0 z-10 flex opacity-0">
           <img src="/images/vectors/logowatermarkblue.svg" className="absolute top-3 left-2/3 -ms-3 -translate-x-2/2 z-10" loading="lazy" alt="" />
           <div className="w-1/2 bg-[#0a2361] relative overflow-hidden">
@@ -318,6 +364,67 @@ export default function Services() {
           </div>
         </div>
       </div>
+      
+      <div className="app-container py-10">
+        <div className="
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          lg:grid-cols-4 
+          gap-5 
+          bg-primary
+        ">
+          {statsData.map((item, index) => (
+
+            <div key={index} className="hover-3d">
+
+              {/* Content */}
+              <div className="text-center p-10">
+
+                <i
+                  className={`${item.icon} text-5xl mb-5 text-warning`}
+                ></i>
+
+                <h2 className="text-white mb-3 text-4xl font-bold">
+                  {item.number}
+                </h2>
+
+                <p className="text-white">
+                  {item.label}
+                </p>
+
+              </div>
+
+              {/* 3D Layers */}
+              {layers.map((_, i) => (
+                <div key={i}></div>
+              ))}
+
+            </div>
+
+          ))}
+
+        </div>
+      </div>
+
+    <section className="overflow-hidden py-15">
+      <div
+        ref={trackRef}
+        className="flex w-max items-center whitespace-nowrap"
+        onMouseEnter={() => tweenRef.current?.pause()}
+        onMouseLeave={() => tweenRef.current?.resume()}
+      >
+        {[...marqueeItems, ...marqueeItems].map((item, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-center text-9xl font-bold uppercase text-primary"
+          >
+            <span>{item}</span>
+            <span className="mx-5"><img src="/favicon.svg" className="w-40 block" alt="" /></span>
+          </div>
+        ))}
+      </div>
+    </section>
 
       <div className="app-container pt-10 pb-20">
         <h2 className="mb-3">Our work gallery</h2>

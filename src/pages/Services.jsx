@@ -196,6 +196,15 @@ export default function Services() {
     "Logistics",
     "Excellence",
     "Reliability",
+    "Expertise",
+    
+    "Creativity",
+    "Production",
+    "Technology",
+    "Experience",
+    "Logistics",
+    "Excellence",
+    "Reliability",
     "Expertise"
   ];
 
@@ -373,6 +382,7 @@ const trackRef = useRef(null);
           lg:grid-cols-4 
           gap-5 
           bg-primary
+          rounded-3xl
         ">
           {statsData.map((item, index) => (
 
@@ -417,10 +427,10 @@ const trackRef = useRef(null);
         {[...marqueeItems, ...marqueeItems].map((item, index) => (
           <div
             key={index}
-            className="flex items-center justify-center text-9xl font-bold uppercase text-primary"
+            className="flex items-center justify-center text-5xl md:text-9xl font-bold uppercase text-primary"
           >
             <span>{item}</span>
-            <span className="mx-5"><img src="/favicon.svg" className="w-40 block" alt="" /></span>
+            <span className="mx-5"><img src="/favicon.svg" className="w-20 md:w-40 block" alt="" /></span>
           </div>
         ))}
       </div>

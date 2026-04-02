@@ -12,16 +12,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Replace these with your desired dark mode colors */
-    --color-primary: #0d2972;       /* Lighter blue for better visibility */
-    --color-warning: #FFE033;       /* Slightly softer yellow */
-    --color-warning-content: #121212; /* Darker text for contrast against yellow */
-    --color-base-300: #1a202c;      /* Deep dark background instead of light blue */
-    --color-info: #1e293b;          /* Darker info background */
-    --color-neutral: #ffffff;       /* Lighter neutral text/elements for dark backgrounds */
+    --color-primary: #0d2972;
+    --color-warning: #FFE033;
+    --color-warning-content: #121212;
+    --color-base-300: #1a202c; 
+    --color-info: #1e293b; 
+    --color-neutral: #ffffff; 
   }
 }
-
 @layer base {
   html {
     font-size: 18px;

@@ -49,6 +49,7 @@ export default function Header() {
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal p-0 flex gap-4 text-base font-normal">
               <li><Link className="hover:bg-transparent hover:underline" to="/">Home</Link></li>
+              
               <li>
                 <details onMouseEnter={(e) => (e.currentTarget.open = true)} onMouseLeave={(e) => (e.currentTarget.open = false)}> 
                   <summary className="hover:bg-transparent hover:underline list-none [&::-webkit-details-marker]:hidden after:hidden">
@@ -130,6 +131,7 @@ export default function Header() {
         </div>
         <img src="/images/vectors/logowatermark.svg" className="w-full absolute end-0 start-0 bottom-0" alt="" />
       </div>
+      
     </>
   );
 }

@@ -518,28 +518,32 @@ export default function Services() {
         <div className="app-container relative z-10">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.75fr]">
             <div>
-
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#003a86] mb-4">
                 BNG Fabrication
               </h2>
 
-              <p className="mb-4">BNG Arabia is a Saudi-based service provider of
-exhibition and experiential solutions, offering
-comprehensive design, fabrication, and execution
-services for government, corporate, and
-international clients. With strong roots in the
-Kingdom’s rapidly evolving events industry, we
-merge creative insight with technical capability to
-deliver distinctive, high-quality environments.</p>
+              <p className="mb-4">
+                BNG Arabia is a Saudi-based service provider of exhibition and
+                experiential solutions, offering comprehensive design,
+                fabrication, and execution services for government, corporate,
+                and international clients. With strong roots in the Kingdom’s
+                rapidly evolving events industry, we merge creative insight with
+                technical capability to deliver distinctive, high-quality
+                environments.
+              </p>
 
-<p>We craft exhibition stands, conferences, branded
-spaces, and corporate environments that embody
-innovation, precision, and professionalism. From
-initial concept to final delivery, we oversee every
-stage with efficiency and meticulous attention—
-ensuring every project makes a lasting impact.</p>
+              <p>
+                We craft exhibition stands, conferences, branded spaces, and
+                corporate environments that embody innovation, precision, and
+                professionalism. From initial concept to final delivery, we
+                oversee every stage with efficiency and meticulous attention—
+                ensuring every project makes a lasting impact.
+              </p>
             </div>
-              <img src="/images/fabrication-image.jpg" className="rounded-4xl shadow-2xl shadow-[#003a86]/10" />
+            <img
+              src="/images/fabrication-image.jpg"
+              className="rounded-4xl shadow-2xl shadow-[#003a86]/10"
+            />
           </div>
         </div>
       </section>
@@ -553,41 +557,41 @@ ensuring every project makes a lasting impact.</p>
         <div className="app-container relative z-10">
           {/* Header */}
           <div className="services-left mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-  <div>
-    <p className="mb-5 inline-flex rounded-full border border-[#003a86]/10 bg-white px-5 py-2 text-xs font-bold uppercase tracking-[0.35em] text-[#003a86] shadow-lg shadow-[#003a86]/5">
-      Our Services
-    </p>
+            <div>
+              <p className="mb-5 inline-flex rounded-full border border-[#003a86]/10 bg-white px-5 py-2 text-xs font-bold uppercase tracking-[0.35em] text-[#003a86] shadow-lg shadow-[#003a86]/5">
+                Our Services
+              </p>
 
-    <h2 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-[#003a86] md:text-6xl">
-      Our Expertise & Capabilities in Event Production
-    </h2>
-  </div>
+              <h2 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-[#003a86] md:text-6xl">
+                Our Expertise & Capabilities in Event Production
+              </h2>
+            </div>
 
-  <div className="grid gap-3 sm:grid-cols-2">
-    {[
-      "Luxury events & Fashion Shows",
-      "Corporate and Conference setups",
-      "Retail Experiences & Pop-up venues",
-      "Brand activations",
-      "Sport and Automotive setups",
-      "Events Solution",
-      "Exhibitions and Booth Fabrications",
-    ].map((item) => (
-      <div
-        key={item}
-        className="group flex items-center gap-3 rounded-2xl border border-[#003a86]/10 bg-white p-4 shadow-lg shadow-[#003a86]/5 transition duration-500 hover:-translate-y-1 hover:border-[#ffd500] hover:bg-[#fff9d8] hover:shadow-xl hover:shadow-[#003a86]/10"
-      >
-        <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#003a86] text-sm font-bold text-[#ffd500] transition duration-500 group-hover:bg-[#ffd500] group-hover:text-[#003a86]">
-          ✓
-        </span>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                "Luxury events & Fashion Shows",
+                "Corporate and Conference setups",
+                "Retail Experiences & Pop-up venues",
+                "Brand activations",
+                "Sport and Automotive setups",
+                "Events Solution",
+                "Exhibitions and Booth Fabrications",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="group flex items-center gap-3 rounded-2xl border border-[#003a86]/10 bg-white p-4 shadow-lg shadow-[#003a86]/5 transition duration-500 hover:-translate-y-1 hover:border-[#ffd500] hover:bg-[#fff9d8] hover:shadow-xl hover:shadow-[#003a86]/10"
+                >
+                  <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#003a86] text-sm font-bold text-[#ffd500] transition duration-500 group-hover:bg-[#ffd500] group-hover:text-[#003a86]">
+                    ✓
+                  </span>
 
-        <span className="text-sm font-semibold leading-6 text-[#003a86]/80 transition duration-500 group-hover:text-[#003a86]">
-          {item}
-        </span>
-      </div>
-    ))}
-  </div>
-</div>
+                  <span className="text-sm font-semibold leading-6 text-[#003a86]/80 transition duration-500 group-hover:text-[#003a86]">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Featured Service */}
           {services[0] && (
@@ -687,47 +691,43 @@ ensuring every project makes a lasting impact.</p>
           </div>
         </div>
       </section>
-{/* OUR VALUES */}
-<section className="values-section relative overflow-hidden bg-white py-20 lg:py-28">
-  <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#fff9d8_48%,#ffffff_100%)]" />
+      {/* OUR VALUES */}
+      <section className="values-section relative overflow-hidden bg-white py-20 lg:py-28">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#fff9d8_48%,#ffffff_100%)]" />
 
-  <div className="app-container relative z-10">
-    <div className="mx-auto mb-14 max-w-4xl text-center">
+        <div className="app-container relative z-10">
+          <div className="mx-auto mb-14 max-w-4xl text-center">
+            <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-[#003a86] md:text-6xl">
+              Our Values
+            </h2>
+          </div>
 
-      <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-[#003a86] md:text-6xl">
-        Our Values
-      </h2>
-    </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {valuesData.map((item, index) => (
+              <div
+                key={item.title}
+                className="values-card group relative min-h-[300px] overflow-hidden rounded-[2rem] border border-white/25 bg-white/10 p-6 backdrop-blur-2xl transition duration-500 hover:-translate-y-2 hover:border-[#ffd500]/70  hover:shadow-2xl hover:shadow-[#003a86]/12"
+              >
+                <div className="relative z-10 flex h-full flex-col justify-between">
+                  <div className="text-center">
+                    <span className="mb-4 flex h-12 w-12 mx-auto items-center justify-center rounded-2xl border border-[#ffd500]/50 bg-[#ffd500]/25 text-base font-bold text-[#003a86] shadow-lg shadow-[#ffd500]/20 backdrop-blur-xl transition duration-500 group-hover:bg-[#ffd500]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
 
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-  {valuesData.map((item, index) => (
-    <div
-      key={item.title}
-      className="values-card group relative min-h-[300px] overflow-hidden rounded-[2rem] border border-white/25 bg-white/10 p-6 backdrop-blur-2xl transition duration-500 hover:-translate-y-2 hover:border-[#ffd500]/70  hover:shadow-2xl hover:shadow-[#003a86]/12"
-    >
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#003a86] md:text-3xl">
+                      {item.title}
+                    </h3>
 
-      <div className="relative z-10 flex h-full flex-col justify-between">
-        <div className="text-center">
-          <span className="mb-4 flex h-12 w-12 mx-auto items-center justify-center rounded-2xl border border-[#ffd500]/50 bg-[#ffd500]/25 text-base font-bold text-[#003a86] shadow-lg shadow-[#ffd500]/20 backdrop-blur-xl transition duration-500 group-hover:bg-[#ffd500]">
-            {String(index + 1).padStart(2, "0")}
-          </span>
+                    <p className="mt-3">{item.desc}</p>
+                  </div>
 
-          <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#003a86] md:text-3xl">
-            {item.title}
-          </h3>
-
-          <p className="mt-3">
-            {item.desc}
-          </p>
+                  <div className="mt-8 h-px w-full bg-gradient-to-r from-[#ffd500] via-[#003a86]/15 to-transparent" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-
-        <div className="mt-8 h-px w-full bg-gradient-to-r from-[#ffd500] via-[#003a86]/15 to-transparent" />
-      </div>
-    </div>
-  ))}
-</div>
-  </div>
-</section>
+      </section>
 
       {/* PREMIUM BOOTH SECTION */}
       <section className="premium-booth-section relative overflow-hidden py-10">
@@ -750,20 +750,15 @@ ensuring every project makes a lasting impact.</p>
               </h2>
 
               <p className="mt-7 max-w-xl">
-                We design and fabricate custom-built
-exhibition booths and shell scheme
-enhancements that maximize brand impact
-and audience engagement at trade shows
-and exhibitions.
-From concept development and 3D
-visualization to production and on-site
-installation, each stand is tailored to reflect
-your brand identity, optimize visitor flow,
-and create meaningful interaction.
-Our focus on quality materials, smart spatial
-planning, and seamless execution ensures
-a striking presence that attracts attention
-and delivers measurable results.
+                We design and fabricate custom-built exhibition booths and shell
+                scheme enhancements that maximize brand impact and audience
+                engagement at trade shows and exhibitions. From concept
+                development and 3D visualization to production and on-site
+                installation, each stand is tailored to reflect your brand
+                identity, optimize visitor flow, and create meaningful
+                interaction. Our focus on quality materials, smart spatial
+                planning, and seamless execution ensures a striking presence
+                that attracts attention and delivers measurable results.
               </p>
             </div>
           </div>
@@ -789,36 +784,34 @@ and delivers measurable results.
             </div>
 
             <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {statsData.map((item, index) => (
-                  <div
-                    key={item.label}
-                    className="stat-card group rounded-[2rem] border border-white/15 bg-white/10 p-7 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:bg-transparent hover:backdrop-blur-none"
-                  >
-                    <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#ffd500] transition duration-500">
-                      {item.label}
-                    </p>
+              {statsData.map((item, index) => (
+                <div
+                  key={item.label}
+                  className="stat-card group rounded-[2rem] border border-white/15 bg-white/10 p-7 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:bg-transparent hover:backdrop-blur-none"
+                >
+                  <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#ffd500] transition duration-500">
+                    {item.label}
+                  </p>
 
-                    <div className="flex min-h-[70px] flex-wrap items-end gap-3 relative">
-                      <h3
-                        ref={(el) => (statNumberRefs.current[index] = el)}
-                        className="text-56xl font-semibold leading-none tracking-[-0.06em] text-white transition duration-500 group-hover:text-[#ffd500] md:text-6xl"
-                      >
-                        0
-                      </h3>
+                  <div className="flex min-h-[70px] flex-wrap items-end gap-3 relative">
+                    <h3
+                      ref={(el) => (statNumberRefs.current[index] = el)}
+                      className="text-56xl font-semibold leading-none tracking-[-0.06em] text-white transition duration-500 group-hover:text-[#ffd500] md:text-6xl"
+                    >
+                      0
+                    </h3>
 
-                      {item.unit && (
-                        <span className="absolute -right-1 bottom-3 text-sm font-bold uppercase tracking-[0.18em] text-white">
-                          {item.unit}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="mt-5 text-sm text-white/70">
-                      {item.desc}
-                    </p>
+                    {item.unit && (
+                      <span className="absolute -right-1 bottom-3 text-sm font-bold uppercase tracking-[0.18em] text-white">
+                        {item.unit}
+                      </span>
+                    )}
                   </div>
-                ))}
-              </div>
+
+                  <p className="mt-5 text-sm text-white/70">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -928,8 +921,6 @@ and delivers measurable results.
                     <p className="process-card-desc mt-2 max-w-2xl text-sm leading-7 text-white/70">
                       {item.desc}
                     </p>
-
-                    
                   </div>
                 ))}
               </div>

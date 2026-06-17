@@ -16,7 +16,7 @@ export default function Home() {
       words.forEach((_, index) => {
         tl.to(sliderRef.current, {
           yPercent: -step * (index + 1),
-          duration: 0.5,
+          duration: 0.90,
           ease: "power2.inOut",
           delay: 1,
         });

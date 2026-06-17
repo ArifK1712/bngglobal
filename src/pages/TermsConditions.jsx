@@ -220,7 +220,7 @@ export default function Terms() {
               <h2>Terms and Conditions</h2>
               <p>Please read these terms and conditions carefully before using Our Service.</p>
           </div>
-          <div className="badge badge-primary rounded-full bg-info border-info text-neutral-900 p-2.5 font-bold"> Last updated: January 19, 2026</div>
+          <div className="badge badge-primary rounded-full bg-info border-info text-neutral-900 p-1 px-2.5 leading-5 text-center font-bold h-auto"> Last updated: January 19, 2026</div>
         </div>
         <div className="flex flex-row gap-10">
           <aside className="sticky top-30 h-fit hidden md:block">

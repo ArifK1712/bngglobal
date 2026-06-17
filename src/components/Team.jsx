@@ -56,7 +56,7 @@ const TEAM_MEMBERS = [
     department: "",
     description: `Saiful Haq provides overall leadership and strategic direction for BNG Arabia’s events and exhibitions operations across the region. He oversees business growth, client relationships, and operational excellence, ensuring every project aligns with the company’s vision and market goals.
     With extensive experience in managing large-scale exhibitions, corporate events, and brand activations, Saiful leads cross-functional teams from concept to completion. He ensures smooth coordination between sales, design, production, and on-site execution, delivering high-quality experiences that meet client expectations, timelines, and budgets.`,
-    email: "khaled.hemdan@bngglobal.net",
+    email: "saiful.haq@bngglobal.net",
     image: "/images/team/saiful-haq.png",
   },
 ];

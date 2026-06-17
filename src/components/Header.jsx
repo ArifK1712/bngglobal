@@ -47,7 +47,7 @@ export default function Header() {
             <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden"><i className="icon-menu text-3xl"></i></button>
           </div>
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 flex gap-4 text-base font-normal">
+            <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-normal">
               <li><Link className="hover:bg-transparent hover:underline" to="/">Home</Link></li>
               
               <li>
@@ -74,6 +74,7 @@ export default function Header() {
                   </ul>
                 </details>
               </li>
+              
               <li>
                 <details onMouseEnter={(e) => (e.currentTarget.open = true)} onMouseLeave={(e) => (e.currentTarget.open = false)}>
                   <summary className="hover:bg-transparent hover:underline [&::-webkit-details-marker]:hidden after:hidden">
@@ -84,8 +85,7 @@ export default function Header() {
                       <li><Link to="/our-expertise?tab=0">Business Consulting</Link></li>
                       <li><Link to="/our-expertise?tab=1">Delegations & Roadshows</Link></li>
                       <li><Link to="/our-expertise?tab=2">Marketing & Promotion</Link></li>
-                      <li><Link to="/our-expertise?tab=3">Foreign Direct Investment (FDI)</Link></li>
-                      <li><Link to="/services">Event Production</Link></li>
+                      <li><Link to="/our-expertise?tab=3">Foreign Direct Investment (FDI)</Link></li>                      
                     </div>
                     <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative">
                       <p className="text-wrap text-white text-lg font-light mb-6">Partner with us to make your next mission impactful.</p>
@@ -97,7 +97,9 @@ export default function Header() {
                   </ul>                  
                 </details>
               </li>
+              <li><Link to="/services">Event Production</Link></li>
               <li><Link className="hover:bg-transparent hover:underline" to="/industries">Industries</Link></li>
+              <li><Link className="hover:bg-transparent hover:underline" to="">Event Calendar</Link></li>
               <li><Link className="hover:bg-transparent hover:underline" to="/blog">Insights / Blogs</Link></li>
               <li><Link to="/contact" className='btn-warning bg-warning items-center flex text-dark rounded-3xl min-h-10 h-10 text-[#253858] px-6 font-medium'>Contact</Link></li>
             </ul>

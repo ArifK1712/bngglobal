@@ -510,7 +510,6 @@ export default function Services() {
         </h2>
         <div className="bg-black opacity-20 absolute inset-0"></div>
       </div>
-
       {/* INTRO */}
       <section className="intro-section relative overflow-hidden py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(255,213,0,0.35),transparent_24%),radial-gradient(circle_at_88%_20%,rgba(0,58,134,0.12),transparent_28%),linear-gradient(180deg,#ffffff_0%,#f6f9ff_100%)]" />
@@ -547,7 +546,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
       {/* SERVICES */}
       <section className="services-showcase relative overflow-hidden py-20">
         {/* Background */}
@@ -694,14 +692,12 @@ export default function Services() {
       {/* OUR VALUES */}
       <section className="values-section relative overflow-hidden bg-white py-20 lg:py-28">
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#fff9d8_48%,#ffffff_100%)]" />
-
         <div className="app-container relative z-10">
           <div className="mx-auto mb-14 max-w-4xl text-center">
             <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-[#003a86] md:text-6xl">
               Our Values
             </h2>
           </div>
-
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {valuesData.map((item, index) => (
               <div
@@ -728,7 +724,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
       {/* PREMIUM BOOTH SECTION */}
       <section className="premium-booth-section relative overflow-hidden py-10">
         <div className="app-container relative z-10">
@@ -815,7 +810,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
       {/* MARQUEE */}
       <section className="overflow-hidden pb-20">
         <div
@@ -843,7 +837,6 @@ export default function Services() {
           ))}
         </div>
       </section>
-
       {/* PROCESS */}
       <section
         ref={processRef}
@@ -928,7 +921,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
       {/* PORTFOLIO */}
       <section className="relative py-20">
         <div className="app-container">
@@ -1045,7 +1037,6 @@ export default function Services() {
           )}
         </div>
       </section>
-
       <Footer />
     </div>
   );

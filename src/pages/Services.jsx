@@ -672,7 +672,7 @@ export default function Services() {
                     >
                       <div
                         className={`text-sm leading-7 text-[#003a86]/65 [&_li]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 ${
-                          isLastCard ? "" : "line-clamp-10"
+                          isLastCard ? "" : ""
                         }`}
                         dangerouslySetInnerHTML={{ __html: service.desc }}
                       />

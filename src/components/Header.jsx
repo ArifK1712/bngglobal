@@ -49,7 +49,10 @@ export default function Header() {
         <div className="app-container flex justify-between items-center">
           <div className="flex items-center w-full lg:w-auto justify-between">
             <Link to="/"><img src={logo} alt="Logo" className="h-12 lg:h-17.5" /></Link>
-            <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden" aria-label="Open Mobile Menu"><i className="icon-menu text-3xl"></i></button>
+            <div className="space-x-2">
+              <LanguageToggle className="text-base-content bg-base-200 hover:bg-base-300 border border-base-content/10 hidden lg:hidden" />
+              <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden" aria-label="Open Mobile Menu"><i className="icon-menu text-3xl"></i></button>
+            </div>
           </div>
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-normal items-center text-white">
@@ -146,8 +149,7 @@ export default function Header() {
               <li className="mt-4 flex flex-row items-center gap-4">
                 <Link to="/contact" onClick={closeDrawer} className="bg-warning text-black rounded-4xl justify-center px-5.5 py-2">
                   {t.navContact}
-                </Link>
-                <LanguageToggle className="text-base-content bg-base-200 hover:bg-base-300 border border-base-content/10" />
+                </Link>                
               </li>
             </ul>
           </div>

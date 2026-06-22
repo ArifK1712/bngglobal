@@ -52,7 +52,7 @@ export default function Header() {
             <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden" aria-label="Open Mobile Menu"><i className="icon-menu text-3xl"></i></button>
           </div>
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-normal items-center">
+            <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-normal items-center text-white">
               <li><Link className="hover:bg-transparent hover:underline" to="/">{t.navHome}</Link></li>
               
               <li>

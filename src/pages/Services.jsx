@@ -580,7 +580,7 @@ export default function Services() {
                     ✓
                   </span>
 
-                  <span className="leading-6 text-[#003a86]/80 transition duration-500 group-hover:text-[#003a86]">
+                  <span className="leading-6 transition duration-500 group-hover:text-[#003a86]">
                     {item}
                   </span>
                 </div>

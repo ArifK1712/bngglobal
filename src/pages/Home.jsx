@@ -1,36 +1,38 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 export default function Home() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const sliderRef = useRef(null);
-  const words = ["Investment", "Growth", "Tourism", "Innovation"];
+  const words = t.homeWords;
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const totalWords = words.length;
-      const mm = gsap.matchMedia();
-      const step = 100 / (totalWords + 1);      
-      const tl = gsap.timeline({ repeat: -1 });
+  useGSAP(() => {
+    // Reset inline styles to avoid stale transform values when toggling languages
+    gsap.set(sliderRef.current, { clearProps: "all" });
 
-      words.forEach((_, index) => {
-        tl.to(sliderRef.current, {
-          yPercent: -step * (index + 1),
-          duration: 0.90,
-          ease: "power2.inOut",
-          delay: 1,
-        });
-      });
-      
+    const totalWords = words.length;
+    const step = 100 / (totalWords + 1);      
+    const tl = gsap.timeline({ repeat: -1 });
+
+    words.forEach((_, index) => {
       tl.to(sliderRef.current, {
-        yPercent: 0,
-        duration: 0,
+        yPercent: -step * (index + 1),
+        duration: 0.90,
+        ease: "power2.inOut",
+        delay: 1,
       });
-
-    }, sliderRef);
-
-    return () => ctx.revert();
-  }, []);
+    });
+    
+    tl.to(sliderRef.current, {
+      yPercent: 0,
+      duration: 0,
+    });
+  }, { scope: sliderRef, dependencies: [language] });
 
   return (
     <>
@@ -40,21 +42,18 @@ export default function Home() {
           autoPlay
           muted
           loop
+          preload="auto"
+          aria-hidden="true"
           className="h-full w-full object-cover fixed top-0 left-0 -z-10 overflow-hidden"
         >
           <source
-            src="https://d1o4s320mkx6gb.cloudfront.net/bng-global/Sequence.mp4"
+            src="https://d1o4s320mkx6gb.cloudfront.net/bng-global/homepage-video.mp4"
             type="video/mp4"
           />
-          <source
-            src="https://d1o4s320mkx6gb.cloudfront.net/bng-global/Sequence.mp4"
-            type="video/webm"
-          />
         </video>
-
         <div className="app-container pt-22 landscape:max-lg:pt-25 md:pt-46 ">
-          <h1 className="text-white relative z-50 w-full max-w-xl text-4xl leading-tight md:leading-tight sm:text-6xl">
-            Empowering Global Trade{" "}
+          <h1 className="text-white relative z-50 w-full max-w-3xl text-4xl leading-tight md:leading-tight sm:text-6xl text-start">
+            {t.homeEmpowering}{" "}
             <span className="inline-block h-[1.2em] align-bottom overflow-hidden relative">
               <div ref={sliderRef} className="flex flex-col">
                 {words.map((word, i) => (
@@ -71,20 +70,20 @@ export default function Home() {
           </h1>
           <div className="absolute landscape:max-lg:relative bottom-0 inset-x-0 z-50 mx-auto w-full landscape:max-lg:px-0 px-5 lg:px-10 pb-3 md:pb-17 text-white lg:max-w-5xl xl:max-w-7xl">
             <div className="grid gap-6 md:grid-cols-2 md:items-center md:justify-between">
-              <div className="xl:w-2xl">
-                <h3 className="mb-2">
-                  Navigating Global Markets with Expertise
+              <div className="xl:w-2xl text-start">
+                <h3 className="mb-2 text-start">
+                  {t.homeSubtitleHeader}
                 </h3>
-                <p className="text-white text-sm sm:text-[18px] leading-tight sm:leading-6">
-                  BNG Business Network Global is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.
+                <p className="text-white text-sm sm:text-[18px] leading-tight sm:leading-6 text-start">
+                  {t.homeSubtitleCopy}
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:flex md:flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-end">
                 <Link to="/services" className="btn btn-lg dark:btn-warning px-7">
-                  Discover Our Services
+                  {t.homeDiscoverBtn}
                 </Link>
                 <Link to="/contact" className="btn btn-lg btn-link text-white no-underline">
-                  Contact Us
+                  {t.homeContactUs}
                 </Link>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation } from 'react-router-dom';
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Team from "../components/Team";
 import Footer from "../components/Footer";
@@ -15,81 +16,72 @@ export default function About() {
   const containerRef = useRef(null);
   const clientIds = Array.from({ length: 21 }, (_, i) => i + 1);
 
-  useEffect(() => {
-  const images = containerRef.current.querySelectorAll('img');
+  // 1. Clients zoom transition using useGSAP
+  useGSAP(() => {
+    const images = containerRef.current?.querySelectorAll('img');
+    if (!images || !images.length) return;
 
-  const tl = gsap.timeline({ repeat: -1 });
+    const tl = gsap.timeline({ repeat: -1 });
 
-  tl.to(images, {
-    scale: 1.30,
-    filter: "grayscale(0%)",
-    zIndex: 10,
-    duration: 0.8,
-    force3D: true, // Forces GPU rendering for smoothness
-    stagger: {
-      each: 1,
-      yoyo: true, 
-      repeat: 1 
-    },
-    ease: "power2.inOut" // Smoother than back.out(0) for simple zooms
-  });
+    tl.to(images, {
+      scale: 1.30,
+      filter: "grayscale(0%)",
+      zIndex: 10,
+      duration: 0.8,
+      force3D: true, 
+      stagger: {
+        each: 1,
+        yoyo: true, 
+        repeat: 1 
+      },
+      ease: "power2.inOut" 
+    });
+  }, { scope: containerRef });
 
-  return () => tl.kill();
-}, []);
+  // 2. Mission Section ScrollTrigger vectors using useGSAP
+  useGSAP(() => {
+    if (!sectionRef.current) return;
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      
-      // Create a timeline that starts when the section is 80% visible
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          markers:false,
-          start: "40% 60%", // Starts when top of section hits 80% of viewport
-          //toggleActions: "play none none reverse", // Replays if you scroll up and down
-        },
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        markers: false,
+        start: "40% 60%", 
+      },
+    });
 
-      // 1. Animate m1 (First image at bottom)
-      tl.fromTo(
-        m1Ref.current,
-        { y: 400, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-        "=0.12"
-      )
-      // 2. Animate m2 (Second image at bottom) - starts 0.2s after m1 begins
-      .fromTo(
-        m2Ref.current,
-        { y: 300, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-        "=0.8" 
-      )
-      // 3. Animate m3 (Top image) - starts after m2 finishes
-      .fromTo(
-        m3Ref.current,
-        { y: 200, opacity: 0 }, // Coming from top
-        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-        "=0.4"
-      );
+    tl.fromTo(
+      m1Ref.current,
+      { y: 400, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+      "=0.12"
+    )
+    .fromTo(
+      m2Ref.current,
+      { y: 300, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+      "=0.8" 
+    )
+    .fromTo(
+      m3Ref.current,
+      { y: 200, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+      "=0.4"
+    );
+  }, { scope: sectionRef });
 
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // 1. Get the current URL location
+  // 3. Get the current URL location
   const { hash } = useLocation();
 
-  // 2. Scroll to the element when the hash changes
+  // 4. Scroll to the element when the hash changes
   useEffect(() => {
     if (hash) {
       const element = document.getElementById(hash.replace('#', ''));
       if (element) {
-        // scrollIntoView options: 'smooth' creates the animation
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      window.scrollTo(0, 0); // Scroll to top if no hash
+      window.scrollTo(0, 0); 
     }
   }, [hash]);
 
@@ -113,7 +105,7 @@ export default function About() {
       </div>
     </div>
 
-    <div id="mission" className="bg-primary overflow-hidden scroll-mt-24">
+    <div id="mission" ref={sectionRef} className="bg-primary overflow-hidden scroll-mt-24">
         <div className="app-container">
             <div className="grid grid-col-1 lg:grid-cols-2 justify-between"> 
                 <div className='py-12 lg:py-20 w-full lg:w-200 lg:pe-22'>    

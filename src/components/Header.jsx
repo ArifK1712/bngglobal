@@ -1,39 +1,44 @@
 import React, { useState, useEffect } from "react";
 import logo from '/logo-light.svg'
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
+import LanguageToggle from "./LanguageToggle";
 
 // Header.jsx
 export default function Header() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   // 1. State to track if the user has scrolled
   const [isScrolled, setIsScrolled] = useState(false);
   
   // 2. State to track if mobile drawer is open
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // 3. Effect to listen for scroll events
+  // 3. Controlled states for dropdown menus
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [expertiseOpen, setExpertiseOpen] = useState(false);
+
+  // 4. Effect to listen for scroll events (throttled with requestAnimationFrame)
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Helper to close drawer
   const closeDrawer = () => setIsDrawerOpen(false);
-
-  const handleLinkClick = (e) => {
-    // Finds the closest <details> parent and removes the 'open' attribute
-    const detailsElement = e.target.closest('details');
-    if (detailsElement) {
-      detailsElement.removeAttribute('open');
-    }
-  };
 
   return (
     <>
@@ -44,64 +49,75 @@ export default function Header() {
         <div className="app-container flex justify-between items-center">
           <div className="flex items-center w-full lg:w-auto justify-between">
             <Link to="/"><img src={logo} alt="Logo" className="h-12 lg:h-17.5" /></Link>
-            <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden"><i className="icon-menu text-3xl"></i></button>
+            <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden" aria-label="Open Mobile Menu"><i className="icon-menu text-3xl"></i></button>
           </div>
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-normal">
-              <li><Link className="hover:bg-transparent hover:underline" to="/">Home</Link></li>
+            <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-normal items-center">
+              <li><Link className="hover:bg-transparent hover:underline" to="/">{t.navHome}</Link></li>
               
               <li>
-                <details onMouseEnter={(e) => (e.currentTarget.open = true)} onMouseLeave={(e) => (e.currentTarget.open = false)}> 
-                  <summary className="hover:bg-transparent hover:underline list-none [&::-webkit-details-marker]:hidden after:hidden">
-                    <Link to="/about" onClick={(e) => e.currentTarget.closest('details').open = false}>
-                      About Us
+                <details 
+                  open={aboutOpen} 
+                  onToggle={(e) => setAboutOpen(e.target.open)}
+                  onMouseEnter={() => setAboutOpen(true)} 
+                  onMouseLeave={() => setAboutOpen(false)}
+                > 
+                  <summary className="hover:bg-transparent hover:underline list-none [&::-webkit-details-marker]:hidden after:hidden cursor-pointer">
+                    <Link to="/about" onClick={() => setAboutOpen(false)}>
+                      {t.navAboutUs}
                     </Link>
                   </summary>                  
                   
                   <ul className="p-4.5 bg-base-100 text-base-content font-normal w-46.5 z-10 gap-y-1 grid rounded-2xl">
                     <li>
-                      <Link to="/about#who-we-are" onClick={handleLinkClick}>Who We Are</Link>
+                      <Link to="/about#who-we-are" onClick={() => setAboutOpen(false)}>{t.navWhoWeAre}</Link>
                     </li>
                     <li>
-                      <Link to="/about#mission" onClick={handleLinkClick}>Our Mission</Link>
+                      <Link to="/about#mission" onClick={() => setAboutOpen(false)}>{t.navOurMission}</Link>
                     </li>
                     <li>
-                      <Link to="/about#team" onClick={handleLinkClick}>Our Team</Link>
+                      <Link to="/about#team" onClick={() => setAboutOpen(false)}>{t.navOurTeam}</Link>
                     </li>
                     <li>
-                      <Link to="/about#clients" onClick={handleLinkClick}>Our Clients</Link>
+                      <Link to="/about#clients" onClick={() => setAboutOpen(false)}>{t.navOurClients}</Link>
                     </li>
                   </ul>
                 </details>
               </li>
               
               <li>
-                <details onMouseEnter={(e) => (e.currentTarget.open = true)} onMouseLeave={(e) => (e.currentTarget.open = false)}>
-                  <summary className="hover:bg-transparent hover:underline [&::-webkit-details-marker]:hidden after:hidden">
-                    <Link  to="/our-expertise" onClick={(e) => e.currentTarget.closest('details').open = false} >Our Expertise</Link>
+                <details 
+                  open={expertiseOpen} 
+                  onToggle={(e) => setExpertiseOpen(e.target.open)}
+                  onMouseEnter={() => setExpertiseOpen(true)} 
+                  onMouseLeave={() => setExpertiseOpen(false)}
+                >
+                  <summary className="hover:bg-transparent hover:underline [&::-webkit-details-marker]:hidden after:hidden cursor-pointer">
+                    <Link to="/our-expertise" onClick={() => setExpertiseOpen(false)}>{t.navOurExpertise}</Link>
                   </summary>
                   <ul className="p-4.5 bg-base-100 text-base-content font-normal w-156 z-10 rounded-2xl flex justify-between -start-32">
-                    <div className="grid gap-y-4.5">
-                      <li><Link to="/our-expertise?tab=0">Business Consulting</Link></li>
-                      <li><Link to="/our-expertise?tab=1">Delegations & Roadshows</Link></li>
-                      <li><Link to="/our-expertise?tab=2">Marketing & Promotion</Link></li>
-                      <li><Link to="/our-expertise?tab=3">Foreign Direct Investment (FDI)</Link></li>                      
+                    <div className="grid gap-y-4.5 text-start">
+                      <li><Link to="/our-expertise?tab=0" onClick={() => setExpertiseOpen(false)}>{t.navBusinessConsulting}</Link></li>
+                      <li><Link to="/our-expertise?tab=1" onClick={() => setExpertiseOpen(false)}>{t.navDelegationsRoadshows}</Link></li>
+                      <li><Link to="/our-expertise?tab=2" onClick={() => setExpertiseOpen(false)}>{t.navMarketingPromotion}</Link></li>
+                      <li><Link to="/our-expertise?tab=3" onClick={() => setExpertiseOpen(false)}>{t.navFDI}</Link></li>                      
                     </div>
-                    <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative">
-                      <p className="text-wrap text-white text-lg font-light mb-6">Partner with us to make your next mission impactful.</p>
-                      <Link to="/contact" className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5">
-                        <i className="icon-right-arrow text-lg"></i>
+                    <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative text-start">
+                      <p className="text-wrap text-white text-lg font-light mb-6">{t.navPartnerText}</p>
+                      <Link to="/contact" onClick={() => setExpertiseOpen(false)} className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5">
+                        <i className="icon-right-arrow text-lg rtl:rotate-180"></i>
                       </Link>
                       <img src="/images/vectors/vector-m5.svg" className="absolute -start-6 end-0 bottom-0 w-full" alt="" />
                     </div>
                   </ul>                  
                 </details>
               </li>
-              <li><Link to="/services">Event Production</Link></li>
-              <li><Link className="hover:bg-transparent hover:underline" to="/industries">Industries</Link></li>
-              <li><Link className="hover:bg-transparent hover:underline" to="">Event Calendar</Link></li>
-              <li><Link className="hover:bg-transparent hover:underline" to="/blog">Insights / Blogs</Link></li>
-              <li><Link to="/contact" className='btn-warning bg-warning items-center flex text-dark rounded-3xl min-h-10 h-10 text-[#253858] px-6 font-medium'>Contact</Link></li>
+              <li><Link className="hover:bg-transparent hover:underline" to="/services">{t.navEventProduction}</Link></li>
+              <li><Link className="hover:bg-transparent hover:underline" to="/industries">{t.navIndustries}</Link></li>
+              <li><Link className="hover:bg-transparent hover:underline" to="">{t.navEventCalendar}</Link></li>
+              <li><Link className="hover:bg-transparent hover:underline" to="/blog">{t.navInsightsBlogs}</Link></li>              
+              <li><Link to="/contact" className='btn-warning bg-warning items-center flex text-dark rounded-3xl min-h-10 h-10 text-[#253858] px-6 font-medium'>{t.navContact}</Link></li>
+              {/* <li className="flex items-center justify-center px-1"><LanguageToggle /></li> */}
             </ul>
           </div>
         </div>
@@ -112,22 +128,27 @@ export default function Header() {
         onClick={closeDrawer}
       ></div>
       <div 
-        className={`fixed top-0 right-0 z-100 h-full w-full bg-base-100 text-base-content shadow-xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 z-100 h-full w-full bg-base-100 text-base-content shadow-xl transform transition-transform duration-300 ease-in-out lg:hidden ${
           isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
-          <div className="overflow-y-auto flex-1 p-8 pt-19">
+          <div className="overflow-y-auto flex-1 p-8 pt-19 text-start">
             <button onClick={closeDrawer} className="btn btn-sm btn-circle btn-ghost absolute end-6 top-9">
               <i className="icon-close-flat text-lg"></i>
             </button>
-            <ul className="menu w-full text-base p-0 space-y-6">
-              <li><Link to="/" onClick={closeDrawer}>Home</Link></li>              
-              <li><Link to="/about" onClick={closeDrawer}>About Us</Link></li>
-              <li><Link to="/our-expertise" onClick={closeDrawer}>Our Expertise</Link></li>
-              <li><Link to="/industries" onClick={closeDrawer}>Industries</Link></li>
-              <li><Link to="/blog" onClick={closeDrawer}>Insights / Blogs</Link></li>
-              <li className="mt-4 inline"><Link to="/contact" onClick={closeDrawer} className="bg-warning text-black rounded-4xl justify-center inline px-5.5 py-2 ms-2">Contact</Link></li>
+            <ul className="menu w-full text-base p-0 space-y-6 text-start">
+              <li><Link to="/" onClick={closeDrawer}>{t.navHome}</Link></li>              
+              <li><Link to="/about" onClick={closeDrawer}>{t.navAboutUs}</Link></li>
+              <li><Link to="/our-expertise" onClick={closeDrawer}>{t.navOurExpertise}</Link></li>
+              <li><Link to="/industries" onClick={closeDrawer}>{t.navIndustries}</Link></li>
+              <li><Link to="/blog" onClick={closeDrawer}>{t.navInsightsBlogs}</Link></li>
+              <li className="mt-4 flex flex-row items-center gap-4">
+                <Link to="/contact" onClick={closeDrawer} className="bg-warning text-black rounded-4xl justify-center px-5.5 py-2">
+                  {t.navContact}
+                </Link>
+                <LanguageToggle className="text-base-content bg-base-200 hover:bg-base-300 border border-base-content/10" />
+              </li>
             </ul>
           </div>
         </div>

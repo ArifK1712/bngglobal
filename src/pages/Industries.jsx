@@ -1,12 +1,17 @@
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import Footer from "../components/Footer";
+import { useLanguage } from "../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function Industries() {
+  const { language } = useLanguage();
+  const isRtl = language === "ar";
+
   const INDUSTRIES = [
     { id: 1, title: "Tourism", desc: "Tourism is a major growth vector for Saudi Arabia’s economic transformation, with giant destination projects, regulatory revisions and infrastructure upgrades forming the foundation of this push under Vision 2030.", image: "/images/industries/tourism.jpg?v=1" },
     { id: 2, title: "Consumer Products", desc: "The Consumer Products sector in Saudi Arabia is poised for growth, driven by demographic trends, rising disposable incomes and modern retail/e-commerce expansion under Vision 2030’s economic-diversification agenda.", image: "/images/industries/consumer-products.jpg?v=1" },
@@ -27,57 +32,68 @@ export default function Industries() {
   const tlRef = useRef(null);
   
   const [activeTab, setActiveTab] = useState(INDUSTRIES.length - 1);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 1200;
+    }
+    return false;
+  });
   const isClickingRef = useRef(false);
 
-  useLayoutEffect(() => {
-    let mm = gsap.matchMedia();
-
-    // DESKTOP & TABLET LANDSCAPE
-    mm.add("(min-width: 1200px)", () => {
-      setIsMobile(false);
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=4000",
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-        },
-      });
-
-      tlRef.current = tl;
-
-      tl.to(pillRef.current, {
-        width: "100vw", height: "100vh", borderRadius: "0px",
-        y: "-90px", backgroundImage: "none", x: 0, top: 0, left: -22,
-        duration: 2, ease: "power2.inOut",
-      });
-
-      tl.to(blueSectionRef.current, { opacity: 1, duration: 0.5 }, "-=0.5");
-
-      const lastIndex = INDUSTRIES.length - 1;
-      tl.addLabel(`tab-${lastIndex}`);
-      tl.to({}, { duration: 1 });
-
-      for (let i = lastIndex - 1; i >= 0; i--) {
-        tl.addLabel(`tab-${i}`);
-        tl.to({}, {
-          duration: 1,
-          onStart: () => { if (!isClickingRef.current) setActiveTab(i); },
-          onReverseComplete: () => { if (!isClickingRef.current) setActiveTab(i + 1); },
-        });
-      }
-    });
-
-    // MOBILE & TABLET PORTRAIT
-    mm.add("(max-width: 1199px)", () => {
-      setIsMobile(true);
-    });
-
-    return () => mm.revert();
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1200);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useGSAP(() => {
+    if (isMobile) return;
+
+    // Reset scroll position to top synchronously before GSAP measurements
+    window.scrollTo(0, 0);
+
+    // Reset properties to clean up after LTR/RTL transitions
+    setActiveTab(INDUSTRIES.length - 1);
+    gsap.set(pillRef.current, { clearProps: "all" });
+    gsap.set(blueSectionRef.current, { clearProps: "all" });
+    ScrollTrigger.refresh();
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "+=4000",
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+      },
+    });
+
+    tlRef.current = tl;
+
+    tl.to(pillRef.current, {
+      width: "100vw", height: "100vh", borderRadius: "0px",
+      y: "-90px", backgroundImage: "none", x: 0, top: 0, left: -22,
+      duration: 2, ease: "power2.inOut",
+    });
+
+    tl.to(blueSectionRef.current, { opacity: 1, duration: 0.5 }, "-=0.5");
+
+    const lastIndex = INDUSTRIES.length - 1;
+    tl.addLabel(`tab-${lastIndex}`);
+    tl.to({}, { duration: 1 });
+
+    for (let i = lastIndex - 1; i >= 0; i--) {
+      tl.addLabel(`tab-${i}`);
+      tl.to({}, {
+        duration: 1,
+        onStart: () => { if (!isClickingRef.current) setActiveTab(i); },
+        onReverseComplete: () => { if (!isClickingRef.current) setActiveTab(i + 1); },
+      });
+    }
+  }, { dependencies: [isMobile, language], scope: containerRef });
 
   const handleTabClick = (index) => {
     if (!tlRef.current || isMobile) return;
@@ -126,14 +142,14 @@ export default function Industries() {
                           <div className="relative">
                             <p className="leading-relaxed opacity-0 pointer-events-none">{INDUSTRIES[activeTab].desc}</p>
                             {INDUSTRIES.map((item, index) => (
-                              <p key={item.id} className={`absolute top-0 left-0 leading-relaxed w-full transition-all duration-700 ease-in-out ${activeTab === index ? "opacity-100 translate-x-0" : "opacity-0 translate-x-20"}`}>
+                              <p key={item.id} className={`absolute top-0 left-0 leading-relaxed w-full transition-all duration-700 ease-in-out ${activeTab === index ? "opacity-100 translate-x-0" : "opacity-0 ltr:translate-x-20 rtl:-translate-x-20"}`}>
                                 {item.desc}
                               </p>
                             ))}
                           </div>
                         </div>
                       </div>
-                      <div className="flex flex-col justify-center items-end h-full pr-4 perspective-container pointer-events-auto">
+                      <div className="flex flex-col justify-center items-end h-full pe-4 perspective-container pointer-events-auto">
                         <div className="industry-list flex flex-col items-end relative h-[400px] justify-center">
                           {INDUSTRIES.map((item, index) => {
                             const diff = index - activeTab;
@@ -141,9 +157,9 @@ export default function Industries() {
                               <div
                                 key={item.id}
                                 onClick={() => handleTabClick(index)}
-                                className="transition-all duration-700 ease-out absolute right-40 origin-right flex items-center justify-end cursor-pointer group"
+                                className="transition-all duration-700 ease-out absolute ltr:right-40 rtl:left-40 ltr:origin-right rtl:origin-left flex items-center justify-end cursor-pointer group"
                                 style={{
-                                  transform: `translate(${Math.abs(diff) * 40}px, ${diff * 160}px) rotate(${diff * -8}deg)`,
+                                  transform: `translate(${(isRtl ? -1 : 1) * Math.abs(diff) * 40}px, ${diff * 160}px) rotate(${diff * (isRtl ? 8 : -8)}deg)`,
                                   opacity: diff === 0 ? 1 : Math.max(0.5, 1 - Math.abs(diff) * 0.5),
                                   zIndex: 100 - Math.abs(diff),
                                   top: "50%",

@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useLanguage } from "../context/LanguageContext";
 
 const TEAM_MEMBERS = [
   {
@@ -68,7 +70,12 @@ const ACTIVE_TRANSLATE_OFFSET = 60;
 const AUTOPLAY_DELAY = 5000;
 
 export default function TeamCarousel() {
+  const { language } = useLanguage();
+  const isRtl = language === "ar";
+
   const [virtualIndex, setVirtualIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(() => typeof window !== "undefined" ? window.innerWidth : 1200);
+  const [isHovered, setIsHovered] = useState(false);
 
   const activeIndex = ((virtualIndex % TEAM_MEMBERS.length) + TEAM_MEMBERS.length) % TEAM_MEMBERS.length;
   const activeMember = TEAM_MEMBERS[activeIndex];
@@ -79,50 +86,44 @@ export default function TeamCarousel() {
   const progressRef = useRef({ value: 0 });
   const isAnimating = useRef(false);
 
-  // Helper: Checks breakpoint for logic switching
-  const isMobile = () => window.innerWidth < 1024;
-
-  // Helper: Gets dynamic radius based on screen width
+  const isMobile = windowWidth < 1024;
+  
   const getRadius = () => {
-    return window.innerWidth >= 1500 ? RADIUS_DEFAULT : RADIUS_TABLET;
+    return windowWidth >= 1500 ? RADIUS_DEFAULT : RADIUS_TABLET;
   };
 
   // --- 0. RESIZE LISTENER ---
-  // Forces layout update when resizing window (crucial for responsive radius)
   useEffect(() => {
     const handleResize = () => {
-      // Re-run position logic immediately on resize
-      updatePositions(progressRef.current.value);
-      // Force a re-render to update the static circle div size
-      setVirtualIndex((prev) => prev); 
+      setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // --- 1. SETUP EFFECT ---
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".team-avatar-item", {
-        scale: 0, opacity: 0, duration: 1.0, stagger: 0.1, ease: "back.out(1.5)", delay: 0.2
-      });
-      updatePositions(0);
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
+  // --- 1. SETUP EFFECT USING useGSAP ---
+  useGSAP(() => {
+    gsap.from(".team-avatar-item", {
+      scale: 0, 
+      opacity: 0, 
+      duration: 1.0, 
+      stagger: 0.1, 
+      ease: "back.out(1.5)", 
+      delay: 0.2
+    });
+    updatePositions(0);
+  }, { scope: containerRef });
 
   // --- 2. TEXT ANIMATION (Slides IN from Right) ---
-  useLayoutEffect(() => {
+  useGSAP(() => {
     gsap.fromTo(textRef.current,
-      // Start State: Transparent and slightly to the RIGHT (20px)
       { opacity: 0, x: -50 }, 
-      // End State: Fully visible and slides to Center (0px)
       { opacity: 1, x: 0, duration: 1.2, ease: "power3.inOut", overwrite: "auto" } 
     );
-  }, [virtualIndex]);
+  }, { dependencies: [virtualIndex], scope: containerRef });
 
   // --- 3. ANIMATION LOOP ---
-  useEffect(() => {
+  useGSAP(() => {
     const diff = Math.abs(virtualIndex - progressRef.current.value);
     const dynamicDuration = diff > 1 ? 1.2 : 0.8;
 
@@ -137,40 +138,36 @@ export default function TeamCarousel() {
         isAnimating.current = false;
       }
     });
-  }, [virtualIndex]);
+  }, { dependencies: [virtualIndex, language], scope: containerRef });
 
   // --- 4. AUTOPLAY ---
   useEffect(() => {
+    if (isHovered) return; // Pause autoplay on hover
+    
     const timer = setTimeout(() => {
       handleNext();
     }, AUTOPLAY_DELAY);
     return () => clearTimeout(timer);
-  }, [virtualIndex]);
+  }, [virtualIndex, isHovered]);
 
 
   // --- MATH & POSITIONING LOGIC ---
   const updatePositions = (progress) => {
-    const mobile = isMobile();
-    const currentRadius = getRadius();
     const total = TEAM_MEMBERS.length;
-    
-    // 90 degrees ensures the "Top, Right, Bottom, Left" layout
     const desktopStep = 90; 
     const colorInterpolator = gsap.utils.interpolate("#e5e7eb", "#FFD500");
-    
-    const containerWidth = orbitContainerRef.current ? orbitContainerRef.current.offsetWidth : window.innerWidth;
+    const containerWidth = orbitContainerRef.current ? orbitContainerRef.current.offsetWidth : windowWidth;
     const mobileSpacing = (containerWidth / 2) - 38;
+    const currentRadius = getRadius();
 
     TEAM_MEMBERS.forEach((_, i) => {
-      // Shortest path calculation
       let offset = (i - progress) % total;
       if (offset > total / 2) offset -= total;
       if (offset < -total / 2) offset += total;
 
       const isActive = Math.round(offset) === 0;
 
-      if (mobile) {
-        // --- MOBILE LOGIC ---
+      if (isMobile) {
         const absDiff = Math.abs(offset);
         const isVisible = absDiff < 1.8; 
         const x = offset * mobileSpacing; 
@@ -184,26 +181,17 @@ export default function TeamCarousel() {
           backgroundColor: isActive ? "#FFD500" : "#e5e7eb",
           overwrite: "auto",
         });
-
       } else {
-        // --- DESKTOP LOGIC ---
-        // Visible window: -1 (Top), 0 (Right/Active), 1 (Bottom), 2 (Left)
-        // This covers all 4 cardinal points.
         const isVisible = offset >= -1.2 && offset <= 2.2;
-
         const angleDeg = offset * desktopStep; 
         const angleRad = (angleDeg * Math.PI) / 180;
-
-        // Scaling effect based on proximity to the active (0 degree) position
         const distToZero = Math.abs(angleDeg);
         const scaleRange = 90; 
         const scaleRatio = Math.max(0, (scaleRange - distToZero) / scaleRange);
         const easeFactor = scaleRatio * scaleRatio; 
-
-        // Add the translate offset only to the active member to push it "forward"
         const finalRadius = currentRadius + (ACTIVE_TRANSLATE_OFFSET * easeFactor);
 
-        const x = Math.cos(angleRad) * finalRadius;
+        const x = Math.cos(angleRad) * finalRadius * (isRtl ? -1 : 1);
         const y = Math.sin(angleRad) * finalRadius;
 
         gsap.set(`.team-avatar-${i}`, {
@@ -243,11 +231,22 @@ export default function TeamCarousel() {
     setVirtualIndex((prev) => prev + diff);
   };
 
-  // Safe check for current radius during render for the static circle div
-  const currentRenderRadius = typeof window !== "undefined" ? getRadius() : RADIUS_DEFAULT;
+  const handleKeyDown = (e, index) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleDotClick(index);
+    }
+  };
+
+  const currentRenderRadius = getRadius();
 
   return (
-    <div className="w-full pt-10 lg:pt-20 pb-20 lg:pb-40 overflow-hidden lg:overflow-visible" ref={containerRef}>
+    <div 
+      className="w-full pt-10 lg:pt-20 pb-20 lg:pb-40 overflow-hidden lg:overflow-visible" 
+      ref={containerRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="app-container">
         <h2 className="lg:ms-auto w-full mb-20 lg:mb-5 text-center"><span className="xl:ms-90">Our Team</span></h2>
         
@@ -260,7 +259,6 @@ export default function TeamCarousel() {
           >
             
             {/* DESKTOP ORBIT CIRCLE */}
-            {/* Dynamic width/height based on current screen size */}
             <div className="hidden lg:block absolute border border-solid border-gray-300 rounded-full transition-all duration-500 ease-in-out" 
                  style={{ 
                    width: currentRenderRadius * 2, 
@@ -275,12 +273,17 @@ export default function TeamCarousel() {
               <div
                 key={member.id}
                 onClick={() => handleDotClick(i)}
+                onKeyDown={(e) => handleKeyDown(e, i)}
+                role="button"
+                tabIndex={0}
+                aria-label={`View details for ${member.name}`}
+                aria-selected={activeIndex === i}
                 className={`team-avatar-${i} team-avatar-item 
                   absolute
                   w-20 h-20 lg:w-25 lg:h-25 xl:w-32 xl:h-32 
-                  rounded-full overflow-hidden flex items-center justify-center cursor-pointer bg-gray-200`}
+                  rounded-full overflow-hidden flex items-center justify-center cursor-pointer bg-gray-200 focus:outline-none focus:ring-2 focus:ring-warning`}
               >
-                <img src={member.image} alt={member.name} className=" object-cover object-[center_8px] pointer-events-none" loading="lazy" />
+                <img src={member.image} alt="" className=" object-cover object-[center_8px] pointer-events-none" loading="lazy" />
               </div>
             ))}
           </div>
@@ -291,23 +294,30 @@ export default function TeamCarousel() {
               <div>
                 <h3 className="mb-2">{activeMember.name}</h3>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-2 text-gray-600">
-                  <p>{activeMember.role}</p><span></span><p>{activeMember.department}</p>
+                  <p>{activeMember.role}</p>
+                  {activeMember.department && (
+                    <>
+                      <span className="h-1.5 w-1.5 rounded-full bg-gray-400 self-center"></span>
+                      <p>{activeMember.department}</p>
+                    </>
+                  )}
                 </div>
               </div>
-              <div className="space-y-3"> {/* space-y-4 adds gap between paragraphs */}
+              <div className="space-y-3">
                 {activeMember.description.split('\n').map((text, index) => (
                   <p key={index}>
                     {text}
                   </p>
                 ))}
               </div>
-              <a href={`mailto:${activeMember.email}`} className="underline">
+              <a href={`mailto:${activeMember.email}`} className="underline focus:text-warning focus:outline-none">
                 {activeMember.email}
               </a>
               <button 
                 onClick={handleNext} 
-                className="group mt-4 w-14 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-yellow-400 transition-all">
-                 <i className="icon-right-arrow text-lg"></i>
+                aria-label="Next team member"
+                className="group mt-4 w-14 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-yellow-400 transition-all focus:outline-none focus:ring-2 focus:ring-warning">
+                 <i className="icon-right-arrow text-lg rtl:rotate-180"></i>
               </button>
             </div>
           </div>

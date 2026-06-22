@@ -1,50 +1,70 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 export default function Footer() {
-  const handleLinkClick = (e) => {
-    const detailsElement = e.target.closest('details');
-    if (detailsElement) {
-      detailsElement.removeAttribute('open');
-    }
-  };
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <footer className="bg-primary text-white pt-10 pb-4 md:pt-20 md:pb-10">
       <div className="app-container">
           <div className="flex flex-col gap-y-8 sm:grid grid-cols-3 lg:grid-cols-4 gap-0">
-              <nav className="flex flex-col gap-2.5">
-                <p className="text-white font-medium mb-0 sm:mb-4">Our Expertise</p>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=0">Business Consulting</Link>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=1">Delegations & Roadshows</Link>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=2">Marketing & Promotion</Link>
-                <Link className="link link-hover text-sm" to="/services">Event Production</Link>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=3">FDI</Link>
-                
+              <nav className="flex flex-col gap-2.5 text-start">
+                <p className="text-white font-medium mb-0 sm:mb-4">{t.navOurExpertise}</p>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=0">{t.footerConsulting}</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=1">{t.footerRoadshows}</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=2">{t.footerMarketing}</Link>
+                <Link className="link link-hover text-sm" to="/services">{t.footerProduction}</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?tab=3">{t.footerFDI}</Link>
               </nav>
-              <nav className="flex flex-col gap-2.5 items-start">
-                <h6 className="text-white font-medium mb-0 sm:mb-4">About Us</h6>
-                <Link className="link link-hover text-sm" to="/about#who-we-are" onClick={handleLinkClick}>Who We Are</Link>
-                <Link className="link link-hover text-sm" to="/about#mission" onClick={handleLinkClick}>Our Mission</Link>
-                <Link className="link link-hover text-sm" to="/about#team" onClick={handleLinkClick}>Our Team</Link>
-                <Link className="link link-hover text-sm" to="/about#clients" onClick={handleLinkClick}>Our Clients</Link>
+              <nav className="flex flex-col gap-2.5 items-start text-start">
+                <h6 className="text-white font-medium mb-0 sm:mb-4">{t.navAboutUs}</h6>
+                <Link className="link link-hover text-sm" to="/about#who-we-are">{t.navWhoWeAre}</Link>
+                <Link className="link link-hover text-sm" to="/about#mission">{t.navOurMission}</Link>
+                <Link className="link link-hover text-sm" to="/about#team">{t.navOurTeam}</Link>
+                <Link className="link link-hover text-sm" to="/about#clients">{t.navOurClients}</Link>
               </nav>
-              <nav className="flex flex-col gap-2.5">
-                <h6 className="text-white font-medium mb-0 sm:mb-4">Others</h6>
-                <Link to="/industries" className="link link-hover text-sm">Industries</Link>
-                <Link to="/blog" className="link link-hover text-sm">Insights / Blogs</Link>
-                <Link to="/terms-and-conditions" className="link link-hover text-sm">Terms & Conditions</Link>
-                <Link to="/privacy-policy" className="link link-hover text-sm">Privacy Policy</Link>
+              <nav className="flex flex-col gap-2.5 text-start">
+                <h6 className="text-white font-medium mb-0 sm:mb-4">{t.footerOthers}</h6>
+                <Link to="/industries" className="link link-hover text-sm">{t.navIndustries}</Link>
+                <Link to="/blog" className="link link-hover text-sm">{t.navInsightsBlogs}</Link>
+                <Link to="/terms-and-conditions" className="link link-hover text-sm">{language === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام'}</Link>
+                <Link to="/privacy-policy" className="link link-hover text-sm">{language === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}</Link>
               </nav>
-              <nav className="grid gap-2.5 col-span-3 lg:col-span-1">
-                <p className="text-white text-sm">BNG is your strategic partner that strengthen industries, and create lasting impacts empowers enterprises to unlock international opportunities through strategic FDI advisory and trade consulting services.</p>
+              <nav className="grid gap-2.5 col-span-3 lg:col-span-1 text-start">
+                <p className="text-white text-sm">{t.footerDesc}</p>
               </nav>          
           </div>
           <hr className="h-px mt-8 md:mt-20 bg-base-200 opacity-40 border-0 w-full"></hr>
           <div className="flex flex-col gap-y-5 text-center md:flex-row justify-between pt-4 md:pt-10">
-            <p className="text-white text-sm">Copyright ©2026 BNG Arabia Company, All rights reserved</p>
+            <p className="text-white text-sm">{t.footerCopyright}</p>
             <div className="flex gap-12 justify-center md:justify-start">
-              <Link className="link link-hover text-sm"><i className="icon-linkedin"></i></Link>
-              <Link className="link link-hover text-sm"><i className="icon-x"></i></Link>
-              <Link to="mailto:info@bngglobal.net" className="link link-hover text-sm"><i className="icon-email"></i></Link>
+              <a 
+                href="https://linkedin.com/company/bngglobal" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="link link-hover text-sm" 
+                aria-label="Visit our LinkedIn profile"
+              >
+                <i className="icon-linkedin"></i>
+              </a>
+              <a 
+                href="https://x.com/bngglobal" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="link link-hover text-sm" 
+                aria-label="Visit our X profile"
+              >
+                <i className="icon-x"></i>
+              </a>
+              <a 
+                href="mailto:info@bngglobal.net" 
+                className="link link-hover text-sm" 
+                aria-label="Send us an email"
+              >
+                <i className="icon-email"></i>
+              </a>
             </div>
           </div>
       </div>

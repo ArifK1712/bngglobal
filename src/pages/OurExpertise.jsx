@@ -170,31 +170,31 @@ export default function Expertise() {
                 {/* Content Layer */}
                 <div className="relative z-10">
                   <i
-                    className={`${card.icon} text-5xl mb-12 block 
+                    className={`${card.icon} text-5xl mb-12 block transition-colors duration-300 delay-300 group-hover:delay-0 
                     ${
                       isDark
-                        ? "text-white transition-colors duration-300 delay-300 group-hover:delay-0 group-hover:text-primary"
-                        : "text-primary dark:text-white"
+                        ? "text-white group-hover:text-primary"
+                        : "text-primary dark:text-white group-hover:text-primary"
                     }`}
                   ></i>
                   
                   <h4
-                    className={`mb-1.5 
+                    className={`mb-1.5 transition-colors duration-300 delay-300 group-hover:delay-0 
                     ${
                       isDark
-                        ? "text-white transition-colors duration-300 delay-300 group-hover:delay-0 group-hover:text-primary"
-                        : "text-primary dark:text-white"
+                        ? "text-white group-hover:text-primary"
+                        : "text-primary dark:text-white group-hover:text-primary"
                     }`}
                   >
                     {card.title}
                   </h4>
                   
                   <p
-                    className={`
+                    className={`transition-colors duration-300 delay-300 group-hover:delay-0 
                     ${
                       isDark
-                        ? "text-white transition-colors duration-300 delay-300 group-hover:delay-0 group-hover:text-primary"
-                        : "text-primary dark:text-white"
+                        ? "text-white group-hover:text-primary"
+                        : "text-primary dark:text-white group-hover:text-primary"
                     }`}
                   >
                     {card.desc}

@@ -250,6 +250,7 @@ const policyData = [
 export default function Privacy() {
   const [activeId, setActiveId] = useState(policyData[0].id);
   const observer = useRef(null);
+  const mainContentRef = useRef(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -265,10 +266,12 @@ export default function Privacy() {
       }
     }, observerOptions);
 
-    const sections = document.querySelectorAll("section[id]");
-    sections.forEach((section) => observer.current.observe(section));
+    if (mainContentRef.current) {
+      const sections = mainContentRef.current.querySelectorAll("section[id]");
+      sections.forEach((section) => observer.current.observe(section));
+    }
 
-    return () => observer.current.disconnect();
+    return () => observer.current && observer.current.disconnect();
   }, []);
 
   const scrollToSection = (id) => {
@@ -308,7 +311,7 @@ export default function Privacy() {
               ))}
             </ul>
           </aside>
-          <main className="flex-1">
+          <main ref={mainContentRef} className="flex-1">
             {policyData.map((section) => (
               <section 
                 key={section.id} 

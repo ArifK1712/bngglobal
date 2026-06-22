@@ -178,6 +178,7 @@ const termsData = [
 export default function Terms() {
   const [activeId, setActiveId] = useState(termsData[0].id);
   const observer = useRef(null);
+  const mainContentRef = useRef(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -193,10 +194,12 @@ export default function Terms() {
       }
     }, observerOptions);
 
-    const sections = document.querySelectorAll("section[id]");
-    sections.forEach((section) => observer.current.observe(section));
+    if (mainContentRef.current) {
+      const sections = mainContentRef.current.querySelectorAll("section[id]");
+      sections.forEach((section) => observer.current.observe(section));
+    }
 
-    return () => observer.current.disconnect();
+    return () => observer.current && observer.current.disconnect();
   }, []);
 
   const scrollToSection = (id) => {
@@ -239,7 +242,7 @@ export default function Terms() {
               ))}
             </ul>
           </aside>
-          <main className="flex-1">
+          <main ref={mainContentRef} className="flex-1">
             {termsData.map((section) => (
               <section 
                 key={section.id} 

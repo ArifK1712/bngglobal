@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
-import './App.css'
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -28,6 +27,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/terms-and-conditions" element={<Terms />} />
+
+          <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
       

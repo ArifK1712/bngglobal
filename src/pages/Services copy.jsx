@@ -1,17 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Search,
-  ClipboardList,
-  PenTool,
-  Hammer,
-  BadgeCheck,
-  Truck,
-  Headphones,
-} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,43 +68,36 @@ const marqueeItems = [
 const processSteps = [
   {
     step: "01",
-    icon: Search,
     title: "Discovery & Understanding",
     desc: "We clarify your vision, goals, and requirements to align our approach from the start.",
   },
   {
     step: "02",
-    icon: ClipboardList,
     title: "Planning & Strategy",
     desc: "We develop a clear project plan with defined scope, timelines, resources, and milestones.",
   },
   {
     step: "03",
-    icon: PenTool,
     title: "Design & Development",
     desc: "Concepts and solutions are crafted, refined, and aligned with quality standards and your feedback.",
   },
   {
     step: "04",
-    icon: Hammer,
     title: "Fabrication & Execution",
     desc: "Using advanced tools and skilled craftsmanship, we bring the design to life with precision and consistency.",
   },
   {
     step: "05",
-    icon: BadgeCheck,
     title: "Quality Assurance",
     desc: "Every element is rigorously checked to meet industry standards and your expectations.",
   },
   {
     step: "06",
-    icon: Truck,
     title: "Delivery & Installation",
     desc: "We deliver and install on schedule, ensuring a seamless and polished handover.",
   },
   {
     step: "07",
-    icon: Headphones,
     title: "Ongoing Support",
     desc: "We remain available for guidance, adjustments, and long-term support.",
   },
@@ -125,6 +108,23 @@ const services = [
     title: "Concept Development & 3D Design",
     desc: "<p class='text-white'>We specialize in creating innovative exhibition stand concepts that align seamlessly with your brand guidelines and overall event theme. Our approach combines strategic storytelling with immersive 3D design, ensuring every element—from layout to visual aesthetics—reflects your brand identity. By integrating functionality with creativity, we deliver designs that captivate audiences and enhance engagement.</p>",
     img: "/images/services/concept-development.jpg",
+  },
+  {
+    title: "Custom Made stands",
+    desc: `
+      <p>Your Trusted Partner for Custom Exhibition Stands</p>
+      <ul>
+        <li>At BNG Arabia, we combine creativity, precision, and craftsmanship to deliver exhibition stands that make your brand shine. Our production unit ensures every detail is executed to perfection, from concept to completion.</li>
+        <li>Premium & Sustainable Materials</li>
+        <li>We use high-quality, eco-friendly materials to transform your vision into reality, ensuring durability and sustainability without compromising aesthetics.</li>
+        <li>Innovative Concepts that Tell Your Story</li>
+        <li>Our designers work closely with you to craft attention-grabbing ideas that align with your brand guidelines and communicate your story effectively.</li>
+        <li>Deep Regional Knowledge</li>
+        <li>Our strong relationships with local suppliers and venues, combined with hands-on experience in the Middle East, allow us to navigate regional specifications and challenges with agility.</li>
+        <li>Integrated Services for Maximum Value</li>
+        <li>From design elements to graphics and furniture, our in-house production capabilities reduce costs while maintaining superior quality and consistency.</li>
+      </ul>`,
+    img: "/images/services/custom-made-stands.jpg",
   },
   {
     title: "Event Solutions",
@@ -140,23 +140,6 @@ const services = [
     title: "On-Site Support & Dismantling",
     desc: "<p>At BNG Arabia, we provide comprehensive on-site support to ensure your event runs smoothly from start to finish. Our dedicated team handles every detail during setup, monitors the stand throughout the event, and manages the dismantling process efficiently. With precision and care, we guarantee a hassle-free experience, leaving your venue in perfect condition.</p>",
     img: "/images/services/onsite-support-dismantling.jpg",
-  },
-  {
-    title: "Custom Made stands",
-    desc: `
-      <p>Your Trusted Partner for Custom Exhibition Stands</p>
-      <ul>
-        <li>At BNG Arabia, we combine creativity, precision, and craftsmanship to create exhibition stands that make your brand stand out.</li>
-        <li>Premium & Sustainable Materials</li>
-        <li>High-quality, eco-friendly materials that deliver durability without compromising design.</li>
-        <li>Innovative Concepts</li>
-        <li>Attention-grabbing stand concepts that reflect your brand story and guidelines.</li>
-        <li>Regional Expertise</li>
-        <li>Strong local knowledge, supplier relationships, and venue experience across the Middle East.</li>
-        <li>Integrated Production  </li>
-        <li>In-house design, graphics, furniture, and fabrication for better value and consistent quality.</li>
-      </ul>`,
-    img: "/images/services/custom-made-stands.jpg",
   },
 ];
 
@@ -181,53 +164,6 @@ export default function Services() {
   const [activeProcess, setActiveProcess] = useState(0);
   const [isProcessPaused, setIsProcessPaused] = useState(false);
   const [currentMedia, setCurrentMedia] = useState(null);
-  
-  const [rfpData, setRfpData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    serviceRequest: "",
-    message: "",
-  });
-  const [status, setStatus] = useState("");
-
-  const handleRfpChange = (e) => {
-    const { name, value } = e.target;
-    setRfpData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleRfpSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
-
-    try {
-      const payload = {
-        ...rfpData,
-        access_key: "8bda1892-a2eb-45e4-9aaa-ac9132b04c24",
-      };
-
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setStatus("Message sent successfully.");
-        setRfpData({ fullName: "", email: "", phone: "", serviceRequest: "", message: "" });
-      } else {
-        setStatus("Failed to send message. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting RFP:", error);
-      setStatus("An error occurred. Please try again later.");
-    }
-  };
 
   const getNumberParts = (value) => {
     const numericValue = parseInt(value.replace(/\D/g, ""), 10);
@@ -253,227 +189,287 @@ export default function Services() {
     return () => clearInterval(interval);
   }, [isProcessPaused]);
 
-  useGSAP(() => {
-    gsap.set(
-      ".intro-kicker, .intro-title, .intro-copy, .services-left, .services-stand-card, .service-card, .service-media, .stat-card, .process-card, .gallery-item",
-      {
-        opacity: 1,
-        visibility: "visible",
-        clearProps: "filter",
-      },
-    );
+  useEffect(() => {
+    const hoverHandlers = [];
 
-    gsap.fromTo(
-      ".process-orbit-node",
-      {
-        scale: 0.8,
-        opacity: 0,
-      },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.08,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: ".process-showcase",
-          start: "top 70%",
-          once: true,
+    const ctx = gsap.context(() => {
+      gsap.set(
+        ".intro-kicker, .intro-title, .intro-copy, .services-left, .services-stand-card, .service-card, .service-media, .stat-card, .process-card, .gallery-item",
+        {
+          opacity: 1,
+          visibility: "visible",
+          clearProps: "filter",
         },
-      },
-    );
-
-    gsap.fromTo(
-      ".process-card",
-      {
-        y: 45,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".process-showcase",
-          start: "top 75%",
-          once: true,
-        },
-      },
-    );
-
-    gsap.fromTo(
-      ".intro-kicker, .intro-title, .intro-copy",
-      {
-        y: 45,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".intro-section",
-          start: "top 78%",
-          once: true,
-        },
-      },
-    );
-
-    gsap.fromTo(
-      ".services-left > *",
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-showcase",
-          start: "top 75%",
-          once: true,
-        },
-      },
-    );
-
-    gsap.fromTo(
-      ".service-card",
-      {
-        y: 90,
-        opacity: 0,
-        scale: 0.96,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        stagger: 0.14,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".services-showcase",
-          start: "top 65%",
-          once: true,
-        },
-      },
-    );
-
-    gsap.fromTo(
-      ".service-media",
-      {
-        scale: 1.22,
-      },
-      {
-        scale: 1,
-        duration: 1.4,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-showcase",
-          start: "top 65%",
-          once: true,
-        },
-      },
-    );
-
-    statNumberRefs.current.forEach((el, index) => {
-      if (!el) return;
-
-      const { numericValue, suffix } = getNumberParts(
-        statsData[index].number,
       );
-      const counter = { value: 0 };
 
-      gsap.to(counter, {
-        value: numericValue,
-        duration: 2,
-        ease: "expo.out",
-        scrollTrigger: {
-          trigger: statsSectionRef.current,
-          start: "top 85%",
-          once: true,
+      gsap.fromTo(
+  ".process-orbit-node",
+  {
+    scale: 0.8,
+    opacity: 0,
+  },
+  {
+    scale: 1,
+    opacity: 1,
+    duration: 0.8,
+    stagger: 0.08,
+    ease: "back.out(1.7)",
+    scrollTrigger: {
+      trigger: ".process-showcase",
+      start: "top 70%",
+      once: true,
+    },
+  }
+);
+
+gsap.fromTo(
+  ".process-card",
+  {
+    y: 45,
+    opacity: 0,
+  },
+  {
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".process-showcase",
+      start: "top 75%",
+      once: true,
+    },
+  }
+);
+
+      gsap.fromTo(
+        ".intro-kicker, .intro-title, .intro-copy",
+        {
+          y: 45,
+          opacity: 0,
         },
-        onUpdate: () => {
-          const rollingValue = Math.floor(counter.value);
-          el.textContent = `${rollingValue}${suffix}`;
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".intro-section",
+            start: "top 78%",
+            once: true,
+          },
         },
-        onComplete: () => {
-          el.textContent = statsData[index].number;
+      );
+
+      gsap.fromTo(
+        ".services-left > *",
+        {
+          y: 50,
+          opacity: 0,
         },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".services-showcase",
+            start: "top 75%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        ".service-card",
+        {
+          y: 90,
+          opacity: 0,
+          scale: 0.96,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          stagger: 0.14,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".services-showcase",
+            start: "top 65%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        ".service-media",
+        {
+          scale: 1.22,
+        },
+        {
+          scale: 1,
+          duration: 1.4,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".services-showcase",
+            start: "top 65%",
+            once: true,
+          },
+        },
+      );
+
+      document.querySelectorAll(".service-card").forEach((card) => {
+        const mediaEl = card.querySelector(".service-media");
+
+        const enterHandler = () => {
+          gsap.to(card, {
+            y: -10,
+            scale: 1.012,
+            duration: 0.35,
+            ease: "power2.out",
+          });
+
+          if (mediaEl) {
+            gsap.to(mediaEl, {
+              scale: 1.12,
+              duration: 0.5,
+              ease: "power2.out",
+            });
+          }
+        };
+
+        const leaveHandler = () => {
+          gsap.to(card, {
+            y: 0,
+            scale: 1,
+            duration: 0.35,
+            ease: "power2.out",
+          });
+
+          if (mediaEl) {
+            gsap.to(mediaEl, {
+              scale: 1,
+              duration: 0.5,
+              ease: "power2.out",
+            });
+          }
+        };
+
+        card.addEventListener("mouseenter", enterHandler);
+        card.addEventListener("mouseleave", leaveHandler);
+
+        hoverHandlers.push({
+          element: card,
+          enterHandler,
+          leaveHandler,
+        });
       });
-    });
 
-    gsap.fromTo(
-      ".stat-card",
-      {
-        y: 55,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: statsSectionRef.current,
-          start: "top 85%",
-          once: true,
+      statNumberRefs.current.forEach((el, index) => {
+        if (!el) return;
+
+        const { numericValue, suffix } = getNumberParts(
+          statsData[index].number,
+        );
+        const counter = { value: 0 };
+
+        gsap.to(counter, {
+          value: numericValue,
+          duration: 2,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: statsSectionRef.current,
+            start: "top 85%",
+            once: true,
+          },
+          onUpdate: () => {
+            const rollingValue = Math.floor(counter.value);
+            el.textContent = `${rollingValue}${suffix}`;
+          },
+          onComplete: () => {
+            el.textContent = statsData[index].number;
+          },
+        });
+      });
+
+      gsap.fromTo(
+        ".stat-card",
+        {
+          y: 55,
+          opacity: 0,
         },
-      },
-    );
-
-    gsap.fromTo(
-      ".gallery-item",
-      {
-        y: 70,
-        opacity: 0,
-        clipPath: "inset(18% 0% 18% 0% round 32px)",
-      },
-      {
-        y: 0,
-        opacity: 1,
-        clipPath: "inset(0% 0% 0% 0% round 32px)",
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".portfolio-grid",
-          start: "top 85%",
-          once: true,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: statsSectionRef.current,
+            start: "top 85%",
+            once: true,
+          },
         },
-      },
-    );
+      );
 
-    gsap.fromTo(
-      ".gallery-media",
-      {
-        scale: 1.12,
-      },
-      {
-        scale: 1,
-        duration: 1.25,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".portfolio-grid",
-          start: "top 85%",
-          once: true,
+      gsap.fromTo(
+        ".gallery-item",
+        {
+          y: 70,
+          opacity: 0,
+          clipPath: "inset(18% 0% 18% 0% round 32px)",
         },
-      },
-    );
+        {
+          y: 0,
+          opacity: 1,
+          clipPath: "inset(0% 0% 0% 0% round 32px)",
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".portfolio-grid",
+            start: "top 85%",
+            once: true,
+          },
+        },
+      );
 
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 300);
-  }, { scope: rootRef });
+      gsap.fromTo(
+        ".gallery-media",
+        {
+          scale: 1.12,
+        },
+        {
+          scale: 1,
+          duration: 1.25,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".portfolio-grid",
+            start: "top 85%",
+            once: true,
+          },
+        },
+      );
+
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 300);
+    }, rootRef);
+
+    return () => {
+      hoverHandlers.forEach(({ element, enterHandler, leaveHandler }) => {
+        element.removeEventListener("mouseenter", enterHandler);
+        element.removeEventListener("mouseleave", leaveHandler);
+      });
+
+      ctx.revert();
+    };
+  }, []);
 
   useEffect(() => {
     const track = marqueeTrackRef.current;
@@ -558,7 +554,7 @@ export default function Services() {
                 Our Services
               </p>
 
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-semibold">
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-semibold mb-4">
                 Our Expertise & Capabilities in Event Production
               </h2>
             </div>
@@ -575,7 +571,7 @@ export default function Services() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-4"
+                  className="group flex items-center gap-3 rounded-2xl border border-[#003a86]/10 bg-white p-4 shadow-lg shadow-[#003a86]/5 transition duration-500 hover:-translate-y-1 hover:border-[#ffd500] hover:bg-[#fff9d8] hover:shadow-xl hover:shadow-[#003a86]/10"
                 >
                   <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#003a86] text-sm font-bold text-[#ffd500] transition duration-500 group-hover:bg-[#ffd500] group-hover:text-[#003a86]">
                     ✓
@@ -651,7 +647,7 @@ export default function Services() {
                   >
                     <div
                       className={`relative overflow-hidden rounded-[1.5rem] bg-[#003a86] ${
-                        isLastCard ? "h-80 lg:h-full" : "h-50"
+                        isLastCard ? "h-80 lg:h-full" : "h-72"
                       }`}
                     >
                       <img
@@ -673,7 +669,7 @@ export default function Services() {
                     >
                       <div
                         className={`text-sm leading-7 text-[#003a86]/65 [&_li]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 ${
-                          isLastCard ? "" : "line-clamp-10"
+                          isLastCard ? "line-clamp-6" : "line-clamp-10"
                         }`}
                         dangerouslySetInnerHTML={{ __html: service.desc }}
                       />
@@ -784,7 +780,7 @@ export default function Services() {
           {[...marqueeItems, ...marqueeItems].map((item, index) => (
             <div
               key={`${item}-${index}`}
-              className="group mx-3 flex items-center gap-6 rounded-full border border-[#003a86]/10 bg-white px-8 py-5 text-4xl md:text-5xl font-semibold uppercase text-[#003a86] shadow-lg shadow-[#003a86]/10 transition duration-300 hover:border-[#ffd500] hover:bg-[#ffd500]"
+              className="group mx-3 flex items-center gap-6 rounded-full border border-[#003a86]/10 bg-white px-8 py-5 text-4xl md:text-5xl font-semibold uppercase text-[#003a86] shadow-lg shadow-[#003a86]/10 transition duration-300 hover:border-[#ffd500] hover:bg-[#ffd500]" 
             >
               <span>{item}</span>
 
@@ -801,109 +797,118 @@ export default function Services() {
         </div>
       </section>
       {/* PROCESS */}
-      <section className="process-showcase relative overflow-hidden bg-[#001f4f] py-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(255,213,0,0.22),transparent_28%),radial-gradient(circle_at_82%_80%,rgba(255,255,255,0.08),transparent_30%),linear-gradient(180deg,#001f4f_0%,#003a86_55%,#001f4f_100%)]" />
-
+      <section className="process-showcase relative overflow-hidden bg-[#001f4f] py-15">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,213,0,0.18),transparent_28%),radial-gradient(circle_at_15%_85%,rgba(255,255,255,0.08),transparent_30%),linear-gradient(180deg,#001f4f_0%,#003a86_55%,#001f4f_100%)]" />
         <div className="app-container relative z-10">
-          <div className="mx-auto mb-14 max-w-4xl text-center">
+          <div className="mx-auto mb-16 max-w-4xl text-center">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#ffd500]">
               Our Process
             </p>
 
-            <h2 className="text-4xl font-semibold text-white md:text-5xl xl:text-6xl">
+            <h2 className="text-4xl md:text-5xl xl:text-6xl font-semibold mb-4 text-white">
               A premium workflow from first idea to final show day.
             </h2>
           </div>
 
-          <div
-            className="relative mx-auto max-w-7xl"
-            onMouseEnter={() => setIsProcessPaused(true)}
-            onMouseLeave={() => setIsProcessPaused(false)}
-          >
-            <div className="relative">
-              <div className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-                {/* LEFT ACTIVE STEP CONTENT */}
-                <div className="flex flex-col justify-between rounded-[2.2rem] border border-white/10 bg-[#001f4f]/45 p-7 shadow-xl shadow-black/10">
-                  <div>
-                    <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-                      <div className="inline-flex rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#ffd500]">
-                        Step {processSteps[activeProcess].step}
-                      </div>
+          {/* DESKTOP ORBIT PROCESS */}
+          <div className="relative mx-auto hidden min-h-[700px] max-w-6xl md:block">
+            {/* Center Detail */}
+            <div className="absolute left-1/2 top-1/2 z-20 flex h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 p-8 text-center shadow-2xl shadow-black/20 backdrop-blur-2xl">
+              
 
-                      <div className="text-sm font-semibold uppercase tracking-[0.22em] text-white/45">
-                        {activeProcess + 1} / {processSteps.length}
-                      </div>
-                    </div>
+              <div className="relative z-10">
+                <span className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-[#ffd500] text-sm font-bold text-[#003a86] shadow-xl shadow-[#ffd500]/25">
+                  {processSteps[activeProcess].step}
+                </span>
 
-                    <h3 className="text-4xl font-semibold text-white md:text-5xl xl:text-6xl">
-                      {processSteps[activeProcess].title}
-                    </h3>
+                <h3 className="text-3xl font-semibold leading-tight tracking-[-0.04em] text-white">
+                  {processSteps[activeProcess].title}
+                </h3>
 
-                    <p className="mt-6 text-white/70">
-                      {processSteps[activeProcess].desc}
-                    </p>
-                  </div>
-
-                  <div className="mt-10 flex flex-wrap gap-2">
-                    {processSteps.map((_, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        onClick={() => setActiveProcess(index)}
-                        className={`h-2.5 rounded-full transition-all duration-500 ${
-                          activeProcess === index
-                            ? "w-12 bg-[#ffd500]"
-                            : "w-2.5 bg-white/25 hover:bg-white/50"
-                        }`}
-                        aria-label={`Go to process step ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* RIGHT STEPS INSIDE SAME BOX */}
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {processSteps.map((item, index) => {
-                    const isActive = activeProcess === index;
-                    const Icon = item.icon;
-
-                    return (
-                      <button
-                        type="button"
-                        key={item.step}
-                        onClick={() => setActiveProcess(index)}
-                        onMouseEnter={() => {
-                          setIsProcessPaused(true);
-                          setActiveProcess(index);
-                        }}
-                        onMouseLeave={() => setIsProcessPaused(false)}
-                        className={`process-mini-step group relative overflow-hidden rounded-[1.5rem] border p-4 text-left transition duration-500 ${
-                          isActive
-                            ? "border-[#ffd500] bg-[#ffd500] text-[#003a86] shadow-xl shadow-[#ffd500]/20"
-                            : "border-white/10 bg-white/10 text-white hover:border-[#ffd500]/60 hover:bg-white/15"
-                        }`}
-                      >
-                        <div className="relative z-10 flex items-center gap-4">
-                          <span
-                            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition duration-500 ${
-                              isActive
-                                ? "bg-[#003a86] text-[#ffd500]"
-                                : "bg-[#ffd500] text-[#003a86] group-hover:scale-110"
-                            }`}
-                          >
-                            <Icon size={22} strokeWidth={2.2} />
-                          </span>
-
-                          <h4 className="text-base font-semibold leading-5">
-                            {item.title}
-                          </h4>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                <p className="text-white/68">
+                  {processSteps[activeProcess].desc}
+                </p>
               </div>
             </div>
+
+            {/* Orbit Ring */}
+            <div className="absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#ffd500]/35" />
+
+            {/* Process Nodes */}
+            {processSteps.map((item, index) => {
+              const angle = (index / processSteps.length) * 360 - 90;
+              const radius = 310;
+              const x = Math.cos((angle * Math.PI) / 180) * radius;
+              const y = Math.sin((angle * Math.PI) / 180) * radius;
+              const isActive = activeProcess === index;
+
+              return (
+                <button
+                  type="button"
+                  key={item.step}
+                  onMouseEnter={() => {
+                    setIsProcessPaused(true);
+                    setActiveProcess(index);
+                  }}
+                  onMouseLeave={() => setIsProcessPaused(false)}
+                  onClick={() => setActiveProcess(index)}
+                  className={`process-orbit-node absolute left-1/2 top-1/2 z-30 w-[190px] -translate-x-1/2 -translate-y-1/2 rounded-[1.6rem] border p-4 text-left shadow-xl backdrop-blur-xl transition duration-500 ${
+                    isActive
+                      ? "border-[#ffd500] bg-[#ffd500] text-[#003a86]"
+                      : "border-white/15 bg-white/10 text-white hover:border-[#ffd500]/70 hover:bg-white/15"
+                  }`}
+                  style={{
+                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                  }}
+                >
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <span
+                      className={`flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold ${
+                        isActive
+                          ? "bg-[#003a86] text-[#ffd500]"
+                          : "bg-[#ffd500] text-[#003a86]"
+                      }`}
+                    >
+                      {item.step}
+                    </span>
+
+                    <span
+                      className={`h-px flex-1 ${
+                        isActive ? "bg-[#003a86]/25" : "bg-white/15"
+                      }`}
+                    />
+                  </div>
+
+                  <h4 className="text-sm font-semibold leading-5">
+                    {item.title}
+                  </h4>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* MOBILE PROCESS */}
+          <div className="gap-4 md:hidden grid sm:grid-cols-2">
+            {processSteps.map((item) => (
+              <div
+                key={item.step}
+                className="process-card rounded-[1.6rem] border border-white/10 bg-white/10 p-5 shadow-xl shadow-black/10 backdrop-blur-xl"
+              >
+                <div className="mb-4 flex items-center gap-4">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#ffd500] text-sm font-bold text-[#003a86]">
+                    {item.step}
+                  </span>
+
+                  <h3 className="text-xl font-semibold leading-tight text-white">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <p className="text-sm leading-7 text-white/68">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1042,9 +1047,8 @@ export default function Services() {
               </h2>
 
               <p className="mt-5">
-                Share your service request and project details. Our team will
-                review your requirement and get back to you with the right
-                solution.
+                Share your service request and project details. Our team will review
+                your requirement and get back to you with the right solution.
               </p>
             </div>
 
@@ -1052,7 +1056,7 @@ export default function Services() {
             <div className="w-full">
               <div className="card bg-primary w-full rounded-4xl lg:ms-auto">
                 <div className="card-body px-9.5 pt-15 pb-9.5">
-                  <form onSubmit={handleRfpSubmit} className="flex flex-col">
+                  <form className="flex flex-col">
                     <div className="grid space-x-4 md:grid-cols-2">
                       <div className="mb-4">
                         <label
@@ -1066,8 +1070,6 @@ export default function Services() {
                           id="fullName"
                           name="fullName"
                           type="text"
-                          value={rfpData.fullName}
-                          onChange={handleRfpChange}
                           className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
                           required
                         />
@@ -1085,8 +1087,6 @@ export default function Services() {
                           id="email"
                           name="email"
                           type="email"
-                          value={rfpData.email}
-                          onChange={handleRfpChange}
                           className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
                           required
                         />
@@ -1105,8 +1105,6 @@ export default function Services() {
                         id="phone"
                         name="phone"
                         type="tel"
-                        value={rfpData.phone}
-                        onChange={handleRfpChange}
                         className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
                         required
                       />
@@ -1123,8 +1121,7 @@ export default function Services() {
                       <select
                         id="serviceRequest"
                         name="serviceRequest"
-                        value={rfpData.serviceRequest}
-                        onChange={handleRfpChange}
+                        defaultValue=""
                         className="select bg-primary border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
                         required
                       >
@@ -1133,11 +1130,7 @@ export default function Services() {
                         </option>
 
                         {serviceOptions.map((service) => (
-                          <option
-                            key={service}
-                            value={service}
-                            className="text-[#003a86]"
-                          >
+                          <option key={service} value={service} className="text-[#003a86]">
                             {service}
                           </option>
                         ))}
@@ -1156,26 +1149,17 @@ export default function Services() {
                         id="message"
                         name="message"
                         rows={6}
-                        value={rfpData.message}
-                        onChange={handleRfpChange}
                         className="textarea bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-37.5 resize-none"
                         placeholder="Tell us about your project or inquiry"
                         required
                       ></textarea>
                     </div>
 
-                    {status && (
-                      <div className="mt-2 text-white text-center font-medium">
-                        {status}
-                      </div>
-                    )}
-
                     <button
                       type="submit"
                       className="btn btn-lg btn-light dark:btn-warning py-2 text-[18px] mt-4 w-33 ms-auto"
-                      disabled={status === "Sending..."}
                     >
-                      {status === "Sending..." ? "Sending..." : "Submit"}
+                      Submit
                     </button>
                   </form>
                 </div>
@@ -1183,7 +1167,7 @@ export default function Services() {
             </div>
           </div>
         </div>
-      </section>
+      </section>      
       <Footer />
     </div>
   );

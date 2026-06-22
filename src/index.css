@@ -51,6 +51,10 @@
   p{
     @apply text-[#505F79] dark:text-[#ffffff] text-[18px] font-normal leading-6;
   }
+
+  ul{
+    @apply text-[#505F79] dark:text-[#ffffff] text-[18px]
+  }
 }
 
 @layer utilities {

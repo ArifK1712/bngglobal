@@ -494,7 +494,7 @@ export default function Services() {
   }, []);
 
   return (
-    <div ref={rootRef} className="overflow-x-hidden bg-white text-[#003a86]">
+    <div ref={rootRef} className="overflow-x-hidden">
       {/* HERO - kept as existing/common hero */}
       <div className="hero relative">
         <img
@@ -510,8 +510,7 @@ export default function Services() {
       </div>
       {/* INTRO */}
       <section className="intro-section relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(255,213,0,0.35),transparent_24%),radial-gradient(circle_at_88%_20%,rgba(0,58,134,0.12),transparent_28%),linear-gradient(180deg,#ffffff_0%,#f6f9ff_100%)]" />
-
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(255,213,0,0.35),transparent_24%),radial-gradient(circle_at_88%_20%,rgba(0,58,134,0.12),transparent_28%),linear-gradient(180deg,#ffffff_0%,#f6f9ff_100%)] dark:bg-none" />
         <div className="app-container relative z-10">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.75fr]">
             <div>
@@ -547,8 +546,8 @@ export default function Services() {
       {/* SERVICES */}
       <section className="services-showcase relative overflow-hidden py-20">
         {/* Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f5f8ff_45%,#ffffff_100%)]" />
-        <div className="absolute -right-0 top-20 h-105 w-105 rounded-full bg-[#ffd500]/25 blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f5f8ff_45%,#ffffff_100%)] dark:bg-none" />
+        <div className="absolute -right-0 top-20 h-105 w-105 rounded-full bg-[#ffd500]/25 blur-3xl dark:bg-none" />
 
         <div className="app-container relative z-10">
           {/* Header */}
@@ -639,7 +638,7 @@ export default function Services() {
               return (
                 <article
                   key={service.title}
-                  className={`service-card group relative overflow-hidden rounded-[2rem] border border-[#003a86]/10 bg-white p-4 shadow-xl shadow-[#003a86]/10 transition duration-500 hover:-translate-y-2 hover:border-[#ffd500] hover:shadow-2xl hover:shadow-[#003a86]/15
+                  className={`service-card group relative overflow-hidden rounded-[2rem] border border-[#003a86]/10 p-4 shadow-xl shadow-[#003a86]/10 transition duration-500 hover:-translate-y-2 hover:border-[#ffd500] hover:shadow-2xl hover:shadow-[#003a86]/15
                     ${isFirstCard ? "" : ""}
                     ${isLastCard ? "md:col-span-2 xl:col-span-4" : ""}
                   `}
@@ -1024,10 +1023,10 @@ export default function Services() {
         </div>
       </section>
       {/* RFP SECTION */}
-      <section className="rfp-section relative overflow-hidden bg-white py-20 lg:py-28">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f5f8ff_52%,#fff9d8_100%)]" />
-        <div className="absolute -left-40 top-20 h-[420px] w-[420px] rounded-full bg-[#ffd500]/25 blur-3xl" />
-        <div className="absolute -right-40 bottom-10 h-[520px] w-[520px] rounded-full bg-[#003a86]/10 blur-3xl" />
+      <section className="rfp-section relative overflow-hidden py-20 lg:py-28">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f5f8ff_52%,#fff9d8_100%)] dark:bg-none" />
+        <div className="absolute -left-40 top-20 h-[420px] w-[420px] rounded-full bg-[#ffd500]/25 blur-3xl dark:bg-none" />
+        <div className="absolute -right-40 bottom-10 h-[520px] w-[520px] rounded-full bg-[#003a86]/10 blur-3xl dark:bg-none" />
 
         <div className="app-container relative z-10">
           <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">

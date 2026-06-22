@@ -6,15 +6,6 @@ import { useLanguage } from "../context/LanguageContext";
 const TEAM_MEMBERS = [
   {
     id: 1,
-    name: "Aryan Sarang",
-    role: "Data & Research Associate",
-    department: "",
-    description: "Aryan Sarang supports BNG Arabia’s global research and data-driven consulting initiatives, with a focus on market intelligence, investment analysis, and trade facilitation across the Middle East and emerging markets. His work spans research on market entry strategies, competitive benchmarking, and policy tracking to strengthen BNG’s advisory and investment promotion capabilities.",
-    email: "aryan.sarang@bngglobal.net",
-    image: "/images/team/aryan-sarang.png",
-  },
-  {
-    id: 2,
     name: "Sejal Hule",
     role: "Deputy Director - Global Projects & Investment Promotion",
     department: "",
@@ -23,7 +14,7 @@ const TEAM_MEMBERS = [
     image: "/images/team/sejal-hule.png",
   },
   {
-    id: 3,
+    id: 2,
     name: "Atharva Harde",
     role: "Business Development Executive - Investment Promotion",
     department: "",
@@ -32,7 +23,7 @@ const TEAM_MEMBERS = [
     image: "/images/team/atharva-harde.png",
   },
   {
-    id: 4,
+    id: 3,
     name: "Mohammad Ovais",
     role: "Key Account Manager – Sales",
     department: "",
@@ -42,7 +33,7 @@ const TEAM_MEMBERS = [
     image: "/images/team/mohammad-ovais.png",
   },
   {
-    id: 5,
+    id: 4,
     name: "Khaled Hemdan",
     role: "Project Manager",
     department: "",
@@ -52,7 +43,7 @@ const TEAM_MEMBERS = [
     image: "/images/team/khaled-hemdan.png",
   },
   {
-    id: 6,
+    id: 5,
     name: "Saiful Haq",
     role: "General Manager",
     department: "",

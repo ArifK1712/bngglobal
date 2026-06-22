@@ -31,7 +31,7 @@
   }
   body{
     font-family: var(--font-display);
-    @apply font-normal text-[18px] text-[#253858] dark:text-[#ffffff];
+    @apply font-normal text-[18px] text-[#0d2972] dark:text-[#ffffff];
   }
   h1{
     @apply text-4xl sm:text-5xl md:text-[65px] leading-tight;

@@ -1135,7 +1135,6 @@ export default function Services() {
                           <option
                             key={service}
                             value={service}
-                            className="text-[#003a86]"
                           >
                             {service}
                           </option>

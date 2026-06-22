@@ -54,15 +54,15 @@ export default function Home() {
         <div className="app-container pt-22 landscape:max-lg:pt-25 md:pt-46 ">
           <h1 className="text-white relative z-50 w-full max-w-3xl text-4xl leading-tight md:leading-tight sm:text-6xl text-start">
             {t.homeEmpowering}{" "}
-            <span className="inline-block h-[1.2em] align-bottom overflow-hidden relative">
+            <span className="inline-block h-[2.5em] sm:h-[1.2em] align-bottom overflow-hidden relative">
               <div ref={sliderRef} className="flex flex-col">
                 {words.map((word, i) => (
-                  <span key={i} className="font-semibold h-[1.2em] flex items-center">
+                  <span key={i} className="font-semibold h-[2.5em] sm:h-[1.2em] flex items-center">
                     {word}
                   </span>
                 ))}
 
-                <span className="font-semibold h-[1.2em] flex items-center">
+                <span className="font-semibold h-[2.5em] sm:h-[1.2em] flex items-center">
                   {words[0]}
                 </span>
               </div>

@@ -71,18 +71,18 @@ export default function Header() {
                     </Link>
                   </summary>                  
                   
-                  <ul className="p-4.5 bg-base-100 text-base-content font-normal w-46.5 z-10 gap-y-1 grid rounded-2xl">
+                  <ul className="p-4.5 bg-base-100 text-base-content font-normal w-46.5 z-10 gap-y-1 grid rounded-2xl mt-1">
                     <li>
-                      <Link to="/about#who-we-are" onClick={() => setAboutOpen(false)}>{t.navWhoWeAre}</Link>
+                      <Link to="/about" state={{ scrollTo: "who-we-are" }} onClick={() => setAboutOpen(false)}>{t.navWhoWeAre}</Link>
                     </li>
                     <li>
-                      <Link to="/about#mission" onClick={() => setAboutOpen(false)}>{t.navOurMission}</Link>
+                      <Link to="/about" state={{ scrollTo: "mission" }} onClick={() => setAboutOpen(false)}>{t.navOurMission}</Link>
                     </li>
                     <li>
-                      <Link to="/about#team" onClick={() => setAboutOpen(false)}>{t.navOurTeam}</Link>
+                      <Link to="/about" state={{ scrollTo: "team" }} onClick={() => setAboutOpen(false)}>{t.navOurTeam}</Link>
                     </li>
                     <li>
-                      <Link to="/about#clients" onClick={() => setAboutOpen(false)}>{t.navOurClients}</Link>
+                      <Link to="/about" state={{ scrollTo: "clients" }} onClick={() => setAboutOpen(false)}>{t.navOurClients}</Link>
                     </li>
                   </ul>
                 </details>
@@ -98,16 +98,16 @@ export default function Header() {
                   <summary className="hover:bg-transparent hover:underline [&::-webkit-details-marker]:hidden after:hidden cursor-pointer">
                     <Link to="/our-expertise" onClick={() => setExpertiseOpen(false)}>{t.navOurExpertise}</Link>
                   </summary>
-                  <ul className="p-4.5 bg-base-100 text-base-content font-normal w-156 z-10 rounded-2xl flex justify-between -start-32">
+                  <ul className="p-4.5 bg-base-100 text-base-content font-normal w-156 z-10 rounded-2xl flex justify-between -start-32 mt-1">
                     <div className="grid gap-y-4.5 text-start">
-                      <li><Link to="/our-expertise?tab=0" onClick={() => setExpertiseOpen(false)}>{t.navBusinessConsulting}</Link></li>
-                      <li><Link to="/our-expertise?tab=1" onClick={() => setExpertiseOpen(false)}>{t.navDelegationsRoadshows}</Link></li>
-                      <li><Link to="/our-expertise?tab=2" onClick={() => setExpertiseOpen(false)}>{t.navMarketingPromotion}</Link></li>
-                      <li><Link to="/our-expertise?tab=3" onClick={() => setExpertiseOpen(false)}>{t.navFDI}</Link></li>                      
+                       <li><Link to="/our-expertise?service=business-consulting" onClick={() => setExpertiseOpen(false)}>{t.navBusinessConsulting}</Link></li>
+                       <li><Link to="/our-expertise?service=delegations-and-roadshows" onClick={() => setExpertiseOpen(false)}>{t.navDelegationsRoadshows}</Link></li>
+                       <li><Link to="/our-expertise?service=marketing-and-promotion" onClick={() => setExpertiseOpen(false)}>{t.navMarketingPromotion}</Link></li>
+                       <li><Link to="/our-expertise?service=fdi" onClick={() => setExpertiseOpen(false)}>{t.navFDI}</Link></li>                      
                     </div>
                     <div className="bg-primary w-72.5 p-4 px-7 rounded-2xl relative text-start">
                       <p className="text-wrap text-white text-lg font-light mb-6">{t.navPartnerText}</p>
-                      <Link to="/contact" onClick={() => setExpertiseOpen(false)} className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5">
+                      <Link to="/contact" onClick={() => setExpertiseOpen(false)} className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5 relative z-10">
                         <i className="icon-right-arrow text-lg rtl:rotate-180"></i>
                       </Link>
                       <img src="/images/vectors/vector-m5.svg" className="absolute -start-6 end-0 bottom-0 w-full" alt="" />

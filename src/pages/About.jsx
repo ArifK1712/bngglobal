@@ -71,11 +71,27 @@ export default function About() {
   }, { scope: sectionRef });
 
   // 3. Get the current URL location
-  const { hash } = useLocation();
+  const location = useLocation();
 
-  // 4. Scroll to the element when the hash changes
+  // 4. Scroll to the element when the hash or state changes
   useEffect(() => {
-    if (hash) {
+    const scrollToSection = location.state?.scrollTo;
+    const hash = location.hash;
+
+    if (scrollToSection) {
+      const element = document.getElementById(scrollToSection);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        const style = window.getComputedStyle(element);
+        const scrollMarginTop = parseInt(style.scrollMarginTop) || 0;
+        const diff = Math.abs(rect.top - scrollMarginTop);
+
+        // Only scroll if the element is not already aligned at the top
+        if (diff > 15) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    } else if (hash) {
       const element = document.getElementById(hash.replace('#', ''));
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -83,7 +99,7 @@ export default function About() {
     } else {
       window.scrollTo(0, 0); 
     }
-  }, [hash]);
+  }, [location.hash, location.state]);
 
   return (
     <>

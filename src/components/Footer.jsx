@@ -12,18 +12,18 @@ export default function Footer() {
           <div className="flex flex-col gap-y-8 sm:grid grid-cols-3 lg:grid-cols-4 gap-0">
               <nav className="flex flex-col gap-2.5 text-start">
                 <p className="text-white font-medium mb-0 sm:mb-4">{t.navOurExpertise}</p>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=0">{t.footerConsulting}</Link>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=1">{t.footerRoadshows}</Link>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=2">{t.footerMarketing}</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?service=business-consulting">{t.footerConsulting}</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?service=delegations-and-roadshows">{t.footerRoadshows}</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?service=marketing-and-promotion">{t.footerMarketing}</Link>
                 <Link className="link link-hover text-sm" to="/services">{t.footerProduction}</Link>
-                <Link className="link link-hover text-sm" to="/our-expertise?tab=3">{t.footerFDI}</Link>
+                <Link className="link link-hover text-sm" to="/our-expertise?service=fdi">{t.footerFDI}</Link>
               </nav>
               <nav className="flex flex-col gap-2.5 items-start text-start">
                 <h6 className="text-white font-medium mb-0 sm:mb-4">{t.navAboutUs}</h6>
-                <Link className="link link-hover text-sm" to="/about#who-we-are">{t.navWhoWeAre}</Link>
-                <Link className="link link-hover text-sm" to="/about#mission">{t.navOurMission}</Link>
-                <Link className="link link-hover text-sm" to="/about#team">{t.navOurTeam}</Link>
-                <Link className="link link-hover text-sm" to="/about#clients">{t.navOurClients}</Link>
+                 <Link className="link link-hover text-sm" to="/about" state={{ scrollTo: "who-we-are" }}>{t.navWhoWeAre}</Link>
+                 <Link className="link link-hover text-sm" to="/about" state={{ scrollTo: "mission" }}>{t.navOurMission}</Link>
+                 <Link className="link link-hover text-sm" to="/about" state={{ scrollTo: "team" }}>{t.navOurTeam}</Link>
+                 <Link className="link link-hover text-sm" to="/about" state={{ scrollTo: "clients" }}>{t.navOurClients}</Link>
               </nav>
               <nav className="flex flex-col gap-2.5 text-start">
                 <h6 className="text-white font-medium mb-0 sm:mb-4">{t.footerOthers}</h6>

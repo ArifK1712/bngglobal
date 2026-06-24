@@ -69,18 +69,12 @@ export default function Contact() {
     setIsSuccess(false); // Reset shield on new attempt
 
     try {
-      const payload = {
-        ...formData,
-        access_key: "8bda1892-a2eb-45e4-9aaa-ac9132b04c24", 
-      };
-
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
@@ -89,11 +83,8 @@ export default function Contact() {
         setIsSuccess(true); // Raise the validation shield!
         setStatus("Message sent successfully.");
         setFormData({ name: "", email: "", company: "", message: "" });
-        
-        // Hide the success message after 3 seconds, but KEEP the shield up
-        //setTimeout(() => setStatus(""), 3000); 
       } else {
-        setStatus("Failed to send message. Please try again.");
+        setStatus(result.error || "Failed to send message. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);

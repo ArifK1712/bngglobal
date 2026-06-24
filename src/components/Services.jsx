@@ -49,20 +49,43 @@ const ServicesSection = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
+    const serviceSlug = params.get('service');
     const tabIndex = params.get('tab');
+    let index = null;
 
-    if (tabIndex !== null) {
-      const index = parseInt(tabIndex);
+    if (serviceSlug !== null) {
+      const slugMap = {
+        "business-consulting": 0,
+        "delegations-and-roadshows": 1,
+        "marketing-and-promotion": 2,
+        "fdi": 3
+      };
+      if (slugMap[serviceSlug] !== undefined) {
+        index = slugMap[serviceSlug];
+      }
+    } else if (tabIndex !== null) {
+      index = parseInt(tabIndex);
+    }
+
+    if (index !== null && !isNaN(index) && index >= 0 && index < services.length) {
+      // 1. Set the active tab
+      setTimeout(() => {
+        setActiveTab(index);
+      }, 0);
       
-      // 1. Set the data
-      setActiveTab(index);
-      
-      // 2. Scroll to the section first
+      // 2. Scroll to the section only if it is not already aligned at the top of the viewport
       if (sectionRef.current) {
-        sectionRef.current.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        });
+        const rect = sectionRef.current.getBoundingClientRect();
+        const style = window.getComputedStyle(sectionRef.current);
+        const scrollMarginTop = parseInt(style.scrollMarginTop) || 0;
+        const diff = Math.abs(rect.top - scrollMarginTop);
+
+        if (diff > 15) {
+          sectionRef.current.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
       }
 
       // 3. Open the modal (with a slight delay so the scroll finishes)

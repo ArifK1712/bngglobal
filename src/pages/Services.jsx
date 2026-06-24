@@ -11,6 +11,10 @@ import {
   BadgeCheck,
   Truck,
   Headphones,
+  Upload,
+  Paperclip,
+  X,
+  AlertCircle,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -190,27 +194,125 @@ export default function Services() {
     message: "",
   });
   const [status, setStatus] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false); // The validation shield
+  const [attachment, setAttachment] = useState(null);
+  const [isReadingFile, setIsReadingFile] = useState(false);
+  const [isDragActive, setIsDragActive] = useState(false);
+  const [fileError, setFileError] = useState("");
+  const fileInputRef = useRef(null);
+
+  const handleUploadZoneClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   const handleRfpChange = (e) => {
     const { name, value } = e.target;
     setRfpData((prev) => ({ ...prev, [name]: value }));
+    
+    // Drop the shield and clear messages the moment they start a new message
+    if (isSuccess) setIsSuccess(false);
+    if (status) setStatus("");
+  };
+
+  const formatBytes = (bytes, decimals = 2) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  };
+
+  const processFile = (file) => {
+    setFileError("");
+
+    // Check file extension / MIME type
+    const allowedExtensions = ['.pdf', '.docx', '.doc', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'];
+    const allowedMimeTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/msword'
+    ];
+    
+    const fileName = file.name.toLowerCase();
+    const hasAllowedExtension = allowedExtensions.some(ext => fileName.endsWith(ext));
+    const hasAllowedMime = allowedMimeTypes.includes(file.type) || file.type.startsWith('image/');
+    
+    if (!hasAllowedExtension && !hasAllowedMime) {
+      setFileError("Unsupported file type. Please upload a PDF, DOCX, or Image file.");
+      return;
+    }
+
+    // Check file size (5MB limit)
+    if (file.size > 5 * 1024 * 1024) {
+      setFileError("File size exceeds 5MB limit.");
+      return;
+    }
+
+    setIsReadingFile(true);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64Data = reader.result.split(',')[1];
+      setAttachment({
+        name: file.name,
+        type: file.type,
+        size: formatBytes(file.size),
+        data: base64Data
+      });
+      setIsReadingFile(false);
+    };
+    reader.onerror = (error) => {
+      console.error("Error reading file:", error);
+      setFileError("Error reading file. Please try again.");
+      setIsReadingFile(false);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setIsDragActive(true);
+    } else if (e.type === "dragleave") {
+      setIsDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      processFile(file);
+    }
+  };
+
+  const handleRemoveAttachment = () => {
+    setAttachment(null);
+    setFileError("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleRfpSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
+    setIsSuccess(false); // Reset shield on new attempt
 
     try {
       const payload = {
         ...rfpData,
-        access_key: "8bda1892-a2eb-45e4-9aaa-ac9132b04c24",
+        attachment: attachment
       };
 
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/rfp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -218,10 +320,14 @@ export default function Services() {
       const result = await response.json();
 
       if (result.success) {
+        setIsSuccess(true); // Raise the validation shield!
         setStatus("Message sent successfully.");
         setRfpData({ fullName: "", email: "", phone: "", serviceRequest: "", message: "" });
+        setAttachment(null);
+        setFileError("");
+        if (fileInputRef.current) fileInputRef.current.value = "";
       } else {
-        setStatus("Failed to send message. Please try again.");
+        setStatus(result.error || "Failed to send message. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting RFP:", error);
@@ -553,7 +659,7 @@ export default function Services() {
           {/* Header */}
           <div className="services-left mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <p className="mb-5 inline-flex rounded-full border border-[#003a86]/10 bg-white px-5 py-2 text-xs font-bold uppercase tracking-[0.35em] text-[#003a86] shadow-lg shadow-[#003a86]/5">
+              <p className="mb-5 inline-flex rounded-full border border-[#003a86]/10 bg-white px-5 py-2 text-sm font-bold uppercase tracking-widest text-[#003a86] shadow-lg shadow-[#003a86]/5">
                 Our Services
               </p>
 
@@ -730,7 +836,7 @@ export default function Services() {
 
             <div className="relative mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
-                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#ffd500]">
+                <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#ffd500]">
                   Numbers That Matter
                 </p>
 
@@ -805,7 +911,7 @@ export default function Services() {
 
         <div className="app-container relative z-10">
           <div className="mx-auto mb-14 max-w-4xl text-center">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#ffd500]">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#ffd500]">
               Our Process
             </p>
 
@@ -909,16 +1015,13 @@ export default function Services() {
       {/* PORTFOLIO */}
       <section className="relative py-20">
         <div className="app-container">
-          <div className="mb-14 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-            <div>
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#003a86]">
-                Selected Work
+          <div className="mb-14">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#003a86] text-center">
+                Our Portfolio
               </p>
-
-              <h2 className="max-w-4xl  text-4xl md:text-5xl xl:text-6xl font-semibold mb-4">
-                A cinematic gallery of spaces, details and live experiences.
+              <h2 className="text-center text-4xl md:text-5xl xl:text-6xl font-semibold mb-4">
+                Gallery
               </h2>
-            </div>
           </div>
 
           <div className="portfolio-grid columns-1 gap-6 space-y-6 md:columns-2 xl:columns-3">
@@ -1032,12 +1135,12 @@ export default function Services() {
           <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             {/* LEFT CONTENT */}
             <div>
-              <p className="mb-5 inline-flex rounded-full border border-[#003a86]/10 bg-white px-5 py-2 text-xs font-bold uppercase tracking-[0.35em] text-[#003a86] shadow-lg shadow-[#003a86]/5">
-                Request for Proposal
+              <p className="mb-5 inline-flex rounded-full border border-[#003a86]/10 bg-white px-5 py-2 text-sm font-bold uppercase tracking-widest text-[#003a86] shadow-lg shadow-[#003a86]/5">
+                Tell us what you need
               </p>
 
               <h2 className="max-w-4xl text-4xl md:text-5xl xl:text-6xl font-semibold mb-4">
-                Tell us what you need, and we’ll help you build it.
+                Request for Proposal 
               </h2>
 
               <p className="mt-5">
@@ -1052,7 +1155,7 @@ export default function Services() {
               <div className="card bg-primary w-full rounded-4xl lg:ms-auto">
                 <div className="card-body px-9.5 pt-15 pb-9.5">
                   <form onSubmit={handleRfpSubmit} className="flex flex-col">
-                    <div className="grid space-x-4 md:grid-cols-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="mb-4">
                         <label
                           htmlFor="fullName"
@@ -1067,9 +1170,10 @@ export default function Services() {
                           type="text"
                           value={rfpData.fullName}
                           onChange={handleRfpChange}
-                          className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
-                          required
+                          className={`input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12 ${isSuccess ? "" : "validator"}`}
+                          required={!isSuccess}
                         />
+                        <span className="validator-hint hidden">This field is required</span>
                       </div>
 
                       <div className="mb-4">
@@ -1086,60 +1190,150 @@ export default function Services() {
                           type="email"
                           value={rfpData.email}
                           onChange={handleRfpChange}
-                          className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
-                          required
+                          className={`input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12 ${isSuccess ? "" : "validator"}`}
+                          required={!isSuccess}
                         />
+                        <span className="validator-hint hidden">This field is required</span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="mb-4">
+                        <label
+                          htmlFor="phone"
+                          className="label text-[18px] text-white ps-3 block mb-1"
+                        >
+                          Phone Number
+                        </label>
+
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={rfpData.phone}
+                          onChange={handleRfpChange}
+                          className={`input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12 ${isSuccess ? "" : "validator"}`}
+                          required={!isSuccess}
+                        />
+                        <span className="validator-hint hidden">This field is required</span>
+                      </div>
+
+                      <div className="mb-4">
+                        <label
+                          htmlFor="serviceRequest"
+                          className="label text-[18px] text-white ps-3 block mb-1"
+                        >
+                          Service Request
+                        </label>
+
+                        <select
+                          id="serviceRequest"
+                          name="serviceRequest"
+                          value={rfpData.serviceRequest}
+                          onChange={handleRfpChange}
+                          className={`select bg-primary border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12 ${isSuccess ? "" : "validator"}`}
+                          required={!isSuccess}
+                        >
+                          <option value="" disabled>
+                            Select a service
+                          </option>
+
+                          {serviceOptions.map((service) => (
+                            <option
+                              key={service}
+                              value={service}
+                            >
+                              {service}
+                            </option>
+                          ))}
+                        </select>
+                        <span className="validator-hint hidden">This field is required</span>
                       </div>
                     </div>
 
                     <div className="mb-4">
                       <label
-                        htmlFor="phone"
-                        className="label text-[18px] text-white ps-3 block mb-1"
+                        className="label text-[18px] text-white ps-3 block mb-1.5"
                       >
-                        Phone Number
+                        Upload Proposal / Brief (Optional)
                       </label>
-
+                      
+                      {/* Hidden actual file input */}
                       <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        value={rfpData.phone}
-                        onChange={handleRfpChange}
-                        className="input bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
-                        required
+                        ref={fileInputRef}
+                        id="attachment-file"
+                        type="file"
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files[0]) {
+                            processFile(e.target.files[0]);
+                          }
+                        }}
+                        disabled={isSuccess || isReadingFile}
+                        className="hidden"
                       />
-                    </div>
 
-                    <div className="mb-4">
-                      <label
-                        htmlFor="serviceRequest"
-                        className="label text-[18px] text-white ps-3 block mb-1"
-                      >
-                        Service Request
-                      </label>
+                      {/* Custom Upload Area */}
+                      {!attachment ? (
+                        <div
+                          onDragEnter={handleDrag}
+                          onDragOver={handleDrag}
+                          onDragLeave={handleDrag}
+                          onDrop={handleDrop}
+                          onClick={handleUploadZoneClick}
+                          className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-6 transition-all duration-300 cursor-pointer text-center
+                            ${isDragActive 
+                              ? 'border-warning bg-white/10 scale-[0.99] shadow-inner' 
+                              : 'border-white/30 hover:border-white/60 bg-white/5 hover:bg-white/10'
+                            }`}
+                        >
+                          <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-3 transition-transform">
+                            <Upload className="w-6 h-6 text-warning" />
+                          </div>
+                          <p className="text-white text-base font-medium mb-1">
+                            {isDragActive ? "Drop your file here" : "Drag & drop proposal or click to browse"}
+                          </p>
+                          <p className="text-white/60 text-xs">
+                            Supports PDF, DOCX, or Images up to 5MB
+                          </p>
+                        </div>
+                      ) : (
+                        /* Beautiful File Preview Card */
+                        <div className="flex items-center gap-4 bg-white/10 border border-white/20 rounded-2xl p-4 transition-all duration-300">
+                          <div className="w-10 h-10 rounded-xl bg-warning/20 flex items-center justify-center text-warning shrink-0">
+                            <Paperclip className="w-5 h-5 text-warning" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-white text-sm font-semibold truncate">{attachment.name}</p>
+                            <p className="text-white/60 text-xs mt-0.5">{attachment.size}</p>
+                          </div>
+                          {isReadingFile ? (
+                            <span className="loading loading-spinner loading-xs text-white"></span>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={handleRemoveAttachment}
+                              className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer shrink-0"
+                              title="Remove file"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      )}
+                      
+                      {isReadingFile && !attachment && (
+                        <div className="flex items-center gap-2 mt-2 ps-3">
+                          <span className="loading loading-spinner loading-xs text-white"></span>
+                          <span className="text-white/70 text-xs">Reading file...</span>
+                        </div>
+                      )}
 
-                      <select
-                        id="serviceRequest"
-                        name="serviceRequest"
-                        value={rfpData.serviceRequest}
-                        onChange={handleRfpChange}
-                        className="select bg-primary border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-12"
-                        required
-                      >
-                        <option value="" disabled>
-                          Select a service
-                        </option>
-
-                        {serviceOptions.map((service) => (
-                          <option
-                            key={service}
-                            value={service}
-                          >
-                            {service}
-                          </option>
-                        ))}
-                      </select>
+                      {fileError && (
+                        <div className="mt-2 text-warning text-sm font-semibold ps-3 flex items-center gap-1.5">
+                          <AlertCircle className="w-4 h-4 text-warning shrink-0" />
+                          <span>{fileError}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div className="mb-4">
@@ -1156,15 +1350,31 @@ export default function Services() {
                         rows={6}
                         value={rfpData.message}
                         onChange={handleRfpChange}
-                        className="textarea bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-37.5 resize-none"
+                        className={`textarea bg-transparent border-white/50 focus:border-white/90 text-white rounded-xl w-full focus:outline-none focus:ring-0 h-37.5 resize-none ${isSuccess ? "" : "validator"}`}
                         placeholder="Tell us about your project or inquiry"
-                        required
+                        required={!isSuccess}
                       ></textarea>
+                      <span className="validator-hint hidden">This field is required</span>
                     </div>
 
                     {status && (
-                      <div className="mt-2 text-white text-center font-medium">
-                        {status}
+                      <div className="mt-2">
+                        {status === "Message sent successfully." ? (
+                          <div className="alert alert-success alert-outline justify-between flex text-white">
+                            <span>{status}</span>
+                            <a href="javascript:void(0)" onClick={(e) => { e.preventDefault(); setStatus("");}}>
+                              <i className="icon-close-flat"></i>
+                            </a>
+                          </div>
+                        ) : status === "Sending..." ? (
+                          <div className="alert alert-info alert-outline text-white">
+                            <span>{status}</span>
+                          </div>
+                        ) : (
+                          <div className="alert alert-error alert-outline text-white">
+                            <span>{status}</span>
+                          </div>
+                        )}
                       </div>
                     )}
 

@@ -79,9 +79,72 @@ export default function TeamCarousel() {
 
   const isMobile = windowWidth < 1024;
   
-  const getRadius = () => {
+  function getRadius() {
     return windowWidth >= 1500 ? RADIUS_DEFAULT : RADIUS_TABLET;
-  };
+  }
+
+  // --- MATH & POSITIONING LOGIC ---
+  function updatePositions(progress) {
+    const total = TEAM_MEMBERS.length;
+    const desktopStep = 90; 
+    const colorInterpolator = gsap.utils.interpolate("#e5e7eb", "#FFD500");
+    const containerWidth = orbitContainerRef.current ? orbitContainerRef.current.offsetWidth : windowWidth;
+    const mobileSpacing = (containerWidth / 2) - 38;
+    const currentRadius = getRadius();
+
+    TEAM_MEMBERS.forEach((_, i) => {
+      let offset = (i - progress) % total;
+      if (offset > total / 2) offset -= total;
+      if (offset < -total / 2) offset += total;
+
+      const isActive = Math.round(offset) === 0;
+
+      if (isMobile) {
+        const absDiff = Math.abs(offset);
+        const isVisible = absDiff < 1.8; 
+        const x = offset * mobileSpacing; 
+        
+        gsap.set(`.team-avatar-${i}`, {
+          display: isVisible ? "flex" : "none",
+          x: x,
+          y: 0, 
+          scale: isActive ? 1.15 : 0.85,
+          zIndex: 10 - Math.round(absDiff),
+          backgroundColor: isActive ? "#FFD500" : "#e5e7eb",
+          overwrite: "auto",
+        });
+      } else {
+        const isVisible = offset >= -1.2 && offset <= 2.2;
+        const angleDeg = offset * desktopStep; 
+        const angleRad = (angleDeg * Math.PI) / 180;
+        const distToZero = Math.abs(angleDeg);
+        const scaleRange = 90; 
+        const scaleRatio = Math.max(0, (scaleRange - distToZero) / scaleRange);
+        const easeFactor = scaleRatio * scaleRatio; 
+        const finalRadius = currentRadius + (ACTIVE_TRANSLATE_OFFSET * easeFactor);
+
+        const x = Math.cos(angleRad) * finalRadius * (isRtl ? -1 : 1);
+        const y = Math.sin(angleRad) * finalRadius;
+
+        gsap.set(`.team-avatar-${i}`, {
+          display: isVisible ? "flex" : "none",
+          x: x,
+          y: y,
+          scale: 1 + (1.2 * easeFactor),
+          opacity: 1,
+          zIndex: isActive ? 20 : 10,
+          backgroundColor: colorInterpolator(easeFactor),
+          overwrite: "auto"
+        });
+      }
+    });
+  }
+
+  function handleNext() {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+    setVirtualIndex((prev) => prev + 1);
+  }
 
   // --- 0. RESIZE LISTENER ---
   useEffect(() => {
@@ -142,68 +205,7 @@ export default function TeamCarousel() {
   }, [virtualIndex, isHovered]);
 
 
-  // --- MATH & POSITIONING LOGIC ---
-  const updatePositions = (progress) => {
-    const total = TEAM_MEMBERS.length;
-    const desktopStep = 90; 
-    const colorInterpolator = gsap.utils.interpolate("#e5e7eb", "#FFD500");
-    const containerWidth = orbitContainerRef.current ? orbitContainerRef.current.offsetWidth : windowWidth;
-    const mobileSpacing = (containerWidth / 2) - 38;
-    const currentRadius = getRadius();
-
-    TEAM_MEMBERS.forEach((_, i) => {
-      let offset = (i - progress) % total;
-      if (offset > total / 2) offset -= total;
-      if (offset < -total / 2) offset += total;
-
-      const isActive = Math.round(offset) === 0;
-
-      if (isMobile) {
-        const absDiff = Math.abs(offset);
-        const isVisible = absDiff < 1.8; 
-        const x = offset * mobileSpacing; 
-        
-        gsap.set(`.team-avatar-${i}`, {
-          display: isVisible ? "flex" : "none",
-          x: x,
-          y: 0, 
-          scale: isActive ? 1.15 : 0.85,
-          zIndex: 10 - Math.round(absDiff),
-          backgroundColor: isActive ? "#FFD500" : "#e5e7eb",
-          overwrite: "auto",
-        });
-      } else {
-        const isVisible = offset >= -1.2 && offset <= 2.2;
-        const angleDeg = offset * desktopStep; 
-        const angleRad = (angleDeg * Math.PI) / 180;
-        const distToZero = Math.abs(angleDeg);
-        const scaleRange = 90; 
-        const scaleRatio = Math.max(0, (scaleRange - distToZero) / scaleRange);
-        const easeFactor = scaleRatio * scaleRatio; 
-        const finalRadius = currentRadius + (ACTIVE_TRANSLATE_OFFSET * easeFactor);
-
-        const x = Math.cos(angleRad) * finalRadius * (isRtl ? -1 : 1);
-        const y = Math.sin(angleRad) * finalRadius;
-
-        gsap.set(`.team-avatar-${i}`, {
-          display: isVisible ? "flex" : "none",
-          x: x,
-          y: y,
-          scale: 1 + (1.2 * easeFactor),
-          opacity: 1,
-          zIndex: isActive ? 20 : 10,
-          backgroundColor: colorInterpolator(easeFactor),
-          overwrite: "auto"
-        });
-      }
-    });
-  };
-
-  const handleNext = () => {
-    if (isAnimating.current) return;
-    isAnimating.current = true;
-    setVirtualIndex((prev) => prev + 1);
-  };
+  // (MATH & POSITIONING LOGIC moved above hooks to avoid reference before declaration)
 
   const handleDotClick = (targetIndex) => {
     if (isAnimating.current) return;

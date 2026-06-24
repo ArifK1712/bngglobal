@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
-import contactHero from "../assets/images/hero/contact-hero.png";
+import contactHero from "../assets/images/hero/contact-hero.webp";
 
 const contactDetails = [
   {

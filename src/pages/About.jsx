@@ -157,7 +157,7 @@ export default function About() {
           {clientIds.map((id) => (
             <img 
               key={id} 
-              src={new URL(`../assets/images/clients/${id}.jpg`, import.meta.url).href} 
+              src={new URL(`../assets/images/clients/${id}.webp`, import.meta.url).href} 
               alt={`Client ${id}`} 
               // Keep the manual hover as well so it still works if user touches it
               className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300"

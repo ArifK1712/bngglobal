@@ -5,7 +5,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
-import industriesHero from "../assets/images/hero/industries-hero.jpg";
+import industriesHero from "../assets/images/hero/industries-hero.webp";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 

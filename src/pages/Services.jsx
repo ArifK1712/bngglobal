@@ -3,9 +3,9 @@ import Footer from "../components/Footer";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import servicesHero from "../assets/images/hero/services-hero.png";
-import fabricationImg from "../assets/images/fabrication-image.jpg";
-import premiumBoothImg from "../assets/images/premium-booth-design.png";
+import servicesHero from "../assets/images/hero/services-hero.webp";
+import fabricationImg from "../assets/images/fabrication-image.webp";
+import premiumBoothImg from "../assets/images/premium-booth-design.webp";
 import {
   Search,
   ClipboardList,
@@ -23,7 +23,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const media = [
-  { type: "image", src: new URL("../assets/images/gallery/1.jpg", import.meta.url).href, title: "Premium Event Setup" },
+  { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href, title: "Premium Event Setup" },
   {
     type: "video",
     src: "https://bngglobal.net/assets/images/gallery/philips.mp4",
@@ -31,7 +31,7 @@ const media = [
   },
   {
     type: "image",
-    src: new URL("../assets/images/gallery/2.jpg", import.meta.url).href,
+    src: new URL("../assets/images/gallery/2.webp", import.meta.url).href,
     title: "Exhibition Production",
   },
   {
@@ -39,13 +39,13 @@ const media = [
     src: "https://bngglobal.net/assets/images/gallery/jana-marine.mp4",
     title: "Live Activation",
   },
-  { type: "image", src: new URL("../assets/images/gallery/3.jpg", import.meta.url).href, title: "Custom Booth" },
-  { type: "image", src: new URL("../assets/images/gallery/4.jpg", import.meta.url).href, title: "Conference Setup" },
-  { type: "image", src: new URL("../assets/images/gallery/5.jpg", import.meta.url).href, title: "Corporate Event" },
-  { type: "image", src: new URL("../assets/images/gallery/6.jpg", import.meta.url).href, title: "Production Detail" },
+  { type: "image", src: new URL("../assets/images/gallery/3.webp", import.meta.url).href, title: "Custom Booth" },
+  { type: "image", src: new URL("../assets/images/gallery/4.webp", import.meta.url).href, title: "Conference Setup" },
+  { type: "image", src: new URL("../assets/images/gallery/5.webp", import.meta.url).href, title: "Corporate Event" },
+  { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href, title: "Production Detail" },
   {
     type: "image",
-    src: new URL("../assets/images/gallery/7.jpg", import.meta.url).href,
+    src: new URL("../assets/images/gallery/7.webp", import.meta.url).href,
     title: "Immersive Experience",
   },
 ];
@@ -131,22 +131,22 @@ const services = [
   {
     title: "Concept Development & 3D Design",
     desc: "<p class='text-white'>We specialize in creating innovative exhibition stand concepts that align seamlessly with your brand guidelines and overall event theme. Our approach combines strategic storytelling with immersive 3D design, ensuring every element—from layout to visual aesthetics—reflects your brand identity. By integrating functionality with creativity, we deliver designs that captivate audiences and enhance engagement.</p>",
-    img: new URL("../assets/images/services/concept-development.jpg", import.meta.url).href,
+    img: new URL("../assets/images/services/concept-development.webp", import.meta.url).href,
   },
   {
     title: "Event Solutions",
     desc: "<p>From Concept to Completion – We’ve Got You Covered</p><p>At BNG Arabia, we deliver a true turnkey solution for all your event needs. From creative design to flawless execution, our team ensures every detail is handled with precision. Whether it’s an indoor conference or an outdoor activation, locally or internationally, we bring your vision to life with expertise and innovation.</p>",
-    img: new URL("../assets/images/services/event-solutions.jpg", import.meta.url).href,
+    img: new URL("../assets/images/services/event-solutions.webp", import.meta.url).href,
   },
   {
     title: "Logistics & Installation",
     desc: "<p>At BNG Arabia, we manage every aspect of logistics and installation to ensure a seamless experience. From transportation and on-site coordination to precise assembly, our team guarantees timely delivery and flawless execution. With our regional expertise and in-house production capabilities, we handle complex requirements efficiently, so your event runs smoothly from start to finish.</p>",
-    img: new URL("../assets/images/services/logistics-installation.jpg", import.meta.url).href,
+    img: new URL("../assets/images/services/logistics-installation.webp", import.meta.url).href,
   },
   {
     title: "On-Site Support & Dismantling",
     desc: "<p>At BNG Arabia, we provide comprehensive on-site support to ensure your event runs smoothly from start to finish. Our dedicated team handles every detail during setup, monitors the stand throughout the event, and manages the dismantling process efficiently. With precision and care, we guarantee a hassle-free experience, leaving your venue in perfect condition.</p>",
-    img: new URL("../assets/images/services/onsite-support-dismantling.jpg", import.meta.url).href,
+    img: new URL("../assets/images/services/onsite-support-dismantling.webp", import.meta.url).href,
   },
   {
     title: "Custom Made stands",
@@ -163,7 +163,7 @@ const services = [
         <li>Integrated Production  </li>
         <li>In-house design, graphics, furniture, and fabrication for better value and consistent quality.</li>
       </ul>`,
-    img: new URL("../assets/images/services/custom-made-stands.jpg", import.meta.url).href,
+    img: new URL("../assets/images/services/custom-made-stands.webp", import.meta.url).href,
   },
 ];
 

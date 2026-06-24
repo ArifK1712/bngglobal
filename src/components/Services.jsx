@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import businessConsulting from "../assets/images/expertise/business-consulting.jpg";
-import delegationsRoadshows from "../assets/images/expertise/delegations-roadshows.jpg";
-import marketingPromotion from "../assets/images/expertise/marketing-promotion.jpg";
-import fdi from "../assets/images/expertise/foreign-direct-investment.jpg";
-import eventProduction from "../assets/images/expertise/event-production.jpg";
+import businessConsulting from "../assets/images/expertise/business-consulting.webp";
+import delegationsRoadshows from "../assets/images/expertise/delegations-roadshows.webp";
+import marketingPromotion from "../assets/images/expertise/marketing-promotion.webp";
+import fdi from "../assets/images/expertise/foreign-direct-investment.webp";
+import eventProduction from "../assets/images/expertise/event-production.webp";
 
 const services = [
   {

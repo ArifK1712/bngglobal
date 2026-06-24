@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Services from "../components/Services";
 import Footer from "../components/Footer";
-import expertiseHero from "../assets/images/hero/expertise-hero.jpg";
+import expertiseHero from "../assets/images/hero/expertise-hero.webp";
 import vectorM4 from "../assets/images/vectors/vector-m4.svg";
 
 // 1. BEST PRACTICE: Move static data OUTSIDE the component.

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Footer from "../components/Footer";
+import privacyHero from "../assets/images/hero/privacy-policy.jpg";
 
 const CheckIcon = () => (
   <i className="icon-checkmark bg-warning rounded-full p-1.5 text-[12px] mr-1 text-neutral"></i>
@@ -284,7 +285,7 @@ export default function Privacy() {
   return (
     <>
       <div className="hero relative">
-        <img src="/images/hero/privacy-policy.jpg" className="object-cover w-full" alt="Privacy Policy" />
+        <img src={privacyHero} className="object-cover w-full" alt="Privacy Policy" />
         <h2 className="text-white z-1">Privacy Policy</h2>      
         <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
       </div>

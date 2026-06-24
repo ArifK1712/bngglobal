@@ -5,6 +5,11 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Team from "../components/Team";
 import Footer from "../components/Footer";
+import aboutHero from "../assets/images/hero/about-hero.webp";
+import whoWeAreImg from "../assets/images/who-we-are.webp";
+import vectorM3 from "../assets/images/vectors/vector-m3.svg";
+import vectorM1 from "../assets/images/vectors/vector-m1.svg";
+import vectorM2 from "../assets/images/vectors/vector-m2.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -104,7 +109,7 @@ export default function About() {
   return (
     <>
     <div className="hero relative">
-      <img src="/images/hero/about-hero.png" className='object-cover w-full h-full' alt="About Us" loading="lazy" />
+      <img src={aboutHero} className='object-cover w-full h-full' alt="About Us" loading="lazy" />
       <h2 className="text-white z-1">About Us</h2>      
       <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
     </div>
@@ -116,7 +121,7 @@ export default function About() {
           <p>We specialize in Foreign Direct Investment (FDI) advisory and trade consulting, combining deep local knowledge with global perspectives to navigate the complexities of international markets.</p>
         </div>
         <div className="overflow-hidden lg:max-w-123 rounded-2xl text-end">      
-          <img src="/images/who-we-are.jpg" className='object-cover object-right origin-right w-full lg:h-90 scale-150' loading="lazy" alt="About Us" />
+          <img src={whoWeAreImg} className='object-cover object-right origin-right w-full lg:h-90 scale-150' loading="lazy" alt="About Us" />
         </div>
       </div>
     </div>
@@ -132,10 +137,10 @@ export default function About() {
                 </div>
                 <div className="w-full lg:w-130 bg-[#253E80] relative h-100 lg:h-full lg:ms-auto lg:-me-20">
                     <div className="before:content-[''] before:absolute before:top-0 before:h-full before:w-lvw before:start-0 before:end-0 before:-ms-4 lg:before:ms-0 before:bg-[#253E80] "></div>
-                    <img ref={m3Ref} src='/images/vectors/vector-m3.svg' className='absolute bottom-45 end-15 start-0 mx-auto w-100 lg:w-auto' alt="" loading="lazy" />
+                    <img ref={m3Ref} src={vectorM3} className='absolute bottom-45 end-15 start-0 mx-auto w-100 lg:w-auto' alt="" loading="lazy" />
                     <div className="flex justify-center gap-10 lg:gap-20 absolute bottom-0 end-0 -start-4">
-                      <img ref={m1Ref} src='/images/vectors/vector-m1.svg' className="h-50 md:h-auto" alt="" loading="lazy" />
-                      <img ref={m2Ref} src='/images/vectors/vector-m2.svg' className="h-50 md:h-auto" alt="" loading="lazy" />
+                      <img ref={m1Ref} src={vectorM1} className="h-50 md:h-auto" alt="" loading="lazy" />
+                      <img ref={m2Ref} src={vectorM2} className="h-50 md:h-auto" alt="" loading="lazy" />
                     </div>
                 </div>
             </div>
@@ -152,7 +157,7 @@ export default function About() {
           {clientIds.map((id) => (
             <img 
               key={id} 
-              src={`/images/clients/${id}.jpg`} 
+              src={new URL(`../assets/images/clients/${id}.jpg`, import.meta.url).href} 
               alt={`Client ${id}`} 
               // Keep the manual hover as well so it still works if user touches it
               className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300"

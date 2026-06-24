@@ -1,8 +1,13 @@
 import Footer from "../components/Footer";
+import blogHero from "../assets/images/hero/blog-hero.webp";
+import blog1 from "../assets/images/blog/blog-1.jpg";
+import blog2 from "../assets/images/blog/blog-2.jpg";
+import blog3 from "../assets/images/blog/blog-3.jpg";
+import blog4 from "../assets/images/blog/blog-4.jpg";
 
 // 1. DATA: Move data outside the component or into a JSON file
 const featuredPost = {
-  image: "/images/blog/blog-1.jpg",
+  image: blog1,
   title: "Building Pathways for Sustainable Investment in Saudi Arabia",
   excerpt: "As Vision 2030 accelerates economic diversification, sustainability has become central to investment strategy. Discover how governments and investors can align growth with environmental responsibility.",
   link: "#" // Placeholder for actual link
@@ -10,17 +15,17 @@ const featuredPost = {
 
 const blogPosts = [
   {
-    image: "/images/blog/blog-2.jpg",
+    image: blog2,
     title: "The Future of Public-Private Partnerships in the Gulf",
     link: "#"
   },
   {
-    image: "/images/blog/blog-3.jpg",
+    image: blog3,
     title: "The Future of Public-Private Partnerships in the Gulf",
     link: "#"
   },
   {
-    image: "/images/blog/blog-4.jpg",
+    image: blog4,
     title: "The Future of Public-Private Partnerships in the Gulf",
     link: "#"
   },
@@ -54,7 +59,7 @@ export default function Blog() {
   return (
     <>
       <div className="hero relative">
-        <img src="/images/hero/blog-hero.png" className="object-cover w-full" alt="About Us" />
+        <img src={blogHero} className="object-cover w-full" alt="About Us" />
         <h2 className="text-white z-1">Blogs / Insights</h2>      
         <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
       </div>

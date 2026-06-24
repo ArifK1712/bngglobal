@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Services from "../components/Services";
 import Footer from "../components/Footer";
+import expertiseHero from "../assets/images/hero/expertise-hero.jpg";
+import vectorM4 from "../assets/images/vectors/vector-m4.svg";
 
 // 1. BEST PRACTICE: Move static data OUTSIDE the component.
 // This prevents React from re-creating these arrays on every single render.
@@ -72,7 +74,7 @@ export default function Expertise() {
       {/* Hero Section */}
       <div className="hero relative">
         <img 
-            src="/images/hero/expertise-hero.jpg" 
+            src={expertiseHero} 
             className='object-cover w-full h-full' 
             alt="Our Expertise" 
             loading="lazy"
@@ -214,7 +216,7 @@ export default function Expertise() {
             </div>
             {/* Same image path fix applies here */}
             <img
-              src="/images/vectors/vector-m4.svg"
+              src={vectorM4}
               className="absolute bottom-0 start-0"
               alt=""
               loading="lazy"

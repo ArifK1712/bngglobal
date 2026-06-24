@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Footer from "../components/Footer";
+import termsHero from "../assets/images/hero/terms-conditions.jpg";
 
 const termsData = [
   {
@@ -212,7 +213,7 @@ export default function Terms() {
   return (
     <>
       <div className="hero relative">
-        <img src="/images/hero/terms-conditions.jpg" className="object-cover w-full" alt="Privacy Policy" />
+        <img src={termsHero} className="object-cover w-full" alt="Privacy Policy" />
         <h2 className="text-white z-1">Terms and Conditions</h2>      
         <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
       </div>

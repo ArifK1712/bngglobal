@@ -2,39 +2,45 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import businessConsulting from "../assets/images/expertise/business-consulting.jpg";
+import delegationsRoadshows from "../assets/images/expertise/delegations-roadshows.jpg";
+import marketingPromotion from "../assets/images/expertise/marketing-promotion.jpg";
+import fdi from "../assets/images/expertise/foreign-direct-investment.jpg";
+import eventProduction from "../assets/images/expertise/event-production.jpg";
+
 const services = [
   {
     id: 1,
     title: "Business Consulting",
-    image: "/images/expertise/business-consulting.jpg",
+    image: businessConsulting,
     description: "We support governments and organizations in developing forward-looking strategies that transform ambition into impact. Our approach combines global best practices with localized insights to identify opportunities, evaluate options, and define clear solutions that deliver results.",
     points: ["Customized Strategy", "Market Potential Assessment", "Global Expansion Planning & Partnerships", "FDI & Trade Flow Analysis", "Sector Prioritization"]
   },
   {
     id: 2,
     title: "Delegations & Roadshows",
-    image: "/images/expertise/delegations-roadshows.jpg",
+    image: delegationsRoadshows,
     description: "We design and manage high-impact events and delegations that connect decision-makers, investors, and stakeholders across borders.",
     points: ["Trade Missions & Delegations", "Investment Forums & Roadshows", "Matchmaking & B2B Meetings", "Program & Agenda Design", "On-ground Coordination & Support "]
   },
   {
     id: 3,
     title: "Marketing & Promotion",
-    image: "/images/expertise/marketing-promotion.jpg",
+    image: marketingPromotion,
     description: "We help you design and execute effective go-to-market strategies that accelerate entry into new markets and unlock growth opportunities.",
     points: ["Market & Segment Prioritisation", "Value Proposition & Positioning", "Channel & Partnership Strategy", "Digital Marketing Integration", "Performance & KPI Framework"]
   },
   {
     id: 4,
     title: "Foreign Direct Investment (FDI)",
-    image: "/images/expertise/foreign-direct-investment.jpg",
+    image: fdi,
     description: "We support governments, agencies, and organizations in attracting and retaining high-quality foreign direct investment.",
     points: ["FDI Strategy & Policy Advisory", "Investor Targeting & Lead Generation", "Value Proposition Development", "Pipeline Management & Aftercare", "Sector & Location Marketing"]
   },
   {
     id: 5,
     title: "Event Production",
-    image: "/images/expertise/event-production.jpg"
+    image: eventProduction
   },
 ];
 

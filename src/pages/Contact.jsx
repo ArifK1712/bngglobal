@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
+import contactHero from "../assets/images/hero/contact-hero.png";
 
 const contactDetails = [
   {
@@ -95,7 +96,7 @@ export default function Contact() {
   return (
     <>
       <div className="hero relative">
-        <img src="/images/hero/contact-hero.png" className="object-cover w-full h-full" alt="Contact BNG Global" />
+        <img src={contactHero} className="object-cover w-full h-full" alt="Contact BNG Global" />
         <h2 className="text-white z-10 relative">Contact</h2>
         <div className="bg-black opacity-20 absolute inset-0 pointer-events-none"></div>
       </div>

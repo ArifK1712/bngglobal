@@ -3,6 +3,12 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useLanguage } from "../context/LanguageContext";
 
+import sejalHule from "../assets/images/team/sejal-hule.webp";
+import atharvaHarde from "../assets/images/team/atharva-harde.webp";
+import mohammadOvais from "../assets/images/team/mohammad-ovais.webp";
+import khaledHemdan from "../assets/images/team/khaled-hemdan.webp";
+import saifulHaq from "../assets/images/team/saiful-haq.webp";
+
 const TEAM_MEMBERS = [
   {
     id: 1,
@@ -11,7 +17,7 @@ const TEAM_MEMBERS = [
     department: "",
     description: "Sejal Hule leads BNG Consulting’s international business development and foreign investment initiatives with a strategic focus on markets across the Middle East, Europe, and Africa and the USA. With a proven track record in driving cross-border partnerships and trade collaborations, she has successfully spearheaded high-impact projects across several markets.",
     email: "sejal.hule@bngglobal.net",
-    image: "/images/team/sejal-hule.png",
+    image: sejalHule,
   },
   {
     id: 2,
@@ -20,7 +26,7 @@ const TEAM_MEMBERS = [
     department: "",
     description: "Atharva Harde is a Business Development Executive at BNG Consulting, where he facilitates cross-border investments across the Middle East, Africa, and Europe. Drawing on his previous experience at the World Trade Center, he specializes in building international partnerships and driving Foreign Direct Investment (FDI). Atharva is recognized for his results-oriented approach to fostering global expansion and managing strategic corridors for BNG's clients.",
     email: "atharva.harde@bngglobal.net",
-    image: "/images/team/atharva-harde.png",
+    image: atharvaHarde,
   },
   {
     id: 3,
@@ -30,7 +36,7 @@ const TEAM_MEMBERS = [
     description: `Mohammad Ovais drives revenue growth and strategic account development at BNG Arabia, focusing on client acquisition, deal closure, and long-term partnership building across the Middle East. He works closely with senior stakeholders to convert opportunities into high-value engagements and expand key accounts.
     In addition to sales leadership, Mohammad manages end-to-end project coordination for exhibitions and events, ensuring seamless execution, on-time delivery, and alignment with client objectives. He bridges sales and operations to deliver impactful event experiences while maintaining consistent client satisfaction and repeat business.`,
     email: "mohammad.ovais@bngglobal.net",
-    image: "/images/team/mohammad-ovais.png",
+    image: mohammadOvais,
   },
   {
     id: 4,
@@ -40,7 +46,7 @@ const TEAM_MEMBERS = [
     description: `Khaled Hemdan leads the planning and execution of projects at BNG Arabia, managing exhibitions and events across the Middle East. He partners closely with clients and senior stakeholders to ensure projects are completed on schedule, within budget, and meet all objectives.
     Beyond project oversight, Khaled collaborates with cross-functional teams, streamlines operational workflows, and guarantees smooth execution. He effectively connects strategic planning with operational delivery to create memorable event experiences while maintaining excellent client satisfaction.`,
     email: "khaled.hemdan@bngglobal.net",
-    image: "/images/team/khaled-hemdan.png",
+    image: khaledHemdan,
   },
   {
     id: 5,
@@ -50,7 +56,7 @@ const TEAM_MEMBERS = [
     description: `Saiful Haq provides overall leadership and strategic direction for BNG Arabia’s events and exhibitions operations across the region. He oversees business growth, client relationships, and operational excellence, ensuring every project aligns with the company’s vision and market goals.
     With extensive experience in managing large-scale exhibitions, corporate events, and brand activations, Saiful leads cross-functional teams from concept to completion. He ensures smooth coordination between sales, design, production, and on-site execution, delivering high-quality experiences that meet client expectations, timelines, and budgets.`,
     email: "saiful.haq@bngglobal.net",
-    image: "/images/team/saiful-haq.png",
+    image: saifulHaq,
   },
 ];
 

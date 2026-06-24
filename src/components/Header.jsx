@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
 import LanguageToggle from "./LanguageToggle";
+import vectorM5 from "../assets/images/vectors/vector-m5.svg";
+import logoWatermark from "../assets/images/vectors/logowatermark.svg";
 
 // Header.jsx
 export default function Header() {
@@ -110,7 +112,7 @@ export default function Header() {
                       <Link to="/contact" onClick={() => setExpertiseOpen(false)} className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5 relative z-10">
                         <i className="icon-right-arrow text-lg rtl:rotate-180"></i>
                       </Link>
-                      <img src="/images/vectors/vector-m5.svg" className="absolute -start-6 end-0 bottom-0 w-full" alt="" />
+                      <img src={vectorM5} className="absolute -start-6 end-0 bottom-0 w-full" alt="" />
                     </div>
                   </ul>                  
                 </details>
@@ -154,7 +156,7 @@ export default function Header() {
             </ul>
           </div>
         </div>
-        <img src="/images/vectors/logowatermark.svg" className="w-full absolute end-0 start-0 bottom-0" alt="" />
+        <img src={logoWatermark} className="w-full absolute end-0 start-0 bottom-0" alt="" />
       </div>
       
     </>

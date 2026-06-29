@@ -20,6 +20,7 @@ export const translations = {
     navEventCalendar: "Event Calendar",
     navInsightsBlogs: "Insights / Blogs",
     navContact: "Contact",
+    navGallery: "Gallery",
 
     // Footer
     footerConsulting: "Business Consulting",
@@ -58,6 +59,7 @@ export const translations = {
     navEventCalendar: "جدول الفعاليات",
     navInsightsBlogs: "المدونة / الرؤى",
     navContact: "اتصل بنا",
+    navGallery: "معرض الصور",
 
     // Footer
     footerConsulting: "استشارات الأعمال",

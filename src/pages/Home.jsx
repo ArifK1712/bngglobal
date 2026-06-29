@@ -34,63 +34,81 @@ export default function Home() {
     });
   }, { scope: sliderRef, dependencies: [language] });
 
-  return (
-    <>
-      <div className="">
-        <video
-          playsInline
-          autoPlay
-          muted
-          loop
-          preload="auto"
-          aria-hidden="true"
-          className="h-full w-full object-cover fixed top-0 left-0 -z-10 overflow-hidden"
-        >
-          <source
-            src="https://d1o4s320mkx6gb.cloudfront.net/bng-global/homepage-video.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="app-container pt-22 landscape:max-lg:pt-25 md:pt-46 ">
-          <h1 className="text-white relative z-50 w-full max-w-3xl text-4xl leading-tight md:leading-tight sm:text-6xl text-start">
-            {t.homeEmpowering}{" "}
-            <span className="inline-block h-[2.5em] sm:h-[1.2em] align-bottom overflow-hidden relative">
-              <div ref={sliderRef} className="flex flex-col">
-                {words.map((word, i) => (
-                  <span key={i} className="font-semibold h-[2.5em] sm:h-[1.2em] flex items-center">
-                    {word}
-                  </span>
-                ))}
+return (
+  <section className="relative isolate min-h-[100svh] overflow-hidden">
+    {/* Background video */}
+    <video
+      playsInline
+      autoPlay
+      muted
+      loop
+      preload="auto"
+      aria-hidden="true"
+      className="fixed inset-0 -z-20 h-full w-full object-cover"
+    >
+      <source
+        src="https://d1o4s320mkx6gb.cloudfront.net/bng-global/homepage-video.mp4"
+        type="video/mp4"
+      />
+    </video>
 
-                <span className="font-semibold h-[2.5em] sm:h-[1.2em] flex items-center">
-                  {words[0]}
-                </span>
-              </div>
+    {/* Video overlay */}
+    <div className="fixed inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_59.63%,rgba(0,0,0,0.67)_100%)]" />
+
+    {/* Hero content */}
+    <div className="app-container relative z-10 flex min-h-[100svh] flex-col px-5 pt-28 pb-8 text-white sm:px-6 md:pt-46 md:pb-16 lg:px-10">
+      {/* Main heading */}
+      <h1 className="text-white relative z-50 w-full max-w-3xl text-4xl leading-tight md:leading-tight sm:text-6xl text-start">
+        {t.homeEmpowering}{" "}
+        <span className="relative inline-block h-[2.35em] overflow-hidden align-bottom sm:h-[1.15em]">
+          <div ref={sliderRef} className="flex flex-col">
+            {words.map((word, i) => (
+              <span
+                key={i}
+                className="flex h-[2.35em] items-center font-semibold sm:h-[1.15em]"
+              >
+                {word}
+              </span>
+            ))}
+
+            <span className="flex h-[2.35em] items-center font-semibold sm:h-[1.15em]">
+              {words[0]}
             </span>
-          </h1>
-          <div className="absolute landscape:max-lg:relative bottom-0 inset-x-0 z-50 mx-auto w-full landscape:max-lg:px-0 px-5 lg:px-10 pb-3 md:pb-17 text-white lg:max-w-5xl xl:max-w-7xl">
-            <div className="grid gap-6 md:grid-cols-2 md:items-center md:justify-between">
-              <div className="xl:w-2xl text-start">
-                <h3 className="mb-2 text-start">
-                  {t.homeSubtitleHeader}
-                </h3>
-                <p className="text-white text-sm sm:text-[18px] leading-tight sm:leading-6 text-start">
-                  {t.homeSubtitleCopy}
-                </p>
-              </div>
-              <div className="grid grid-cols-1 sm:flex md:flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-end">
-                <Link to="/services" className="btn btn-lg dark:btn-warning px-7">
-                  {t.homeDiscoverBtn}
-                </Link>
-                <Link to="/contact" className="btn btn-lg btn-link text-white no-underline">
-                  {t.homeContactUs}
-                </Link>
-              </div>
-            </div>
-          </div>         
+          </div>
+        </span>
+      </h1>
+
+      {/* Bottom content: stays in normal flow and moves down safely */}
+      <div className="mt-auto w-full pt-12 md:pt-16">
+        <div className="grid gap-6 md:grid-cols-2 md:items-center md:justify-between">
+          <div className="xl:w-2xl text-start">
+            <h3 className="mb-2 text-start">
+              {t.homeSubtitleHeader}
+            </h3>
+
+            <p className="text-start text-sm leading-tight text-white sm:text-[18px] sm:leading-6">
+              {t.homeSubtitleCopy}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:flex md:flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-end">
+            <Link
+              to="/services"
+              className="btn btn-lg dark:btn-warning px-7"
+            >
+              {t.homeDiscoverBtn}
+            </Link>
+
+            <Link
+              to="/contact"
+              className="btn btn-lg btn-link text-white no-underline"
+            >
+              {t.homeContactUs}
+            </Link>
+          </div>
         </div>
-        <div className="bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_59.63%,rgba(0,0,0,0.67)_100%)] fixed right-0 left-0 bottom-0 top-0"></div>
       </div>
-    </>
-  );
+    </div>
+  </section>
+);
 }

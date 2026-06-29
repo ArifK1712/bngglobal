@@ -26,7 +26,7 @@ const media = [
   { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href, title: "Premium Event Setup" },
   {
     type: "video",
-    src: "https://bngglobal.net/assets/images/gallery/philips.mp4",
+    src: new URL("../assets/images/gallery/philips.mp4", import.meta.url).href,
     title: "Brand Experience",
   },
   {
@@ -36,7 +36,7 @@ const media = [
   },
   {
     type: "video",
-    src: "https://bngglobal.net/assets/images/gallery/jana-marine.mp4",
+    src: new URL("../assets/images/gallery/jana-marine.mp4", import.meta.url).href,
     title: "Live Activation",
   },
   { type: "image", src: new URL("../assets/images/gallery/3.webp", import.meta.url).href, title: "Custom Booth" },

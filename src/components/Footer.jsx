@@ -31,6 +31,7 @@ export default function Footer() {
                 <Link to="/blog" className="link link-hover text-sm">{t.navInsightsBlogs}</Link>
                 <Link to="/terms-and-conditions" className="link link-hover text-sm">{language === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام'}</Link>
                 <Link to="/privacy-policy" className="link link-hover text-sm">{language === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}</Link>
+                <Link to="/gallery" className="link link-hover text-sm">{t.navGallery}</Link>
               </nav>
               <nav className="grid gap-2.5 col-span-3 lg:col-span-1 text-start">
                 <p className="text-white text-sm">{t.footerDesc}</p>

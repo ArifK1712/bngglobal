@@ -10,6 +10,7 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/PrivacyPolicy";
 import Terms from "./pages/TermsConditions";
+import Gallery from "./pages/Gallery";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/terms-and-conditions" element={<Terms />} />
+          <Route path="/gallery" element={<Gallery />} />
 
           <Route path="*" element={<Home />} />
         </Routes>

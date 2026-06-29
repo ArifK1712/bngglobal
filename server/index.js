@@ -28,7 +28,7 @@ app.post("/api/rfp", async (req, res) => {
 
   const POSTMARK_API_TOKEN = process.env.POSTMARK_API_TOKEN;
   const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@congenie.com";
-  const TO_EMAIL = process.env.TO_EMAIL || "arif@letuscode.com";
+  const TO_EMAIL = process.env.RFP_TO_EMAIL || process.env.TO_EMAIL || "arif@letuscode.com";
 
   if (!POSTMARK_API_TOKEN) {
     console.error("POSTMARK_API_TOKEN is not set in environment variables.");
@@ -238,7 +238,7 @@ app.post("/api/contact", async (req, res) => {
 
   const POSTMARK_API_TOKEN = process.env.POSTMARK_API_TOKEN;
   const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@congenie.com";
-  const TO_EMAIL = process.env.TO_EMAIL || "arif@letuscode.com";
+  const TO_EMAIL = process.env.CONTACT_TO_EMAIL || process.env.TO_EMAIL || "mayank@etechlogix.com";
 
   if (!POSTMARK_API_TOKEN) {
     console.error("POSTMARK_API_TOKEN is not set in environment variables.");

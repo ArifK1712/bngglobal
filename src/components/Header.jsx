@@ -49,14 +49,14 @@ export default function Header() {
         }`}
       >
         <div className="app-container flex justify-between items-center">
-          <div className="flex items-center w-full lg:w-auto justify-between">
+          <div className="flex items-center w-full xl:w-auto justify-between">
             <Link to="/"><img src={logo} alt="Logo" className="h-12 lg:h-17.5" /></Link>
             <div className="space-x-2">
-              <LanguageToggle className="text-base-content bg-base-200 hover:bg-base-300 border border-base-content/10 hidden lg:hidden" />
-              <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 lg:hidden" aria-label="Open Mobile Menu"><i className="icon-menu text-3xl"></i></button>
+              <LanguageToggle className="text-base-content bg-base-200 hover:bg-base-300 border border-base-content/10 hidden xl:hidden" />
+              <button  onClick={() => setIsDrawerOpen(true)}  className="btn btn-ghost p-0 xl:hidden" aria-label="Open Mobile Menu"><i className="icon-menu text-3xl"></i></button>
             </div>
           </div>
-          <div className="hidden lg:flex">
+          <div className="hidden xl:flex">
             <ul className="menu menu-horizontal p-0 flex gap-2 text-base font-normal items-center text-white">
               <li><Link className="hover:bg-transparent hover:underline" to="/">{t.navHome}</Link></li>
               
@@ -133,7 +133,7 @@ export default function Header() {
         onClick={closeDrawer}
       ></div>
       <div 
-        className={`fixed top-0 right-0 z-100 h-full w-full bg-base-100 text-base-content shadow-xl transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 right-0 z-100 h-full w-full bg-base-100 text-base-content shadow-xl transform transition-transform duration-300 ease-in-out xl:hidden ${
           isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

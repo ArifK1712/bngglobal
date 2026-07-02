@@ -31,8 +31,9 @@ const contactDetails = [
     title: "Email:",
     content: (
       <>
-        General: <a href="mailto:mohammad.ovais@bngglobal.net" className="hover:underline wrap-anywhere">mohammad.ovais@bngglobal.net</a> <br />
-        Sales: <a href="mailto:sejal.hule@bngglobal.net" className="hover:underline wrap-anywhere">sejal.hule@bngglobal.net</a>
+        Fabrication Inquiries: <br />Mohammad Ovais - <a href="mailto:mohammad.ovais@bngglobal.net" className="hover:underline wrap-anywhere">mohammad.ovais@bngglobal.net</a><br />
+        Khaled Hemdan - <a href="mailto:khaled.hemdan@bngglobal.net" className="hover:underline wrap-anywhere">khaled.hemdan@bngglobal.net</a><br />
+        Consulting Inquiries: <br />Sejal Hule - <a href="mailto:sejal.hule@bngglobal.net" className="hover:underline wrap-anywhere">sejal.hule@bngglobal.net</a>
       </>
     ),
   },

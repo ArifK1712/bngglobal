@@ -60,7 +60,7 @@ export default function Footer() {
                 <i class="icon-x"></i>
               </a>
               <a 
-                href="https://wa.me/966590754816" 
+                href="https://wa.me/966534306200" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="link link-hover text-md flex items-center" 

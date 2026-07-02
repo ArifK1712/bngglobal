@@ -20,7 +20,7 @@ export const translations = {
     navEventCalendar: "Event Calendar",
     navInsightsBlogs: "Insights / Blogs",
     navContact: "Contact",
-    navGallery: "Gallery",
+    navGallery: "Projects",
 
     // Footer
     footerConsulting: "Business Consulting",

@@ -9,9 +9,9 @@ const projectsData = {
   en: [
     {
       id: 1,
-      name: "Philips Healthcare Exhibition Stand",
-      date: "November 2025",
-      venue: "Riyadh Exhibition Center",
+      name: "Philips Healthcare Activation",
+      date: "19 January 2026",
+      venue: "Fairmont Hotel Riyadh",
       coverImage: new URL("../assets/images/gallery/1.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href },
@@ -22,9 +22,9 @@ const projectsData = {
     },
     {
       id: 2,
-      name: "Jana Marine Live Activation",
-      date: "December 2025",
-      venue: "Jeddah Hilton Hall",
+      name: "Jana Marine Exhibition Booth at Saudi Maritime & Logistics Congress",
+      date: "1 - 2 October 2025",
+      venue: "Dahran Expo Centre ",
       coverImage: new URL("../assets/images/gallery/6.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href },
@@ -34,8 +34,8 @@ const projectsData = {
     {
       id: 3,
       name: "Vision Investment Forum",
-      date: "January 2026",
-      venue: "Dammam International Convention Center",
+      date: "12 December 2025",
+      venue: "Mandarin Oriental Hotel Riyadh",
       coverImage: new URL("../assets/images/gallery/4.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/4.webp", import.meta.url).href },
@@ -44,9 +44,9 @@ const projectsData = {
     },
     {
       id: 4,
-      name: "General Authority of Civil Aviation (GACA) Exhibition",
-      date: "January 2026",
-      venue: "Dammam International Convention Center",
+      name: "Gaca Hajj Conference",
+      date: "9 - 12 November 2025",
+      venue: "Super Dom Jeddah",
       coverImage: new URL("../assets/images/gallery/7.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/7.webp", import.meta.url).href }
@@ -141,7 +141,7 @@ export default function Gallery() {
           
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="mb-4">
-              {language === "en" ? "Our Gallery" : "أعمالنا المتميزة"}
+              {language === "en" ? "Our Projects" : "أعمالنا المتميزة"}
             </h2>
             <p>
               {language === "en" 

@@ -155,7 +155,7 @@ const services = [
   {
     title: "Custom Made stands",
     desc: `
-      <p>Your Trusted Partner for Custom Exhibition Stands</p>
+      <h4 class="text-xl md:text-2xl font-semibold leading-tight tracking-[-0.04em] text-[#003a86] mb-4 block">Your Trusted Partner for Custom Exhibition Stands</h4>
       <ul>
         <li>At BNG Arabia, we combine creativity, precision, and craftsmanship to create exhibition stands that make your brand stand out.</li>
         <li>Premium & Sustainable Materials</li>

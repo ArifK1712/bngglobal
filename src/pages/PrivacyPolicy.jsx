@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Footer from "../components/Footer";
-import privacyHero from "../assets/images/hero/privacy-policy.jpg";
+import privacyHero from "../assets/images/hero/privacy-policy.webp";
 
 const CheckIcon = () => (
   <i className="icon-checkmark bg-warning rounded-full p-1.5 text-[12px] mr-1 text-neutral"></i>

@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
 import { MapPin, Calendar, Film, Image as ImageIcon, ChevronLeft, ChevronRight } from "lucide-react";
-import expertiseHero from "../assets/images/hero/expertise-hero.webp";
+import expertiseHero from "../assets/images/hero/gallery-hero.webp";
 
 const projectsData = {
   en: [

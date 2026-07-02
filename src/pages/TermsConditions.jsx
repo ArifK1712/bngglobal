@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Footer from "../components/Footer";
-import termsHero from "../assets/images/hero/terms-conditions.jpg";
+import termsHero from "../assets/images/hero/terms-conditions.webp";
 
 const termsData = [
   {

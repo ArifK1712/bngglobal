@@ -31,8 +31,8 @@ const contactDetails = [
     title: "Email:",
     content: (
       <>
-        General: <a href="mailto:info@bngglobal.net" className="hover:underline">info@bngglobal.net</a> <br />
-        Sales: <a href="mailto:sejal.hule@bngglobal.net" className="hover:underline">sejal.hule@bngglobal.net</a>
+        General: <a href="mailto:mohammad.ovais@bngglobal.net" className="hover:underline wrap-anywhere">mohammad.ovais@bngglobal.net</a> <br />
+        Sales: <a href="mailto:sejal.hule@bngglobal.net" className="hover:underline wrap-anywhere">sejal.hule@bngglobal.net</a>
       </>
     ),
   },

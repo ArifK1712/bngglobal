@@ -90,6 +90,7 @@ export default function Header() {
                 </details>
               </li>
               
+              <li><Link className="hover:bg-transparent hover:underline" to="/services">{t.navEventProduction}</Link></li>
               <li>
                 <details 
                   open={expertiseOpen} 
@@ -117,7 +118,6 @@ export default function Header() {
                   </ul>                  
                 </details>
               </li>
-              <li><Link className="hover:bg-transparent hover:underline" to="/services">{t.navEventProduction}</Link></li>
               <li><Link className="hover:bg-transparent hover:underline" to="/industries">{t.navIndustries}</Link></li>
               <li><Link className="hover:bg-transparent hover:underline" to="">{t.navEventCalendar}</Link></li>
               <li><Link className="hover:bg-transparent hover:underline" to="/blog">{t.navInsightsBlogs}</Link></li>              
@@ -145,8 +145,10 @@ export default function Header() {
             <ul className="menu w-full text-base p-0 space-y-6 text-start">
               <li><Link to="/" onClick={closeDrawer}>{t.navHome}</Link></li>              
               <li><Link to="/about" onClick={closeDrawer}>{t.navAboutUs}</Link></li>
+              <li><Link to="/services" onClick={closeDrawer}>{t.navEventProduction}</Link></li>
               <li><Link to="/our-expertise" onClick={closeDrawer}>{t.navOurExpertise}</Link></li>
               <li><Link to="/industries" onClick={closeDrawer}>{t.navIndustries}</Link></li>
+              <li><Link to="" onClick={closeDrawer}>{t.navEventCalendar}</Link></li>
               <li><Link to="/blog" onClick={closeDrawer}>{t.navInsightsBlogs}</Link></li>
               <li className="mt-4 flex flex-row items-center gap-4">
                 <Link to="/contact" onClick={closeDrawer} className="bg-warning text-black rounded-4xl justify-center px-5.5 py-2">

@@ -127,7 +127,7 @@ export default function Industries() {
             <h2 className="text-center dark:text-[#253858]">
               Specialized Expertise Across Diverse <br /> Sectors to Power Your
               <span className="inline-block relative w-23 h-11.5 mx-3 align-middle">
-                <div ref={pillRef} className="absolute left-1/2 -translate-x-1/2 w-23 h-11.5 bg-[#0033A0] rounded-4xl z-20 flex items-center justify-center overflow-hidden bg-[url(https://bngglobal.net/assets/images/vectors/globe.svg)] bg-no-repeat bg-bottom">
+                <div ref={pillRef} className="absolute left-1/2 -translate-x-1/2 w-23 h-11.5 bg-[#0033A0] rounded-4xl z-20 flex items-center justify-center overflow-hidden bg-[url(https://d1o4s320mkx6gb.cloudfront.net/bng-global/globe.svg)] bg-no-repeat bg-bottom">
                   <i className="icon-globe text-white text-xl relative z-30 opacity-80"></i>
                   <div ref={blueSectionRef} className="absolute top-0 inset-0 opacity-0 w-screen h-screen flex items-center justify-start bg-[#003a86]">
                     <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-0">

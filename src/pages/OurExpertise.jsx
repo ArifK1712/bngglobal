@@ -79,7 +79,7 @@ export default function Expertise() {
             alt="Our Expertise" 
             loading="lazy"
         />
-        <h2 className="text-white relative z-10">Our Expertise</h2>
+        <h2 className="text-white relative z-10">Other Services</h2>
         <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
       </div>
 

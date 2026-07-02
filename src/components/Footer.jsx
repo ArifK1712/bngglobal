@@ -40,31 +40,42 @@ export default function Footer() {
           <hr className="h-px mt-8 md:mt-20 bg-base-200 opacity-40 border-0 w-full"></hr>
           <div className="flex flex-col gap-y-5 text-center md:flex-row justify-between pt-4 md:pt-10">
             <p className="text-white text-sm">{t.footerCopyright}</p>
-            <div className="flex gap-12 justify-center md:justify-start">
+            <div className="flex gap-12 justify-center md:justify-start items-center">
               <a 
-                href="https://linkedin.com/company/bngglobal" 
+                href="https://www.linkedin.com/company/bng-arabia" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="link link-hover text-sm" 
+                className="link link-hover text-md flex items-center" 
                 aria-label="Visit our LinkedIn profile"
               >
-                <i className="icon-linkedin"></i>
+                <i class="icon-linkedin"></i>
               </a>
               <a 
-                href="https://x.com/bngglobal" 
+                href="https://x.com/BNGArabia" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="link link-hover text-sm" 
+                className="link link-hover text-md flex items-center" 
                 aria-label="Visit our X profile"
               >
-                <i className="icon-x"></i>
+                <i class="icon-x"></i>
               </a>
               <a 
-                href="mailto:info@bngglobal.net" 
-                className="link link-hover text-sm" 
-                aria-label="Send us an email"
+                href="https://wa.me/966590754816" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="link link-hover text-md flex items-center" 
+                aria-label="Chat with us on WhatsApp"
               >
-                <i className="icon-email"></i>
+                <i class="icon-whatsapp"></i>
+              </a>
+              <a 
+                href="https://www.youtube.com/@BNGArabia" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="link link-hover text-md flex items-center" 
+                aria-label="Visit our YouTube channel"
+              >
+               <i class="icon-youtube"></i>
               </a>
             </div>
           </div>

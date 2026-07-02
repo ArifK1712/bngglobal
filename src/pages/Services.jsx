@@ -892,7 +892,7 @@ export default function Services() {
           {[...marqueeItems, ...marqueeItems].map((item, index) => (
             <div
               key={`${item}-${index}`}
-              className="group mx-3 flex items-center gap-6 rounded-full border border-[#003a86]/10 bg-white px-8 py-5 text-4xl md:text-5xl font-semibold uppercase text-[#003a86] shadow-lg shadow-[#003a86]/10 transition duration-300 hover:border-[#ffd500] hover:bg-[#ffd500]"
+              className="group mx-3 flex items-center gap-6 rounded-full border border-[#003a86]/10 bg-white px-8 py-3 text-3xl md:text-4xl font-semibold uppercase text-[#003a86] shadow-lg shadow-[#003a86]/10 transition duration-300 hover:border-[#ffd500] hover:bg-[#ffd500]"
             >
               <span>{item}</span>
 

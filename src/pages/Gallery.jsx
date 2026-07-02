@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
-import { MapPin, Calendar, Film, Image as ImageIcon } from "lucide-react";
+import { MapPin, Calendar, Film, Image as ImageIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import expertiseHero from "../assets/images/hero/expertise-hero.webp";
 
 const projectsData = {
@@ -14,10 +14,10 @@ const projectsData = {
       venue: "Riyadh Exhibition Center",
       coverImage: new URL("../assets/images/gallery/1.webp", import.meta.url).href,
       media: [
-        { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href, title: "Exhibition Stand Overview" },
-        { type: "video", src: new URL("../assets/images/gallery/philips.mp4", import.meta.url).href, title: "Brand Experience Walkthrough" },
-        { type: "image", src: new URL("../assets/images/gallery/3.webp", import.meta.url).href, title: "Side View Detail" },
-        { type: "image", src: new URL("../assets/images/gallery/4.webp", import.meta.url).href, title: "Interactive Display Area" }
+        { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href },
+        { type: "video", src: new URL("../assets/images/gallery/philips.mp4", import.meta.url).href },
+        { type: "image", src: new URL("../assets/images/gallery/2.webp", import.meta.url).href },
+        { type: "image", src: new URL("../assets/images/gallery/3.webp", import.meta.url).href }
       ]
     },
     {
@@ -25,22 +25,31 @@ const projectsData = {
       name: "Jana Marine Live Activation",
       date: "December 2025",
       venue: "Jeddah Hilton Hall",
-      coverImage: new URL("../assets/images/gallery/2.webp", import.meta.url).href,
+      coverImage: new URL("../assets/images/gallery/6.webp", import.meta.url).href,
       media: [
-        { type: "image", src: new URL("../assets/images/gallery/2.webp", import.meta.url).href, title: "Main Event Fabrication" },
-        { type: "video", src: new URL("../assets/images/gallery/jana-marine.mp4", import.meta.url).href, title: "Live Event Video" },
-        { type: "image", src: new URL("../assets/images/gallery/5.webp", import.meta.url).href, title: "Detail View of Structure" }
+        { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href },
+        { type: "video", src: new URL("../assets/images/gallery/jana-marine.mp4", import.meta.url).href }
       ]
     },
     {
       id: 3,
-      name: "Saudi-Global Business Forum",
+      name: "Vision Investment Forum",
       date: "January 2026",
       venue: "Dammam International Convention Center",
-      coverImage: new URL("../assets/images/gallery/6.webp", import.meta.url).href,
+      coverImage: new URL("../assets/images/gallery/4.webp", import.meta.url).href,
       media: [
-        { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href, title: "Main Conference Setup" },
-        { type: "image", src: new URL("../assets/images/gallery/7.webp", import.meta.url).href, title: "VIP Networking Lounge" }
+        { type: "image", src: new URL("../assets/images/gallery/4.webp", import.meta.url).href },
+        { type: "image", src: new URL("../assets/images/gallery/5.webp", import.meta.url).href }
+      ]
+    },
+    {
+      id: 4,
+      name: "General Authority of Civil Aviation (GACA) Exhibition",
+      date: "January 2026",
+      venue: "Dammam International Convention Center",
+      coverImage: new URL("../assets/images/gallery/7.webp", import.meta.url).href,
+      media: [
+        { type: "image", src: new URL("../assets/images/gallery/7.webp", import.meta.url).href }
       ]
     }
   ],
@@ -52,10 +61,10 @@ const projectsData = {
       venue: "مركز الرياض للمعارض",
       coverImage: new URL("../assets/images/gallery/1.webp", import.meta.url).href,
       media: [
-        { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href, title: "نظرة عامة على الجناح" },
-        { type: "video", src: new URL("../assets/images/gallery/philips.mp4", import.meta.url).href, title: "فيديو تجربة العلامة التجارية" },
-        { type: "image", src: new URL("../assets/images/gallery/3.webp", import.meta.url).href, title: "تفاصيل العرض الجانبي" },
-        { type: "image", src: new URL("../assets/images/gallery/4.webp", import.meta.url).href, title: "منطقة العرض التفاعلية" }
+        { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href },
+        { type: "video", src: new URL("../assets/images/gallery/philips.mp4", import.meta.url).href },
+        { type: "image", src: new URL("../assets/images/gallery/2.webp", import.meta.url).href },
+        { type: "image", src: new URL("../assets/images/gallery/3.webp", import.meta.url).href }
       ]
     },
     {
@@ -65,9 +74,8 @@ const projectsData = {
       venue: "قاعة هيلتون جدة",
       coverImage: new URL("../assets/images/gallery/2.webp", import.meta.url).href,
       media: [
-        { type: "image", src: new URL("../assets/images/gallery/2.webp", import.meta.url).href, title: "تصنيع الفعالية الرئيسية" },
-        { type: "video", src: new URL("../assets/images/gallery/jana-marine.mp4", import.meta.url).href, title: "فيديو الفعالية المباشرة" },
-        { type: "image", src: new URL("../assets/images/gallery/5.webp", import.meta.url).href, title: "تفاصيل هيكل الفعالية" }
+        { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href },
+        { type: "video", src: new URL("../assets/images/gallery/jana-marine.mp4", import.meta.url).href }
       ]
     },
     {
@@ -77,8 +85,18 @@ const projectsData = {
       venue: "مركز الدمام الدولي للمؤتمرات",
       coverImage: new URL("../assets/images/gallery/6.webp", import.meta.url).href,
       media: [
-        { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href, title: "تجهيز المؤتمر الرئيسي" },
-        { type: "image", src: new URL("../assets/images/gallery/7.webp", import.meta.url).href, title: "صالة كبار الشخصيات" }
+        { type: "image", src: new URL("../assets/images/gallery/4.webp", import.meta.url).href },
+        { type: "image", src: new URL("../assets/images/gallery/5.webp", import.meta.url).href }
+      ]
+    },
+    {
+      id: 4,
+      name: "General Authority of Civil Aviation (GACA) Exhibition",
+      date: "January 2026",
+      venue: "Dammam International Convention Center",
+      coverImage: new URL("../assets/images/gallery/7.webp", import.meta.url).href,
+      media: [
+        { type: "image", src: new URL("../assets/images/gallery/7.webp", import.meta.url).href }
       ]
     }
   ]
@@ -216,19 +234,19 @@ export default function Gallery() {
           {/* Previous Button */}
           <button
             onClick={prevMedia}
-            className="absolute left-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-2xl text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500] cursor-pointer z-10"
-            aria-label="Previous media"
+            className="absolute left-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500] cursor-pointer z-10"
+            aria-label="Previous image"
           >
-            ‹
+            <ChevronLeft size={22} />
           </button>
 
           {/* Next Button */}
           <button
             onClick={nextMedia}
-            className="absolute right-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-2xl text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500] cursor-pointer z-10"
-            aria-label="Next media"
+            className="absolute right-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500] cursor-pointer z-10"
+            aria-label="Next image"
           >
-            ›
+            <ChevronRight size={22} />
           </button>
 
           {/* Media Content Display Area */}
@@ -237,7 +255,7 @@ export default function Gallery() {
               <img
                 src={activeProject.media[currentMediaIndex].src}
                 className="max-h-[82vh] max-w-[84vw] rounded-[1.4rem] object-contain"
-                alt={activeProject.media[currentMediaIndex].title}
+                alt={activeProject.name}
                 loading="lazy"
               />
             ) : (

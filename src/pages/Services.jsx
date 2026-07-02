@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -18,6 +19,9 @@ import {
   Paperclip,
   X,
   AlertCircle,
+  ChevronLeft,
+  ChevronRight,
+  MessageCircle,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -1059,10 +1063,6 @@ export default function Services() {
 
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
                     <div>
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#ffd500]">
-                        Project
-                      </p>
-
                       <h3 className="text-xl font-semibold text-white">
                         {item.title}
                       </h3>
@@ -1081,6 +1081,16 @@ export default function Services() {
             })}
           </div>
 
+          {/* Centered "Our Projects" button linking to Gallery page */}
+          <div className="flex justify-center mt-12 mb-4">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center justify-center bg-[#003a86] hover:bg-[#002b66] text-white text-base font-semibold px-8 py-3.5 rounded-full transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl cursor-pointer"
+            >
+              View Projects
+            </Link>
+          </div>
+
           {currentMedia !== null && (
             <div className="fixed inset-0 z-[999] flex items-center justify-center bg-white/85 p-6 backdrop-blur-2xl">
               <button
@@ -1093,18 +1103,18 @@ export default function Services() {
 
               <button
                 onClick={prevImage}
-                className="absolute left-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-2xl text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500]"
-                aria-label="Previous media"
+                className="absolute left-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500]"
+                aria-label="Previous image"
               >
-                ‹
+                <ChevronLeft size={22} />
               </button>
 
               <button
                 onClick={nextImage}
-                className="absolute right-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-2xl text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500]"
-                aria-label="Next media"
+                className="absolute right-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#003a86]/15 bg-white text-[#003a86] shadow-lg shadow-[#003a86]/10 transition hover:bg-[#ffd500]"
+                aria-label="Next image"
               >
-                ›
+                <ChevronRight size={22} />
               </button>
 
               <div className="max-h-[88vh] max-w-[88vw] overflow-hidden rounded-[2rem] border border-[#003a86]/10 bg-white p-3 shadow-2xl shadow-[#003a86]/20">
@@ -1381,13 +1391,24 @@ export default function Services() {
                       </div>
                     )}
 
-                    <button
-                      type="submit"
-                      className="btn btn-lg btn-light dark:btn-warning py-2 text-[18px] mt-4 w-33 ms-auto"
-                      disabled={status === "Sending..."}
-                    >
-                      {status === "Sending..." ? "Sending..." : "Submit"}
-                    </button>
+                    <div className="flex flex-col sm:flex-row gap-4 mt-6 items-center justify-end w-full">
+                      <a
+                        href="https://wa.me/966590754816"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 justify-center btn-warning bg-warning text-[#253858] font-semibold py-2.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-auto text-base h-12 cursor-pointer"
+                      >
+                        <MessageCircle size={20} />
+                        <span>Chat on WhatsApp</span>
+                      </a>
+                      <button
+                        type="submit"
+                        className="btn btn-lg btn-light dark:btn-warning text-[18px] w-full sm:w-33 h-12 flex items-center justify-center cursor-pointer"
+                        disabled={status === "Sending..."}
+                      >
+                        {status === "Sending..." ? "Sending..." : "Submit"}
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>

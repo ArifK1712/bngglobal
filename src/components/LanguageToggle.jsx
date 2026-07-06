@@ -11,7 +11,7 @@ export default function LanguageToggle({ className = "text-white bg-white/10 hov
       aria-label={language === "en" ? "Switch to Arabic" : "Switch to English"}
     >
       <span className="font-semibold text-sm tracking-wider">
-        {language === "en" ? "AR" : "EN"}
+        {language === "en" ? "ع" : "EN"}
       </span>
     </button>
   );

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 import businessConsulting from "../assets/images/expertise/business-consulting.webp";
 import delegationsRoadshows from "../assets/images/expertise/delegations-roadshows.webp";
@@ -8,43 +10,47 @@ import marketingPromotion from "../assets/images/expertise/marketing-promotion.w
 import fdi from "../assets/images/expertise/foreign-direct-investment.webp";
 import eventProduction from "../assets/images/expertise/event-production.webp";
 
-const services = [
-  {
-    id: 1,
-    title: "Business Consulting",
-    image: businessConsulting,
-    description: "We support governments and organizations in developing forward-looking strategies that transform ambition into impact. Our approach combines global best practices with localized insights to identify opportunities, evaluate options, and define clear solutions that deliver results.",
-    points: ["Customized Strategy", "Market Potential Assessment", "Global Expansion Planning & Partnerships", "FDI & Trade Flow Analysis", "Sector Prioritization"]
-  },
-  {
-    id: 2,
-    title: "Delegations & Roadshows",
-    image: delegationsRoadshows,
-    description: "We design and manage high-impact events and delegations that connect decision-makers, investors, and stakeholders across borders.",
-    points: ["Trade Missions & Delegations", "Investment Forums & Roadshows", "Matchmaking & B2B Meetings", "Program & Agenda Design", "On-ground Coordination & Support "]
-  },
-  {
-    id: 3,
-    title: "Marketing & Promotion",
-    image: marketingPromotion,
-    description: "We help you design and execute effective go-to-market strategies that accelerate entry into new markets and unlock growth opportunities.",
-    points: ["Market & Segment Prioritisation", "Value Proposition & Positioning", "Channel & Partnership Strategy", "Digital Marketing Integration", "Performance & KPI Framework"]
-  },
-  {
-    id: 4,
-    title: "Foreign Direct Investment (FDI)",
-    image: fdi,
-    description: "We support governments, agencies, and organizations in attracting and retaining high-quality foreign direct investment.",
-    points: ["FDI Strategy & Policy Advisory", "Investor Targeting & Lead Generation", "Value Proposition Development", "Pipeline Management & Aftercare", "Sector & Location Marketing"]
-  },
-  {
-    id: 5,
-    title: "Event Production",
-    image: eventProduction
-  },
-];
-
 const ServicesSection = () => {
+  const { language } = useLanguage();
+  const isRtl = language === "ar";
+  const t = translations[language];
+
+  const services = [
+    {
+      id: 1,
+      title: t.navBusinessConsulting,
+      image: businessConsulting,
+      description: t.servicesListItems[0].description,
+      points: t.servicesListItems[0].points
+    },
+    {
+      id: 2,
+      title: t.navDelegationsRoadshows,
+      image: delegationsRoadshows,
+      description: t.servicesListItems[1].description,
+      points: t.servicesListItems[1].points
+    },
+    {
+      id: 3,
+      title: t.navMarketingPromotion,
+      image: marketingPromotion,
+      description: t.servicesListItems[2].description,
+      points: t.servicesListItems[2].points
+    },
+    {
+      id: 4,
+      title: t.navFDI,
+      image: fdi,
+      description: t.servicesListItems[3].description,
+      points: t.servicesListItems[3].points
+    },
+    {
+      id: 5,
+      title: t.navEventProduction,
+      image: eventProduction
+    },
+  ];
+
   const [activeTab, setActiveTab] = useState(0);
   // 1. Add state for the modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -99,7 +105,7 @@ const ServicesSection = () => {
         setIsModalOpen(true);
       }, 150);
     }
-  }, [location]);
+  }, [location, services.length]);
 
   return (
     <>
@@ -126,10 +132,10 @@ const ServicesSection = () => {
             })}
           </div>
 
-          {/* RIGHT: Navigation List */}
-          <div className="relative flex flex-col">
+          {/* Navigation List - Dir sets direction vector dynamically */}
+          <div className="relative flex flex-col" dir={isRtl ? "rtl" : "ltr"}>
             <div 
-              className="absolute left-0 top-0 w-full bg-[#FFD600] rounded-full z-0 flex items-center justify-end px-6 lg:px-8 transition-transform duration-500 cubic-bezier(0.25, 0.8, 0.25, 1) h-13.5 md:h-17"
+              className="absolute start-0 top-0 w-full bg-[#FFD600] rounded-full z-0 flex items-center justify-end px-6 lg:px-8 transition-transform duration-500 cubic-bezier(0.25, 0.8, 0.25, 1) h-13.5 md:h-17"
               style={{
                 transform: `translateY(calc(${activeTab} * 100% + ${activeTab} * 0rem))`
               }}
@@ -147,7 +153,7 @@ const ServicesSection = () => {
                   }
                 `}
               >
-                <span className="font-normal text-[20px] md:text-[28px] truncate pe-4">
+                <span className={`font-normal text-[20px] md:text-[28px] truncate ${isRtl ? 'ps-4 text-right' : 'pe-4 text-left'}`}>
                   {service.title}
                 </span>
                 {activeTab === index && (
@@ -156,18 +162,15 @@ const ServicesSection = () => {
                         e.stopPropagation(); 
                         
                         // Check if the current tab is "Event Production Services"
-                        if (service.title === "Event Production") {
-                          // Option A: Standard Redirect
-                          //window.location.href = "/services"; 
-                          
+                        if (service.id === 5) {
                           navigate("/services");
                         } else {
                           setIsModalOpen(true);
                         }
                       }}
-                      className="ms-auto transition-transform hover:scale-110 cursor-pointer"
+                      className="ms-auto transition-transform hover:scale-110 cursor-pointer flex items-center justify-center"
                     >
-                      <i className="icon-rotated-arrow-right"></i>
+                      <i className={`icon-rotated-arrow-right inline-block ${isRtl ? '-scale-x-100' : ''}`}></i>
                     </button>
                   )}
               </div>
@@ -188,18 +191,18 @@ const ServicesSection = () => {
           </h4>          
         </div>
         
-        <div className="pt-8 p-4 md:pt-13 md:p-9">
+        <div className="pt-8 p-4 md:pt-13 md:p-9 text-start" dir={isRtl ? "rtl" : "ltr"}>
           <p className="text-white mb-5">
             {services[activeTab].description || "Description coming soon for " + services[activeTab].title}
           </p>
           
-          <p className="text-white mb-5 text-lg font-medium">Our services include:</p>
+          <p className="text-white mb-5 text-lg font-medium">{t.servicesIncludeText}</p>
           
           {/* DYNAMIC LIST */}
           <ul className="text-white grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
             {services[activeTab].points?.map((point, idx) => (
-              <li key={idx} className="flex items-start gap-3">
-                <i className="icon-bg-sign text-warning text-[30px]"></i> {point}
+              <li key={idx} className="flex items-start gap-3 justify-start">
+                <i className="icon-bg-sign text-warning text-[30px] shrink-0"></i> {point}
               </li>
             ))}
           </ul>
@@ -208,10 +211,13 @@ const ServicesSection = () => {
           <div className="card bg-white/15 rounded-3xl mt-4 md:mt-15">
             <div className="card-body flex md:flex-row md:items-center justify-between p-5 md:p-8">
               <p className="text-white md:pe-8 text-xl font-light max-w-max">
-                Contact us to explore how to map your strategic roadmap.
+                {t.servicesCtaText}
               </p>
               <div className="card-actions md:justify-end">
-                <Link to="/contact" className="btn btn-warning w-29.5 flex justify-center group overflow-hidden"><span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">Contact</span><i className=" text-xs icon-rotated-arrow-right w-0 opacity-0 translate-y-6 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i></Link>
+                <Link to="/contact" className="btn btn-warning w-29.5 flex justify-center group overflow-hidden">
+                  <span className="translate-x-1 group-hover:-translate-x-2 text-[18px] transition-all duration-500">{t.servicesCtaBtn}</span>
+                  <i className={`text-xs icon-rotated-arrow-right w-0 opacity-0 translate-y-6 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ${isRtl ? '-scale-x-100' : ''}`}></i>
+                </Link>
               </div>
             </div>
           </div>

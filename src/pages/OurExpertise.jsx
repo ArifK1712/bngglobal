@@ -2,63 +2,67 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Services from "../components/Services";
 import Footer from "../components/Footer";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 import expertiseHero from "../assets/images/hero/expertise-hero.webp";
 import vectorM4 from "../assets/images/vectors/vector-m4.svg";
 
-// 1. BEST PRACTICE: Move static data OUTSIDE the component.
-// This prevents React from re-creating these arrays on every single render.
-const steps = [
-  {
-    title: "Analyse Markets",
-    iconClass: "icon-analyse-markets",
-    desc: " Deep dive into market dynamics, competitive landscapes, and regulatory environments to identify opportunities. "
-  },
-  {
-    title: "Develop Strategy",
-    iconClass: "icon-develop-strategy",
-    desc: "Create tailored, actionable strategies aligned with your business objectives and market realities."
-  },
-  {
-    title: "Drive Sustainable Growth",
-    iconClass: "icon-drive-sustainable-growth",
-    desc: "Implement solutions that deliver measurable results and long-term value for your organization."
-  }
-];
-
-const cards = [
-  {
-    title: "Global Collaboration",
-    icon: "icon-global-collaboration",
-    desc: "We bring together expertise, experience, and a global perspective to help your business thrive internationally.",
-    theme: "light", 
-  },
-  {
-    title: "Sustainable Growth",
-    icon: "icon-sustainable-growth",
-    desc: "We bring together expertise, experience, and a global perspective to help your business thrive internationally.",
-    theme: "dark", 
-  },
-  {
-    title: "Innovative Solutions",
-    icon: "icon-global-collaboration",
-    desc: "Cutting-edge strategies tailored to today's dynamic global markets",
-    theme: "light",
-  },
-  {
-    title: "Results-Driven",
-    icon: "icon-results-driven",
-    desc: "Strategic approach focused on measurable outcomes and sustainable growth",
-    theme: "dark",
-  },
-  {
-    title: "Trusted Partner",
-    icon: "icon-trusted-partner",
-    desc: "Ensuring credibility and comprehensive support in the local Saudi Market",
-    theme: "light",
-  },
-];
-
 export default function Expertise() {
+  const { language } = useLanguage();
+  const isRtl = language === "ar";
+  const t = translations[language];
+
+  const steps = [
+    {
+      title: t.expertiseSteps[0].title,
+      iconClass: "icon-analyse-markets",
+      desc: t.expertiseSteps[0].desc
+    },
+    {
+      title: t.expertiseSteps[1].title,
+      iconClass: "icon-develop-strategy",
+      desc: t.expertiseSteps[1].desc
+    },
+    {
+      title: t.expertiseSteps[2].title,
+      iconClass: "icon-drive-sustainable-growth",
+      desc: t.expertiseSteps[2].desc
+    }
+  ];
+
+  const cards = [
+    {
+      title: t.expertiseCards[0].title,
+      icon: "icon-global-collaboration",
+      desc: t.expertiseCards[0].desc,
+      theme: "light", 
+    },
+    {
+      title: t.expertiseCards[1].title,
+      icon: "icon-sustainable-growth",
+      desc: t.expertiseCards[1].desc,
+      theme: "dark", 
+    },
+    {
+      title: t.expertiseCards[2].title,
+      icon: "icon-global-collaboration",
+      desc: t.expertiseCards[2].desc,
+      theme: "light",
+    },
+    {
+      title: t.expertiseCards[3].title,
+      icon: "icon-results-driven",
+      desc: t.expertiseCards[3].desc,
+      theme: "dark",
+    },
+    {
+      title: t.expertiseCards[4].title,
+      icon: "icon-trusted-partner",
+      desc: t.expertiseCards[4].desc,
+      theme: "light",
+    },
+  ];
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -67,7 +71,7 @@ export default function Expertise() {
     }, 2000); 
 
     return () => clearInterval(interval);
-  }, []);
+  }, [steps.length]);
 
   return (
     <>
@@ -76,20 +80,20 @@ export default function Expertise() {
         <img 
             src={expertiseHero} 
             className='object-cover w-full h-full' 
-            alt="Our Expertise" 
+            alt={t.expertiseHeroTitle} 
             loading="lazy"
         />
-        <h2 className="text-white relative z-10">Other Services</h2>
+        <h2 className="text-white relative z-10">{t.expertiseHeroTitle}</h2>
         <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
       </div>
 
       {/* Intro Text */}
-      <div className="app-container py-10 lg:py-32">
+      <div className="app-container py-10 lg:py-32" dir={isRtl ? "rtl" : "ltr"}>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap:5 lg:gap-10">
-          <h2 className="mb-3">Our Expertise</h2>
-          <div className="col-span-3">
-            <p className="mb-3">In an era of rapid global transformation, economic development demands agility, innovation, and strategic foresight. BNG Arabia partners with governments, trade bodies, and private enterprises to unlock the full potential of economies — by attracting investment, driving export growth, and building global competitiveness.</p>
-            <p>Our work spans the full spectrum of economic development — from strategy and execution to impact assessment. We identify high-potential sectors, evaluate market ecosystems, and design programs that deliver measurable outcomes. Through data-driven insights, stakeholder engagement, and policy advisory, we help our clients shape the future of growth.</p>
+          <h2 className="mb-3 text-start">{t.expertiseIntroHeading}</h2>
+          <div className="col-span-3 text-start">
+            <p className="mb-3">{t.expertiseIntroP1}</p>
+            <p>{t.expertiseIntroP2}</p>
           </div>
         </div>
       </div>
@@ -98,9 +102,9 @@ export default function Expertise() {
 
       {/* Animation Loop Section */}
       <div className="bg-primary">
-        <div className="app-container text-center text-white py-10 lg:pb-25">
-          <h2 className="mb-2.5">Our Approach</h2>
-          <p className="text-center text-white mb-12 md:mb-18">A Proven 3-Step Methodology That Transforms Insights Into Impact</p>          
+        <div className="app-container text-center text-white py-10 lg:pb-25" dir={isRtl ? "rtl" : "ltr"}>
+          <h2 className="mb-2.5">{t.expertiseApproachHeading}</h2>
+          <p className="text-center text-white mb-12 md:mb-18">{t.expertiseApproachSubheading}</p>          
           <div className="flex flex-col md:grid grid-cols-3 gap-5 gap-y-8 xl:gap-30 justify-between">
             {steps.map((step, index) => {
               const isActive = index === activeIndex;
@@ -147,9 +151,9 @@ export default function Expertise() {
       </div>
       
       {/* Cards Grid Section */}
-      <div className="app-container py-10 lg:py-24">
-        <h2 className="mb-2">Why Choose BNG</h2>
-        <p className="mb-6 md:mb-10">We bring together expertise, experience, and a global perspective to help your business thrive internationally.</p>
+      <div className="app-container py-10 lg:py-24" dir={isRtl ? "rtl" : "ltr"}>
+        <h2 className="mb-2 text-start">{t.expertiseChooseTitle}</h2>
+        <p className="mb-6 md:mb-10 text-start">{t.expertiseChooseSubheading}</p>
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {cards.map((card, index) => {
@@ -170,7 +174,7 @@ export default function Expertise() {
                 </div>
 
                 {/* Content Layer */}
-                <div className="relative z-10">
+                <div className="relative z-10 text-start">
                   <i
                     className={`${card.icon} text-5xl mb-12 block transition-colors duration-300 delay-300 group-hover:delay-0 
                     ${
@@ -208,10 +212,10 @@ export default function Expertise() {
 
           {/* CTA Card */}
           <div className="border border-[#5E6C84] rounded-2xl p-8 pb-7 relative group overflow-hidden h-67.5">
-            <div className="relative z-10">
-              <h4 className="mb-1.5">Let’s Build Your Global Success Story Together</h4>
+            <div className="relative z-10 text-start">
+              <h4 className="mb-1.5">{t.expertiseCtaHeading}</h4>
               <Link to="/contact" className="btn btn-warning px-5 hover:px-6 hover:bg-warning border-0 transition-all py-2.5 mt-10">
-                <i className="icon-right-arrow text-lg"></i>
+                <i className={`icon-right-arrow text-lg inline-block ${isRtl ? "rotate-180" : ""}`}></i>
               </Link>
             </div>
             {/* Same image path fix applies here */}

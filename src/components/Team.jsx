@@ -2,61 +2,129 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 import sejalHule from "../assets/images/team/sejal-hule.webp";
 import atharvaHarde from "../assets/images/team/atharva-harde.webp";
 import mohammadOvais from "../assets/images/team/mohammad-ovais.webp";
 import khaledHemdan from "../assets/images/team/khaled-hemdan.webp";
 import saifulHaq from "../assets/images/team/saiful-haq.webp";
+import sonaliBatham from "../assets/images/team/sonali-batham.webp";
 
 const TEAM_MEMBERS = [
   {
     id: 1,
-    name: "Sejal Hule",
-    role: "Deputy Director - Global Projects & Investment Promotion",
+    name: {
+      en: "Sejal Hule",
+      ar: "سيجال هول",
+    },
+    role: {
+      en: "Deputy Director - Global Projects & Investment Promotion",
+      ar: "نائب المدير - المشاريع العالمية وترويج الاستثمار",
+    },
     department: "",
-    description: "Sejal Hule leads BNG Consulting’s international business development and foreign investment initiatives with a strategic focus on markets across the Middle East, Europe, and Africa and the USA. With a proven track record in driving cross-border partnerships and trade collaborations, she has successfully spearheaded high-impact projects across several markets.",
+    description: {
+      en: "Sejal Hule leads BNG Consulting’s international business development and foreign investment initiatives with a strategic focus on markets across the Middle East, Europe, and Africa and the USA. With a proven track record in driving cross-border partnerships and trade collaborations, she has successfully spearheaded high-impact projects across several markets.",
+      ar: "تقود سيجال هول مبادرات تطوير الأعمال الدولية والاستثمار الأجنبي في شركة بي إن جي الاستشارية، مع تركيز استراتيجي على الأسواق في جميع أنحاء الشرق الأوسط وأوروبا وأفريقيا والولايات المتحدة الأمريكية. بفضل سجل حافل في تعزيز الشراكات عبر الحدود والتعاون التجاري، نجحت في قيادة مشاريع ذات تأثير كبير في أسواق متعددة.",
+    },
     email: "sejal.hule@bngglobal.net",
     image: sejalHule,
   },
   {
     id: 2,
-    name: "Atharva Harde",
-    role: "Business Development Executive - Investment Promotion",
+    name: {
+      en: "Atharva Harde",
+      ar: "أثارفا هاردي",
+    },
+    role: {
+      en: "Business Development Executive - Investment Promotion",
+      ar: "مسؤول تطوير الأعمال - ترويج الاستثمار",
+    },
     department: "",
-    description: "Atharva Harde is a Business Development Executive at BNG Consulting, where he facilitates cross-border investments across the Middle East, Africa, and Europe. Drawing on his previous experience at the World Trade Center, he specializes in building international partnerships and driving Foreign Direct Investment (FDI). Atharva is recognized for his results-oriented approach to fostering global expansion and managing strategic corridors for BNG's clients.",
+    description: {
+      en: "Atharva Harde is a Business Development Executive at BNG Consulting, where he facilitates cross-border investments across the Middle East, Africa, and Europe. Drawing on his previous experience at the World Trade Center, he specializes in building international partnerships and driving Foreign Direct Investment (FDI). Atharva is recognized for his results-oriented approach to fostering global expansion and managing strategic corridors for BNG's clients.",
+      ar: "أثارفا هاردي هو مسؤول تطوير الأعمال في شركة بي إن جي الاستشارية، حيث يسهل الاستثمارات عبر الحدود في الشرق الأوسط وأفريقيا وأوروبا. بالاستفادة من خبرته السابقة في مركز التجارة العالمي، فهو متخصص في بناء الشراكات الدولية وتعزيز الاستثمار الأجنبي المباشر (FDI). ويُعرف أثارفا بنهجه الموجه نحو تحقيق النتائج لدعم التوسع العالمي وإدارة الممرات الاستراتيجية لعملاء بي إن جي.",
+    },
     email: "atharva.harde@bngglobal.net",
     image: atharvaHarde,
   },
   {
     id: 3,
-    name: "Mohammad Ovais",
-    role: "Key Account Manager – Sales",
+    name: {
+      en: "Mohammad Ovais",
+      ar: "محمد أويس",
+    },
+    role: {
+      en: "Key Account Manager – Sales",
+      ar: "مدير الحسابات الرئيسي - المبيعات",
+    },
     department: "",
-    description: `Mohammad Ovais drives revenue growth and strategic account development at BNG Arabia, focusing on client acquisition, deal closure, and long-term partnership building across the Middle East. He works closely with senior stakeholders to convert opportunities into high-value engagements and expand key accounts.
+    description: {
+      en: `Mohammad Ovais drives revenue growth and strategic account development at BNG Arabia, focusing on client acquisition, deal closure, and long-term partnership building across the Middle East. He works closely with senior stakeholders to convert opportunities into high-value engagements and expand key accounts.
     In addition to sales leadership, Mohammad manages end-to-end project coordination for exhibitions and events, ensuring seamless execution, on-time delivery, and alignment with client objectives. He bridges sales and operations to deliver impactful event experiences while maintaining consistent client satisfaction and repeat business.`,
+      ar: `يقود محمد أويس نمو الإيرادات وتطوير الحسابات الاستراتيجية في بي إن جي العربية، مع التركيز على استقطاب العملاء، وإتمام الصفقات، وبناء شراكات طويلة الأجل في جميع أنحاء الشرق الأوسط. وهو يعمل بشكل وثيق مع كبار أصحاب المصلحة لتحويل الفرص إلى مشاريع عالية القيمة وتوسيع الحسابات الرئيسية.
+    بالإضافة إلى قيادة Mبيعات، يدير محمد التنسيق الكامل للمشاريع للمعارض والفعاليات، مما يضمن التنفيذ السلس والتسليم في الوقت المحدد والتواؤم مع أهداف العملاء. وهو يربط بين المبيعات والعمليات لتقديم تجارب فعاليات مؤثرة مع الحفاظ على رضا العملاء المستمر وتكرار الأعمال.`,
+    },
     email: "mohammad.ovais@bngglobal.net",
     image: mohammadOvais,
   },
   {
     id: 4,
-    name: "Khaled Hemdan",
-    role: "Project Manager",
+    name: {
+      en: "Khaled Hemdan",
+      ar: "خالد حمدان",
+    },
+    role: {
+      en: "Project Manager",
+      ar: "مدير المشروع",
+    },
     department: "",
-    description: `Khaled Hemdan leads the planning and execution of projects at BNG Arabia, managing exhibitions and events across the Middle East. He partners closely with clients and senior stakeholders to ensure projects are completed on schedule, within budget, and meet all objectives.
+    description: {
+      en: `Khaled Hemdan leads the planning and execution of projects at BNG Arabia, managing exhibitions and events across the Middle East. He partners closely with clients and senior stakeholders to ensure projects are completed on schedule, within budget, and meet all objectives.
     Beyond project oversight, Khaled collaborates with cross-functional teams, streamlines operational workflows, and guarantees smooth execution. He effectively connects strategic planning with operational delivery to create memorable event experiences while maintaining excellent client satisfaction.`,
+      ar: `يقود خالد حمدان تخطيط وتنفيذ المشاريع في بي إن جي العربية، حيث يدير المعارض والفعاليات في جميع أنحاء الشرق الأوسط. وهو يعمل بشكل وثيق مع العملاء وكبار أصحاب المصلحة لضمان اكتمال المشاريع في الجدول الزمني المحدد، وضمن الميزانية، وتلبية جميع الأهداف.
+    إلى جانب الإشراف على المشاريع، يتعاون خالد مع فرق عمل متعددة التخصصات، ويسهل سير العمليات التشغيلية، ويضمن التنفيذ السلس. وهو يربط بشكل فعال بين التخطيط الاستراتيجي والتقديم التشغيلي لخلق تجارب فعاليات لا تُنسى مع الحفاظ على رضا العملاء الممتاز.`,
+    },
     email: "khaled.hemdan@bngglobal.net",
     image: khaledHemdan,
   },
   {
     id: 5,
-    name: "Saiful Haq",
-    role: "General Manager",
+    name: {
+      en: "Saiful Haq",
+      ar: "سيف الحق",
+    },
+    role: {
+      en: "General Manager",
+      ar: "المدير العام",
+    },
     department: "",
-    description: `Saiful Haq provides overall leadership and strategic direction for BNG Arabia’s events and exhibitions operations across the region. He oversees business growth, client relationships, and operational excellence, ensuring every project aligns with the company’s vision and market goals.
+    description: {
+      en: `Saiful Haq provides overall leadership and strategic direction for BNG Arabia’s events and exhibitions operations across the region. He oversees business growth, client relationships, and operational excellence, ensuring every project aligns with the company’s vision and market goals.
     With extensive experience in managing large-scale exhibitions, corporate events, and brand activations, Saiful leads cross-functional teams from concept to completion. He ensures smooth coordination between sales, design, production, and on-site execution, delivering high-quality experiences that meet client expectations, timelines, and budgets.`,
+      ar: `يقدم سيف الحق القيادة العامة والتوجيه الاستراتيجي لعمليات الفعاليات والمعارض لشركة بي إن جي العربية في جميع أنحاء المنطقة. وهو يشرف على نمو الأعمال، وعلاقات العملاء، والتميز التشغيلي، مما يضمن توافق كل مشروع مع رؤية الشركة وأهدافها في السوق.
+    مع خبرة واسعة في إدارة المعارض الكبرى والفعاليات المؤسسية وتنشيط العلامات التجارية، يقود سيف فرق عمل متعددة التخصصات من المفهوم إلى الاكتمال. وهو يضمن التنسيق السلس بين المبيعات والتصميم والإنتاج والتنفيذ في الموقع لتقديم تجارب عالية الجودة تلبي توقعات العملاء والجداول الزمنية والميزانيات.`,
+    },
     email: "saiful.haq@bngglobal.net",
     image: saifulHaq,
+  },
+  {
+    id: 6,
+    name: {
+      en: translations.en.teamSonaliName,
+      ar: translations.ar.teamSonaliName,
+    },
+    role: {
+      en: translations.en.teamSonaliRole,
+      ar: translations.ar.teamSonaliRole,
+    },
+    department: "",
+    description: {
+      en: translations.en.teamSonaliBio,
+      ar: translations.ar.teamSonaliBio,
+    },
+    email: "sonali.batham@bngglobal.net",
+    image: sonaliBatham,
   },
 ];
 
@@ -247,7 +315,7 @@ export default function TeamCarousel() {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="app-container">
-        <h2 className="lg:ms-auto w-full mb-20 lg:mb-5 text-center"><span className="xl:ms-90">Our Team</span></h2>
+        <h2 className="lg:ms-auto w-full mb-20 lg:mb-5 text-center"><span className="xl:ms-90">{language === 'ar' ? 'فريقنا' : 'Our Team'}</span></h2>
         
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-40 xl:gap-50 items-center">
           
@@ -275,7 +343,7 @@ export default function TeamCarousel() {
                 onKeyDown={(e) => handleKeyDown(e, i)}
                 role="button"
                 tabIndex={0}
-                aria-label={`View details for ${member.name}`}
+                aria-label={language === 'ar' ? `عرض تفاصيل لـ ${member.name[language]}` : `View details for ${member.name[language]}`}
                 aria-selected={activeIndex === i}
                 className={`team-avatar-${i} team-avatar-item 
                   absolute
@@ -291,9 +359,9 @@ export default function TeamCarousel() {
           <div className="relative w-full text-start pt-10 lg:pt-0" ref={textRef}>
             <div className="flex flex-col items-start space-y-4">
               <div>
-                <h3 className="mb-2">{activeMember.name}</h3>
+                <h3 className="mb-2">{activeMember.name[language]}</h3>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-2 text-gray-600">
-                  <p>{activeMember.role}</p>
+                  <p>{activeMember.role[language]}</p>
                   {activeMember.department && (
                     <>
                       <span className="h-1.5 w-1.5 rounded-full bg-gray-400 self-center"></span>
@@ -302,8 +370,8 @@ export default function TeamCarousel() {
                   )}
                 </div>
               </div>
-              <div className="space-y-3">
-                {activeMember.description.split('\n').map((text, index) => (
+              <div className="space-y-3 text-start">
+                {(activeMember.description[language] || activeMember.description.en).split('\n').map((text, index) => (
                   <p key={index}>
                     {text}
                   </p>
@@ -314,7 +382,7 @@ export default function TeamCarousel() {
               </a>
               <button 
                 onClick={handleNext} 
-                aria-label="Next team member"
+                aria-label={language === 'ar' ? "عضو الفريق التالي" : "Next team member"}
                 className="group mt-4 w-14 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-yellow-400 transition-all focus:outline-none focus:ring-2 focus:ring-warning">
                  <i className="icon-right-arrow text-lg rtl:rotate-180"></i>
               </button>

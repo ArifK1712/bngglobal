@@ -122,7 +122,7 @@ export default function Header() {
               <li><Link className="hover:bg-transparent hover:underline" to="">{t.navEventCalendar}</Link></li>
               <li><Link className="hover:bg-transparent hover:underline" to="/blog">{t.navInsightsBlogs}</Link></li>              
               <li><Link to="/contact" className='btn-warning bg-warning items-center flex text-dark rounded-3xl min-h-10 h-10 text-[#253858] px-6 font-medium'>{t.navContact}</Link></li>
-              {/* <li className="flex items-center justify-center px-1"><LanguageToggle /></li> */}
+              <li className="flex items-center justify-center px-1"><LanguageToggle /></li>
             </ul>
           </div>
         </div>

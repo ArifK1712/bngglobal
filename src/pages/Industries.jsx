@@ -5,6 +5,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 import industriesHero from "../assets/images/hero/industries-hero.webp";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -12,19 +13,20 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 export default function Industries() {
   const { language } = useLanguage();
   const isRtl = language === "ar";
+  const t = translations[language];
 
   const INDUSTRIES = [
-    { id: 1, title: "Tourism", desc: "Tourism is a major growth vector for Saudi Arabia’s economic transformation, with giant destination projects, regulatory revisions and infrastructure upgrades forming the foundation of this push under Vision 2030.", image: new URL("../assets/images/industries/tourism.jpg", import.meta.url).href },
-    { id: 2, title: "Consumer Products", desc: "The Consumer Products sector in Saudi Arabia is poised for growth, driven by demographic trends, rising disposable incomes and modern retail/e-commerce expansion under Vision 2030’s economic-diversification agenda.", image: new URL("../assets/images/industries/consumer-products.jpg", import.meta.url).href },
-    { id: 3, title: "Hospitality", desc: "The Hospitality sector is a pivotal element of Saudi Arabia’s tourism-led diversification strategy, supported by a large hotel-development pipeline and regulatory reforms to enhance inbound leisure and business tourism under Vision 2030.", image: new URL("../assets/images/industries/hospitality.jpg", import.meta.url).href },
-    { id: 4, title: "Logistics & Infrastructure", desc: "Logistics & Infrastructure is a cornerstone for Saudi Arabia’s economic strategy, with ambitious targets to raise the sector’s contribution to GDP and position the Kingdom as a regional logistics hub. Transport, ports, airports and multimodal corridors are being expanded under Vision 2030.", image: new URL("../assets/images/industries/logistics-infrastructure.jpg", import.meta.url).href },
-    { id: 5, title: "Healthcare & Life Sciences", desc: "The Healthcare & Life Sciences sector is undergoing transformation in Saudi Arabia through the Health Sector Transformation Program under Vision 2030, with an emphasis on preventive care, digital health, private-sector participation and local manufacturing of pharmaceuticals/devices.", image: new URL("../assets/images/industries/healthcare-lifesciences.jpg", import.meta.url).href },
-    { id: 6, title: "Agribusiness & Food", desc: "Agribusiness and Food is a critical non-oil sector for Saudi Arabia, anchored by Vision 2030 goals around food security, value-added agriculture and supply-chain resilience. The Kingdom has invested in modern agriculture, food processing and logistics to reduce import reliance and build domestic capability.", image: new URL("../assets/images/industries/agribusiness-food.jpg", import.meta.url).href },
-    { id: 7, title: "Environmental", desc: "Environmental sustainability is increasingly enshrined in Saudi Arabia’s policy agenda, led by the Saudi Green Initiative (SGI) and embedded within Vision 2030’s sustainability pillar. Efforts span carbon-emission reduction, land & marine ecosystem restoration, afforestation and circular-economy approaches.", image: new URL("../assets/images/industries/environmental.jpg", import.meta.url).href },
-    { id: 8, title: "Energy, Power & Products (EPP)", desc: "Saudi Arabia’s Energy, Power & Products sector is on a dual path: continuing its hydrocarbon-based strength while accelerating transformation toward renewables, hydrogen and value-added products. The Kingdom invests heavily in downstream integration, petrochemicals, and clean-energy platforms as part of its decarbonisation and diversification strategy.", image: new URL("../assets/images/industries/epp.jpg", import.meta.url).href },
-    { id: 9, title: "Construction, Projects & Assets", desc: "The Construction, Projects & Assets sector is experiencing a surge in Saudi Arabia, fuelled by large-scale public/private “giga-projects” under Vision 2030 and PIF-led investment. These projects cover residential, tourism, transport, cultural heritage and mixed-use development, forming a multi-year pipeline of construction and asset-delivery activity.", image: new URL("../assets/images/industries/construction-projects.jpg", import.meta.url).href },
-    { id: 10, title: "Automotive", desc: "The Automotive sector in Saudi Arabia is shifting from a predominantly import/distribution model toward localization, EV adoption and advanced mobility solutions. Driven by Vision 2030’s industrial development arm and Public Investment Fund (PIF)-backed investments, localization of vehicle assembly and value-chains is accelerating.", image: new URL("../assets/images/industries/automotive.jpg", import.meta.url).href },
-    { id: 11, title: "Technology & Innovation", desc: "Saudi Arabia’s Technology & Innovation sector is a strategic pillar of Vision 2030, aimed at diversifying the economy via digital transformation, R&D and startup ecosystems. Government initiatives such as the National Transformation Program and dedicated data/AI authorities drive investments in cloud infrastructure, cybersecurity, digital payments and smart-city platforms. Key growth trajectories include public-service digitalisation, sovereign tech capital deployment, and global technology partnerships.", image: new URL("../assets/images/industries/technology-innovation.jpg", import.meta.url).href },
+    { id: 1, title: t.industriesItems[0].title, desc: t.industriesItems[0].desc, image: new URL("../assets/images/industries/tourism.jpg", import.meta.url).href },
+    { id: 2, title: t.industriesItems[1].title, desc: t.industriesItems[1].desc, image: new URL("../assets/images/industries/consumer-products.jpg", import.meta.url).href },
+    { id: 3, title: t.industriesItems[2].title, desc: t.industriesItems[2].desc, image: new URL("../assets/images/industries/hospitality.jpg", import.meta.url).href },
+    { id: 4, title: t.industriesItems[3].title, desc: t.industriesItems[3].desc, image: new URL("../assets/images/industries/logistics-infrastructure.jpg", import.meta.url).href },
+    { id: 5, title: t.industriesItems[4].title, desc: t.industriesItems[4].desc, image: new URL("../assets/images/industries/healthcare-lifesciences.jpg", import.meta.url).href },
+    { id: 6, title: t.industriesItems[5].title, desc: t.industriesItems[5].desc, image: new URL("../assets/images/industries/agribusiness-food.jpg", import.meta.url).href },
+    { id: 7, title: t.industriesItems[6].title, desc: t.industriesItems[6].desc, image: new URL("../assets/images/industries/environmental.jpg", import.meta.url).href },
+    { id: 8, title: t.industriesItems[7].title, desc: t.industriesItems[7].desc, image: new URL("../assets/images/industries/epp.jpg", import.meta.url).href },
+    { id: 9, title: t.industriesItems[8].title, desc: t.industriesItems[8].desc, image: new URL("../assets/images/industries/construction-projects.jpg", import.meta.url).href },
+    { id: 10, title: t.industriesItems[9].title, desc: t.industriesItems[9].desc, image: new URL("../assets/images/industries/automotive.jpg", import.meta.url).href },
+    { id: 11, title: t.industriesItems[10].title, desc: t.industriesItems[10].desc, image: new URL("../assets/images/industries/technology-innovation.jpg", import.meta.url).href },
   ];
 
   const containerRef = useRef(null);
@@ -74,9 +76,11 @@ export default function Industries() {
 
     tlRef.current = tl;
 
+    const isDocRtl = document.documentElement.dir === "rtl";
     tl.to(pillRef.current, {
       width: "100vw", height: "100vh", borderRadius: "0px",
-      y: "-90px", backgroundImage: "none", x: 0, top: 0, left: -22,
+      y: "-90px", backgroundImage: "none", x: 0, top: 0,
+      ...(isDocRtl ? { right: -22 } : { left: -22 }),
       duration: 2, ease: "power2.inOut",
     });
 
@@ -115,23 +119,24 @@ export default function Industries() {
   return (
     <>
       <div className="hero relative">
-        <img src={industriesHero} className="object-cover w-full h-full" alt="Industries" />
-        <h2 className="text-white z-10 relative px-6">Industries</h2>
+        <img src={industriesHero} className="object-cover w-full h-full" alt={t.industriesHeroTitle} />
+        <h2 className="text-white z-10 relative px-6">{t.industriesHeroTitle}</h2>
         <div className="bg-black opacity-20 absolute inset-0"></div>
       </div>
 
       {!isMobile ? (
-        /* DESKTOP VIEW (Unchanged) */
-        <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-white mb-35">
-          <div className="absolute pt-30 left-0 w-full flex flex-col items-center z-10">
-            <h2 className="text-center dark:text-[#253858]">
-              Specialized Expertise Across Diverse <br /> Sectors to Power Your
+        /* DESKTOP VIEW — structural wrappers locked to LTR so GSAP layout never reverses */
+        <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-white mb-35" dir="ltr" style={{ direction: "ltr" }}>
+          <div className="absolute pt-30 left-0 w-full flex flex-col items-center z-10" dir="ltr" style={{ direction: "ltr" }}>
+            <h2 className="text-center dark:text-[#253858]" dir="ltr" style={{ direction: "ltr" }}>
+              <span dangerouslySetInnerHTML={{ __html: t.industriesHeadingPart1 }}></span>
               <span className="inline-block relative w-23 h-11.5 mx-3 align-middle">
-                <div ref={pillRef} className="absolute left-1/2 -translate-x-1/2 w-23 h-11.5 bg-[#0033A0] rounded-4xl z-20 flex items-center justify-center overflow-hidden bg-[url(https://d1o4s320mkx6gb.cloudfront.net/bng-global/globe.svg)] bg-no-repeat bg-bottom">
+                <div ref={pillRef} className="absolute left-1/2 -translate-x-1/2 w-23 h-11.5 bg-[#0033A0] rounded-4xl z-20 flex items-center justify-center overflow-hidden bg-[url(https://d1o4s320mkx6gb.cloudfront.net/bng-global/globe.svg)] bg-no-repeat bg-bottom" dir="ltr" style={{ direction: "ltr" }}>
                   <i className="icon-globe text-white text-xl relative z-30 opacity-80"></i>
-                  <div ref={blueSectionRef} className="absolute top-0 inset-0 opacity-0 w-screen h-screen flex items-center justify-start bg-[#003a86]">
-                    <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-0">
-                      <div className="flex flex-col h-full w-full relative bg-white">
+                  <div ref={blueSectionRef} className="absolute top-0 inset-0 opacity-0 w-screen h-screen flex items-center justify-start bg-[#003a86]" dir="ltr" style={{ direction: "ltr" }}>
+                    <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-0" dir="ltr" style={{ direction: "ltr" }}>
+                      {/* LEFT COLUMN: image + description — always physically on the left */}
+                      <div className="flex flex-col h-full w-full relative bg-white" dir="ltr" style={{ direction: "ltr" }}>
                         <div className="relative w-full h-100 md:h-125 lg:h-[30vh] xl:h-[40vh] 2xl:h-[58vh] shrink-0 overflow-hidden">
                           {INDUSTRIES.map((item, index) => (
                             <div key={item.id} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${activeTab === index ? "opacity-100" : "opacity-0"}`}>
@@ -139,28 +144,30 @@ export default function Industries() {
                             </div>
                           ))}
                         </div>
-                        <div className="w-full max-w-160 p-5 2xl:p-10 ms-auto text-start">
+                        {/* Description text — this is the only place Arabic RTL text direction applies */}
+                        <div className="w-full max-w-160 p-5 2xl:p-10 ms-auto text-start" dir={isRtl ? "rtl" : "ltr"}>
                           <div className="relative">
                             <p className="leading-relaxed opacity-0 pointer-events-none">{INDUSTRIES[activeTab].desc}</p>
                             {INDUSTRIES.map((item, index) => (
-                              <p key={item.id} className={`absolute top-0 left-0 leading-relaxed w-full transition-all duration-700 ease-in-out ${activeTab === index ? "opacity-100 translate-x-0" : "opacity-0 ltr:translate-x-20 rtl:-translate-x-20"}`}>
+                              <p key={item.id} className={`absolute top-0 left-0 leading-relaxed w-full transition-all duration-700 ease-in-out ${activeTab === index ? "opacity-100 translate-x-0" : "opacity-0 translate-x-20"}`}>
                                 {item.desc}
                               </p>
                             ))}
                           </div>
                         </div>
                       </div>
-                      <div className="flex flex-col justify-center items-end h-full pe-4 perspective-container pointer-events-auto">
-                        <div className="industry-list flex flex-col items-end relative h-[400px] justify-center">
+                      {/* RIGHT COLUMN: blue panel with stacked titles — always physically on the right */}
+                      <div className="flex flex-col justify-center items-end h-full pe-4 perspective-container pointer-events-auto" dir="ltr" style={{ direction: "ltr" }}>
+                        <div className="industry-list flex flex-col items-end relative h-[400px] justify-center" dir={isRtl ? "rtl" : "ltr"}>
                           {INDUSTRIES.map((item, index) => {
                             const diff = index - activeTab;
                             return (
                               <div
                                 key={item.id}
                                 onClick={() => handleTabClick(index)}
-                                className="transition-all duration-700 ease-out absolute ltr:right-40 rtl:left-40 ltr:origin-right rtl:origin-left flex items-center justify-end cursor-pointer group"
+                                className="transition-all duration-700 ease-out absolute right-40 origin-right flex items-center justify-end cursor-pointer group"
                                 style={{
-                                  transform: `translate(${(isRtl ? -1 : 1) * Math.abs(diff) * 40}px, ${diff * 160}px) rotate(${diff * (isRtl ? 8 : -8)}deg)`,
+                                  transform: `translate(${Math.abs(diff) * 40}px, ${diff * 160}px) rotate(${diff * -8}deg)`,
                                   opacity: diff === 0 ? 1 : Math.max(0.5, 1 - Math.abs(diff) * 0.5),
                                   zIndex: 100 - Math.abs(diff),
                                   top: "50%",
@@ -177,15 +184,15 @@ export default function Industries() {
                   </div>
                 </div>
               </span>
-              Global Growth
+              {t.industriesHeadingPart2}
             </h2>
           </div>
         </div>
       ) : (
-        /* MOBILE VIEW: Adjusted to match your image */
-        <div className="w-full bg-white">
+        /* MOBILE VIEW */
+        <div className="w-full bg-white" dir={isRtl ? "rtl" : "ltr"}>
           <div className="py-8 px-2 text-center">
-            <h2>Specialized Expertise Across Diverse Sectors to Power Your Global Growth</h2>
+            <h2>{t.industriesHeadingMobile}</h2>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory gap-0 no-scrollbar">
@@ -195,7 +202,7 @@ export default function Industries() {
                 className="min-w-full snap-center flex flex-col md:flex-row"
               >
                 {/* CONTENT SECTION: 100% width on mobile, 50% on medium+ */}
-                <div className="bg-primary p-4 flex flex-col justify-center w-full md:w-1/2">
+                <div className="bg-primary p-4 flex flex-col justify-center w-full md:w-1/2 text-start">
                   <h3 className="text-white mb-2">
                     {item.title}
                   </h3>

@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Team from "../components/Team";
 import Footer from "../components/Footer";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 import aboutHero from "../assets/images/hero/about-hero.webp";
 import whoWeAreImg from "../assets/images/who-we-are.webp";
 import vectorM3 from "../assets/images/vectors/vector-m3.svg";
@@ -14,6 +16,8 @@ import vectorM2 from "../assets/images/vectors/vector-m2.svg";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const sectionRef = useRef(null);
   const m1Ref = useRef(null);
   const m2Ref = useRef(null);
@@ -109,19 +113,22 @@ export default function About() {
   return (
     <>
     <div className="hero relative">
-      <img src={aboutHero} className='object-cover w-full h-full' alt="About Us" loading="lazy" />
-      <h2 className="text-white z-1">About Us</h2>      
+      <img src={aboutHero} className='object-cover w-full h-full' alt={t.aboutHeader} loading="lazy" />
+      <h2 className="text-white z-1">{t.aboutHeader}</h2>      
       <div className="bg-black opacity-20 absolute right-0 left-0 bottom-0 top-0"></div>
     </div>
     <div id="who-we-are" className="app-container py-10 lg:py-25 scroll-mt-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">        
-        <div className="lg:px-10 lg:order-1">
-          <h2 className="mb-3">Who we are</h2>
-          <p className="mb-3">BNG Arabia is a strategic advisory firm partnering with governments, institutions, national programs, and private sector stakeholders across Saudi Arabia and the wider region. Through tailored, insight-driven solutions, we support business development, enhance cross-border competitiveness, and enable sustainable economic growth by delivering measurable, high-impact outcomes. </p>
-          <p>We specialize in Foreign Direct Investment (FDI) advisory and trade consulting, combining deep local knowledge with global perspectives to navigate the complexities of international markets.</p>
+        <div className="lg:order-1">
+          <h2 className="mb-3 text-start">{t.aboutWhoWeAreTitle}</h2>
+          <p className="mb-3 text-start">{t.aboutWhoWeAreP1}</p>
+          <p className="mb-3 text-start">{t.aboutWhoWeAreP2}</p>
+          {t.aboutWhoWeAreP3 && <p className="mb-3 text-start">{t.aboutWhoWeAreP3}</p>}
+          {t.aboutWhoWeAreP4 && <p className="mb-3 text-start">{t.aboutWhoWeAreP4}</p>}
+          {t.aboutWhoWeAreP5 && <p className="text-start">{t.aboutWhoWeAreP5}</p>}
         </div>
-        <div className="overflow-hidden lg:max-w-123 rounded-2xl text-end">      
-          <img src={whoWeAreImg} className='object-cover object-right origin-right w-full lg:h-90 scale-150' loading="lazy" alt="About Us" />
+        <div className="overflow-hidden lg:max-w-140 rounded-2xl text-end">      
+          <img src={whoWeAreImg} className='object-cover object-right origin-right w-full lg:h-125 scale-130' loading="lazy" alt={t.aboutHeader} />
         </div>
       </div>
     </div>
@@ -130,10 +137,11 @@ export default function About() {
         <div className="app-container">
             <div className="grid grid-col-1 lg:grid-cols-2 justify-between"> 
                 <div className='py-12 lg:py-20 w-full lg:w-200 lg:pe-22'>    
-                    <div className="badge badge-primary rounded-full bg-[#253E80] text-white py-4 mb-2 border-1/white">Our Mission</div>       
-                    <h2 className="mb-3 text-white">Empowering Global Business Growth</h2>
-                    <p className="mb-3 text-white">At Business Network Global, our mission is to empower businesses with strategic insights and practical solutions that unlock international opportunities. We are committed to delivering exceptional consulting services that bridge markets, facilitate foreign direct investment, and drive sustainable economic growth across borders. </p>
-                    <p className='text-white'>We believe that every business, regardless of size, deserves access to global markets. Our dedicated team works tirelessly to provide the expertise, connections, and support needed to navigate complex international landscapes with confidence. </p>
+                    <div className="badge badge-primary rounded-full bg-[#253E80] text-white py-4 mb-2 border-1/white">{t.aboutOurMissionBadge}</div>       
+                    <h2 className="mb-3 text-white text-start">{t.aboutOurMissionTitle}</h2>
+                    <p className="mb-3 text-white text-start">{t.aboutOurMissionP1}</p>
+                    <p className="mb-3 text-white text-start">{t.aboutOurMissionP2}</p>
+                    {t.aboutOurMissionP3 && <p className="text-white text-start">{t.aboutOurMissionP3}</p>}
                 </div>
                 <div className="w-full lg:w-130 bg-[#253E80] relative h-100 lg:h-full lg:ms-auto lg:-me-20">
                     <div className="before:content-[''] before:absolute before:top-0 before:h-full before:w-lvw before:start-0 before:end-0 before:-ms-4 lg:before:ms-0 before:bg-[#253E80] "></div>
@@ -152,7 +160,7 @@ export default function About() {
 
     <div id="clients" className="scroll-mt-24">
       <div className="app-container pb-15" ref={containerRef}>
-        <h2 className="text-center mb-10">Our Clients</h2>      
+        <h2 className="text-center mb-10">{t.aboutOurClientsTitle}</h2>      
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center">
           {clientIds.map((id) => (
             <img 

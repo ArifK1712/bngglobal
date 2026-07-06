@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
 
@@ -11,28 +10,34 @@ export default function Home() {
   const sliderRef = useRef(null);
   const words = t.homeWords;
 
-  useGSAP(() => {
-    // Reset inline styles to avoid stale transform values when toggling languages
-    gsap.set(sliderRef.current, { clearProps: "all" });
+  useEffect(() => {
+    // Setup GSAP animation context for automatic cleanup on dependencies change
+    const ctx = gsap.context(() => {
+      // Reset inline styles to avoid stale transform values when toggling languages
+      gsap.set(sliderRef.current, { clearProps: "all" });
 
-    const totalWords = words.length;
-    const step = 100 / (totalWords + 1);      
-    const tl = gsap.timeline({ repeat: -1 });
+      const totalWords = words.length;
+      const step = 100 / (totalWords + 1);      
+      const tl = gsap.timeline({ repeat: -1 });
 
-    words.forEach((_, index) => {
-      tl.to(sliderRef.current, {
-        yPercent: -step * (index + 1),
-        duration: 0.90,
-        ease: "power2.inOut",
-        delay: 1,
+      words.forEach((_, index) => {
+        tl.to(sliderRef.current, {
+          yPercent: -step * (index + 1),
+          duration: 0.90,
+          ease: "power2.inOut",
+          delay: 1,
+        });
       });
-    });
-    
-    tl.to(sliderRef.current, {
-      yPercent: 0,
-      duration: 0,
-    });
-  }, { scope: sliderRef, dependencies: [language] });
+      
+      tl.to(sliderRef.current, {
+        yPercent: 0,
+        duration: 0,
+      });
+    }, sliderRef);
+
+    // Cleanup: revert and destroy all GSAP animations to prevent memory leaks and duplication
+    return () => ctx.revert();
+  }, [language, words]);
 
 return (
   <section className="relative isolate min-h-[100svh] overflow-hidden">
@@ -58,20 +63,24 @@ return (
     {/* Hero content */}
     <div className="app-container relative z-10 flex min-h-[100svh] flex-col px-5 pt-28 pb-8 text-white sm:px-6 md:pt-46 md:pb-16 lg:px-10">
       {/* Main heading */}
-      <h1 className="text-white relative z-50 w-full max-w-3xl text-4xl leading-tight md:leading-tight sm:text-6xl text-start">
+      <h1 
+        key={language}
+        dir={language === "ar" ? "rtl" : "ltr"}
+        className="text-white relative z-50 w-full max-w-xl text-4xl leading-tight md:leading-tight sm:text-6xl text-start"
+      >
         {t.homeEmpowering}{" "}
-        <span className="relative inline-block h-[2.35em] overflow-hidden align-bottom sm:h-[1.15em]">
+        <span className="relative inline-block h-[2.35em] overflow-hidden align-bottom sm:h-[1.50em]">
           <div ref={sliderRef} className="flex flex-col">
             {words.map((word, i) => (
               <span
                 key={i}
-                className="flex h-[2.35em] items-center font-semibold sm:h-[1.15em]"
+                className="flex h-[2.35em] items-center font-semibold sm:h-[1.50em]"
               >
                 {word}
               </span>
             ))}
 
-            <span className="flex h-[2.35em] items-center font-semibold sm:h-[1.15em]">
+            <span className="flex h-[2.35em] items-center font-semibold sm:h-[1.50em]">
               {words[0]}
             </span>
           </div>

@@ -922,7 +922,7 @@ export default function Services() {
                     </h3>
 
                     {item.unit && (
-                      <span className="absolute -right-1 bottom-3 text-sm font-bold uppercase tracking-[0.18em] text-white">
+                      <span className="text-sm font-bold uppercase tracking-[0.18em] text-white">
                         {item.unit[language]}
                       </span>
                     )}

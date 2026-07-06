@@ -71,7 +71,7 @@ const projectsData = {
       id: 2,
       name: "جناح جانا مارين في المؤتمر السعودي البحري واللوجستي",
       date: "١ - ٢ أكتوبر ٢٠٢٥",
-      venue: "قاعة هيلتون جدة",
+      venue: "مركز معارض الظهران",
       coverImage: new URL("../assets/images/gallery/6.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href },

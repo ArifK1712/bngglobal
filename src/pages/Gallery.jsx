@@ -57,8 +57,8 @@ const projectsData = {
     {
       id: 1,
       name: "جناح فيليبس للرعاية الصحية",
-      date: "نوفمبر ٢٠٢٥",
-      venue: "مركز الرياض للمعارض",
+      date: "١٩ يناير ٢٠٢٦",
+      venue: "فندق فيرمونت الرياض",
       coverImage: new URL("../assets/images/gallery/1.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/1.webp", import.meta.url).href },
@@ -69,10 +69,10 @@ const projectsData = {
     },
     {
       id: 2,
-      name: "تفعيل مباشر لجانا مارين",
-      date: "ديسمبر ٢٠٢٥",
+      name: "جناح جانا مارين في المؤتمر السعودي البحري واللوجستي",
+      date: "١ - ٢ أكتوبر ٢٠٢٥",
       venue: "قاعة هيلتون جدة",
-      coverImage: new URL("../assets/images/gallery/2.webp", import.meta.url).href,
+      coverImage: new URL("../assets/images/gallery/6.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/6.webp", import.meta.url).href },
         { type: "video", src: new URL("../assets/images/gallery/jana-marine.mp4", import.meta.url).href }
@@ -80,10 +80,10 @@ const projectsData = {
     },
     {
       id: 3,
-      name: "منتدى الأعمال السعودي العالمي",
-      date: "يناير ٢٠٢٦",
-      venue: "مركز الدمام الدولي للمؤتمرات",
-      coverImage: new URL("../assets/images/gallery/6.webp", import.meta.url).href,
+      name: "منتدى فيجن للاستثمار",
+      date: "١٢ ديسمبر ٢٠٢٥",
+      venue: "فندق ماندارين أورينتال، الرياض",
+      coverImage: new URL("../assets/images/gallery/4.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/4.webp", import.meta.url).href },
         { type: "image", src: new URL("../assets/images/gallery/5.webp", import.meta.url).href }
@@ -91,9 +91,9 @@ const projectsData = {
     },
     {
       id: 4,
-      name: "General Authority of Civil Aviation (GACA) Exhibition",
-      date: "January 2026",
-      venue: "Dammam International Convention Center",
+      name: "مؤتمر الحج للهيئة العامة للطيران المدني",
+      date: "٩ - ١٢ نوفمبر ٢٠٢٥",
+      venue: "سوبر دوم جدة",
       coverImage: new URL("../assets/images/gallery/7.webp", import.meta.url).href,
       media: [
         { type: "image", src: new URL("../assets/images/gallery/7.webp", import.meta.url).href }

@@ -172,8 +172,8 @@ export const translations = {
         points: ["Market & Segment Prioritisation", "Value Proposition & Positioning", "Channel & Partnership Strategy", "Digital Marketing Integration", "Performance & KPI Framework"]
       },
       {
-        description: "We support governments, agencies, and organizations in attracting and retaining high-quality foreign direct investment.",
-        points: ["FDI Strategy & Policy Advisory", "Investor Targeting & Lead Generation", "Value Proposition Development", "Pipeline Management & Aftercare", "Sector & Location Marketing"]
+        description: "We support governments entities and organizations in attracting high-quality foreign direct investment.",
+        points: ["FDI Strategy", "Investor Targeting & Lead Generation", "Value Proposition Development", "Sector & Location Marketing"]
       }
     ],
     servicesIncludeText: "Our services include:",
@@ -403,8 +403,8 @@ export const translations = {
         points: ["تحديد أولويات الأسواق والشرائح المستهدفة", "صياغة عروض القيمة والتموضع في السوق", "استراتيجية القنوات والشراكات", "تكامل حلول التسويق الرقمي", "إطار عمل الأداء ومؤشرات القياس الرئيسية"]
       },
       {
-        description: "نحن ندعم الحكومات، والهيئات، والمؤسسات في جذب واستبقاء الاستثمارات الأجنبية المباشرة عالية الجودة.",
-        points: ["استراتيجية الاستثمار الأجنبي المباشر واستشارات السياسات", "استهداف المستثمرين وجذب الفرص الاستثمارية", "تطوير عروض القيمة الاستثمارية", "إدارة تدفق المشاريع وخدمات الرعاية اللاحقة للمستثمرين", "التسويق للقطاعات والوجهات الاستثمارية"]
+        description: "ندعم الجهات الحكومية والمنظمات في جذب الاستثمار الأجنبي المباشر عالي الجودة.",
+        points: ["استراتيجية الاستثمار الأجنبي المباشر", "استهداف المستثمرين وجذب الفرص الاستثمارية", "تطوير عروض القيمة الاستثمارية", "التسويق للقطاعات والوجهات الاستثمارية"]
       }
     ],
     servicesIncludeText: "تشمل خدماتنا:",

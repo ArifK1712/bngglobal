@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-primary text-white pt-10 pb-4 md:pt-20 md:pb-10">
-      <div className="app-container">
+      <div className="app-container footer-test-class">
           <div className="flex flex-col gap-y-8 sm:grid grid-cols-3 lg:grid-cols-4 gap-0">
               <nav className="flex flex-col gap-2.5 text-start">
                 <p className="text-white font-medium mb-0 sm:mb-4">{t.navOurExpertise}</p>
